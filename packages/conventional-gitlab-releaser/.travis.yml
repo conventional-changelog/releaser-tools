@@ -1,0 +1,13 @@
+sudo: false
+language: node_js
+node_js:
+  - 'iojs'
+  - '0.12'
+  - '0.10'
+before_script:
+  - git config --global user.name 'Travis-CI'
+  - git config --global user.email 'dummy@example.org'
+after_script: NODE_ENV=test istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec --timeout 50000 && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage
+env:
+  global:
+    - secure: G8xfRqa4FI096E45clnfiEvkMEicXN99bCzhVVL7zppSdozCBI4+MXpU5hGqeXvX/jV+3kNEz1Adf98B9w1sJ4+QDIuP6pR7Nh9mXyot3NsLcEcyatqEguvF2JCxMxkVzDfF8crwYnxwojhrkYEFzfCrwwa44DU8/vyNxFPhjAe15gTZPwMNIMy3ZDJYIYsv3ZTUwlF3YkvjeBpoHO/E2kRJfQIfYU4KtGrNLXvd6km/W6zUuN11pRYuCGJauI/OGimsiR4+saYX5Vh9bGEIyAXPxOGpMzWxSTZMli86+csoxAwGy9Y0MutPMv/k8GNdjBrTDGtTIbk1gMSclIUWsXjHnBQQhtMGbo9Ucmx+ZzNeoGqZmOrsepWHUVuZyzsrSBU1ypfgECISpK2pNglUeARCv3BBAGzEMOZSDctLnLC8yoonzZocrVEJSpQgMoh4mYGhdOq8sU2UWFtMISzo8FY788/G5o/qUiqhRSHFwALc/KQ7X9H7j7X7ITny4Zyi+90oNjlFcuZqiq7Mvx5ZYI8u0grT6SX/UGIHxVgiKcKV3XrcNcwOEh7UfEx8AUjwQ3ihvOzeJT/+4JniwwnQXv0Lc2Oc/ZDhwptk5/MYkT8t6CrkhNgMH3n88gzNaLa0Blia3mQNyvXU6tqLIbPMJNoKeu5dEfJEn3BrBLIped4=

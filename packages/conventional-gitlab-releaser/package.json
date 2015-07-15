@@ -1,0 +1,55 @@
+{
+  "name": "conventional-github-releaser",
+  "version": "0.0.0",
+  "description": "Make a new GitHub release from git metadata",
+  "homepage": "https://github.com/stevemao/conventional-github-releaser",
+  "author": {
+    "name": "Steve Mao",
+    "email": "maochenyan@gmail.com",
+    "url": "https://github.com/stevemao"
+  },
+  "repository": "stevemao/conventional-github-releaser",
+  "license": "MIT",
+  "files": [
+    "index.js",
+    "cli.js"
+  ],
+  "keywords": [
+    "conventional-github-releaser",
+    "github",
+    "gh",
+    "release",
+    "releases",
+    "conventional-changelog",
+    "conventional",
+    "changelog",
+    "log"
+  ],
+  "dependencies": {
+    "conventional-changelog": "0.1.0-beta.1",
+    "get-pkg-repo": "0.0.6",
+    "github": "^0.2.4",
+    "meow": "^3.3.0",
+    "object-assign": "^3.0.0",
+    "q": "^1.4.1",
+    "through2": "^2.0.0"
+  },
+  "devDependencies": {
+    "chai": "^3.0.0",
+    "coveralls": "^2.11.2",
+    "github-remove-all-releases": "^1.0.0",
+    "istanbul": "^0.3.17",
+    "jscs": "^1.13.1",
+    "jshint": "^2.8.0",
+    "mocha": "*",
+    "shelljs": "^0.5.1"
+  },
+  "scripts": {
+    "coverage": "istanbul cover _mocha -- -R spec --timeout 50000 && rm -rf ./coverage",
+    "lint": "jshint *.js test --exclude node_modules && jscs *.js test",
+    "test": "npm run-script lint && mocha --timeout 50000"
+  },
+  "bin": {
+    "conventional-github-releaser": "cli.js"
+  }
+}
