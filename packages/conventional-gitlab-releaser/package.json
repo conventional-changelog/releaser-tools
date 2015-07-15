@@ -1,6 +1,6 @@
 {
   "name": "conventional-github-releaser",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Make a new GitHub release from git metadata",
   "homepage": "https://github.com/stevemao/conventional-github-releaser",
   "author": {
