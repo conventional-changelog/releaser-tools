@@ -13,7 +13,6 @@ var cli = meow({
     '',
     'Options',
     '  -t, --token               Your auth token',
-    '  -n, --no-prefix-v         Prefix versions with a `"v"` if not already prefixed',
     '  -p, --preset              Name of the preset you want to use',
     '  -k, --pkg                 A filepath of where your package.json is located',
     '  -b, --all-blocks          Generate all blocks',
@@ -69,8 +68,6 @@ if (flags.verbose) {
 conventionalGithubReleaser({
   type: 'oauth',
   token: flags.token || process.env.CONVENTIONAL_GITHUB_RELEASER_TOKEN
-}, {
-  prefixV: !flags.noPrefixV
 }, {
   preset: flags.preset,
   pkg: flags.pkg,
