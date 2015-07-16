@@ -20,7 +20,7 @@ var AUTH = {
   token: '0126af95c0e2d9b0a7c78738c4c00a860b04acc8'
 };
 
-conventionalGithubReleaser(AUTH, options, changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts, callback);
+conventionalGithubReleaser(AUTH, changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts, callback);
 ```
 
 ```sh
@@ -37,7 +37,6 @@ $ conventional-github-releaser --help
 
   Options
     -t, --token               Your auth token
-    -n, --no-prefix-v         Prefix versions with a "v" if not already prefixed
     -p, --preset              Name of the preset you want to use
     -k, --pkg                 A filepath of where your package.json is located
     -b, --all-blocks          Generate all blocks
@@ -51,19 +50,11 @@ $ conventional-github-releaser --help
 
 ## API
 
-### conventionalGithubReleaser(auth, [options, [context, [gitRawCommitsOpts, [parserOpts, [writerOpts]]]]], callback)
+### conventionalGithubReleaser(auth, [changelogOpts, [context, [gitRawCommitsOpts, [parserOpts, [writerOpts]]]]], callback)
 
 #### auth
 
 An auth object passed to [node-github](https://github.com/mikedeboer/node-github#authentication).
-
-#### options
-
-##### prefixV
-
-Type: `string` Default: `true`
-
-Prefix versions with a `'v'` if not already prefixed.
 
 #### callback
 

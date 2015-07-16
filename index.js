@@ -1,6 +1,7 @@
 'use strict';
 var assign = require('object-assign');
 var conventionalChangelog = require('conventional-changelog');
+var dateFormat = require('dateformat');
 var fs = require('fs');
 var getPkgRepo = require('get-pkg-repo');
 var Github = require('github');
@@ -12,7 +13,7 @@ var github = new Github({
   version: '3.0.0'
 });
 
-function conventionalGithubReleaser(auth, options, changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts, userCb) {
+function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts, userCb) {
   if (!auth) {
     throw new Error('Expected an auth object');
   }
@@ -20,7 +21,7 @@ function conventionalGithubReleaser(auth, options, changelogOpts, context, gitRa
   var pkgPromise;
   var promises = [];
 
-  var changelogArgs = [options, changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts].map(function(arg) {
+  var changelogArgs = [changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts].map(function(arg) {
     if (typeof arg === 'function') {
       userCb = arg;
       return {};
@@ -33,19 +34,28 @@ function conventionalGithubReleaser(auth, options, changelogOpts, context, gitRa
     throw new Error('Expected an callback');
   }
 
-  options = changelogArgs[0];
-  changelogOpts = changelogArgs[1];
-  context = changelogArgs[2];
-  gitRawCommitsOpts = changelogArgs[3];
-  parserOpts = changelogArgs[4];
-  writerOpts = changelogArgs[5];
-
-  options = assign({
-    prefixV: true
-  }, options);
+  changelogOpts = changelogArgs[0];
+  context = changelogArgs[1];
+  gitRawCommitsOpts = changelogArgs[2];
+  parserOpts = changelogArgs[3];
+  writerOpts = changelogArgs[4];
 
   changelogOpts = assign({
-    pkg: 'package.json'
+    pkg: 'package.json',
+    transform: through.obj(function(chunk, enc, cb) {
+      if (typeof chunk.gitTags === 'string') {
+        var match = /tag:\s*(.+?)[,\)]/gi.exec(chunk.gitTags);
+        if (match) {
+          chunk.version = match[1];
+        }
+      }
+
+      if (chunk.committerDate) {
+        chunk.committerDate = dateFormat(chunk.committerDate, 'yyyy-mm-dd', true);
+      }
+
+      cb(null, chunk);
+    })
   }, changelogOpts);
 
   writerOpts.includeDetails = true;
@@ -90,10 +100,6 @@ function conventionalGithubReleaser(auth, options, changelogOpts, context, gitRa
           if (!version) {
             setImmediate(userCb, new Error('Cannot find a version used for the release tag'));
             return;
-          }
-
-          if (options.prefixV && version[0].toLowerCase() !== 'v') {
-            version = 'v' + version;
           }
 
           var promise = Q.nfcall(github.releases.createRelease, {
