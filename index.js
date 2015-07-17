@@ -4,6 +4,7 @@ var dateFormat = require('dateformat');
 var Github = require('github');
 var merge = require('lodash.merge');
 var Q = require('q');
+var semver = require('semver');
 var through = require('through2');
 
 var github = new Github({
@@ -83,12 +84,15 @@ function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsO
         return;
       }
 
+      var prerelease = semver.parse(version).prerelease.length > 0;
+
       var promise = Q.nfcall(github.releases.createRelease, {
         // jscs:disable
         owner: context.owner,
         repo: context.repository,
         tag_name: version,
-        body: chunk.log
+        body: chunk.log,
+        prerelease: prerelease
         // jscs:enable
       });
 

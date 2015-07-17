@@ -32,6 +32,7 @@
     "lodash.merge": "^3.3.2",
     "meow": "^3.3.0",
     "q": "^1.4.1",
+    "semver": "^5.0.1",
     "through2": "^2.0.0"
   },
   "devDependencies": {
