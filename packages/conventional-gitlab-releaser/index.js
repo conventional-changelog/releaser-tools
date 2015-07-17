@@ -1,8 +1,8 @@
 'use strict';
-var assign = require('object-assign');
 var conventionalChangelog = require('conventional-changelog');
 var dateFormat = require('dateformat');
 var Github = require('github');
+var merge = require('lodash.merge');
 var Q = require('q');
 var through = require('through2');
 
@@ -36,7 +36,7 @@ function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsO
   parserOpts = changelogArgs[3];
   writerOpts = changelogArgs[4];
 
-  changelogOpts = assign({
+  changelogOpts = merge({
     pkg: {
       path: 'package.json',
       transform: function(pkg) {
