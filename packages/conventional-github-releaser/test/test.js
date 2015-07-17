@@ -27,7 +27,9 @@ describe('conventional-github-releaser', function() {
 
   it('should create a release', function(done) {
     conventionalGithubReleaser(AUTH, {
-      pkg: __dirname + '/fixtures/_package.json'
+      pkg: {
+        path: __dirname + '/fixtures/_package.json'
+      },
     }, function(err, responses) {
       expect(responses[0].state).to.equal('fulfilled');
 
@@ -37,7 +39,9 @@ describe('conventional-github-releaser', function() {
 
   it('should fail if a release exists', function(done) {
     conventionalGithubReleaser(AUTH, {
-      pkg: __dirname + '/fixtures/_package.json'
+      pkg: {
+        path: __dirname + '/fixtures/_package.json'
+      },
     }, function(err, responses) {
       expect(responses[0].state).to.equal('rejected');
 
