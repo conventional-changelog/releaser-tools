@@ -65,6 +65,10 @@ function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsO
 
   writerOpts.includeDetails = true;
 
+  if (changelogOpts.preset) {
+    writerOpts.headerPartial = writerOpts.headerPartial || '';
+  }
+
   github.authenticate(auth);
 
   conventionalChangelog(changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts)
