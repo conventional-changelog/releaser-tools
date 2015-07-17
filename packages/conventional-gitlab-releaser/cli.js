@@ -23,13 +23,15 @@ var cli = meow({
     '  --writer-opts             A filepath of a javascript that is used to define conventional-changelog-writer options'
   ]
 }, {
-  t: 'token',
-  n: 'noPrefixV',
-  p: 'preset',
-  k: 'pkg',
-  b: 'allBlocks',
-  v: 'verbose',
-  c: 'context'
+  alias: {
+    t: 'token',
+    n: 'noPrefixV',
+    p: 'preset',
+    k: 'pkg',
+    b: 'allBlocks',
+    v: 'verbose',
+    c: 'context'
+  }
 });
 
 var flags = cli.flags;
