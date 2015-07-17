@@ -26,7 +26,7 @@
     "log"
   ],
   "dependencies": {
-    "conventional-changelog": "0.1.0-beta.2",
+    "conventional-changelog": "0.1.0-beta.3",
     "dateformat": "^1.0.11",
     "github": "^0.2.4",
     "lodash.merge": "^3.3.2",
