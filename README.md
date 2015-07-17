@@ -2,6 +2,8 @@
 
 > Make a new GitHub release from git metadata
 
+Please checkout this module's [releases](https://github.com/stevemao/conventional-github-releaser/releases) as an example.
+
 
 ## Install
 
