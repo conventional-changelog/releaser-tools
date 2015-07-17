@@ -28,7 +28,6 @@
   "dependencies": {
     "conventional-changelog": "0.1.0-beta.2",
     "dateformat": "^1.0.11",
-    "get-pkg-repo": "0.1.0",
     "github": "^0.2.4",
     "meow": "^3.3.0",
     "object-assign": "^3.0.0",

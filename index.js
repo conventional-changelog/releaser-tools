@@ -2,12 +2,9 @@
 var assign = require('object-assign');
 var conventionalChangelog = require('conventional-changelog');
 var dateFormat = require('dateformat');
-var fs = require('fs');
-var getPkgRepo = require('get-pkg-repo');
 var Github = require('github');
 var Q = require('q');
 var through = require('through2');
-var url = require('url');
 
 var github = new Github({
   version: '3.0.0'
@@ -18,7 +15,6 @@ function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsO
     throw new Error('Expected an auth object');
   }
 
-  var pkgPromise;
   var promises = [];
 
   var changelogArgs = [changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts].map(function(arg) {
@@ -69,67 +65,38 @@ function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsO
 
   writerOpts.includeDetails = true;
 
-  var loadPkg = (!context.host || !context.repository || !context.version) && changelogOpts.pkg.path;
-  if (loadPkg) {
-    pkgPromise = Q.nfcall(fs.readFile, changelogOpts.pkg.path, 'utf8');
-  }
+  github.authenticate(auth);
 
-  Q.allSettled([pkgPromise])
-    .spread(function(pkgObj) {
-      var pkg;
+  conventionalChangelog(changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts)
+    .on('error', function(err) {
+      setImmediate(userCb, err);
+    })
+    .pipe(through.obj(function(chunk, enc, cb) {
+      var version = (chunk.keyCommit && chunk.keyCommit.version) || context.version;
 
-      if (loadPkg) {
-        if (pkgObj.state === 'fulfilled') {
-          pkg = pkgObj.value;
-          try {
-            pkg = JSON.parse(pkg);
-            var repo = getPkgRepo(pkg);
-
-            if (repo.type) {
-              var browse = repo.browse();
-              var parsedBrowse = url.parse(browse);
-              context.host = context.host || parsedBrowse.protocol + (parsedBrowse.slashes ? '//' : '') + repo.domain;
-              context.version = context.version || pkg.version;
-              context.owner = context.owner || repo.user;
-              context.repository = context.repository || repo.project;
-            }
-          } catch (err) {}
-        }
+      if (!version) {
+        setImmediate(userCb, new Error('Cannot find a version used for the release tag'));
+        return;
       }
 
-      github.authenticate(auth);
+      var promise = Q.nfcall(github.releases.createRelease, {
+        // jscs:disable
+        owner: context.owner,
+        repo: context.repository,
+        tag_name: version,
+        body: chunk.log
+        // jscs:enable
+      });
 
-      conventionalChangelog(changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts)
-        .on('error', function(err) {
-          setImmediate(userCb, err);
-        })
-        .pipe(through.obj(function(chunk, enc, cb) {
-          var version = (chunk.keyCommit && chunk.keyCommit.version) || context.version;
+      promises.push(promise);
 
-          if (!version) {
-            setImmediate(userCb, new Error('Cannot find a version used for the release tag'));
-            return;
-          }
-
-          var promise = Q.nfcall(github.releases.createRelease, {
-            // jscs:disable
-            owner: context.owner,
-            repo: context.repository,
-            tag_name: version,
-            body: chunk.log
-            // jscs:enable
-          });
-
-          promises.push(promise);
-
-          cb();
-        }, function() {
-          Q.allSettled(promises)
-            .then(function(responses) {
-              setImmediate(userCb, null, responses);
-            });
-        }));
-    });
+      cb();
+    }, function() {
+      Q.allSettled(promises)
+        .then(function(responses) {
+          setImmediate(userCb, null, responses);
+        });
+    }));
 }
 
 module.exports = conventionalGithubReleaser;
