@@ -70,7 +70,9 @@ conventionalGithubReleaser({
   token: flags.token || process.env.CONVENTIONAL_GITHUB_RELEASER_TOKEN
 }, {
   preset: flags.preset,
-  pkg: flags.pkg,
+  pkg: {
+    path: flags.pkg
+  },
   allBlocks: flags.allBlocks,
   warn: warn
 }, templateContext, gitRawCommitsOpts, parserOpts, writerOpts, function(err, data) {
