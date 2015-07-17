@@ -73,7 +73,7 @@ function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsO
 
   conventionalChangelog(changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts)
     .on('error', function(err) {
-      setImmediate(userCb, err);
+      userCb(err);
     })
     .pipe(through.obj(function(chunk, enc, cb) {
       var version = (chunk.keyCommit && chunk.keyCommit.version) || context.version;
