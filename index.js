@@ -41,7 +41,16 @@ function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsO
   writerOpts = changelogArgs[4];
 
   changelogOpts = assign({
-    pkg: 'package.json',
+    pkg: {
+      path: 'package.json',
+      transform: function(pkg) {
+        if (pkg.version && pkg.version[0].toLowerCase() !== 'v') {
+          pkg.version = 'v' + pkg.version;
+        }
+
+        return pkg;
+      }
+    },
     transform: through.obj(function(chunk, enc, cb) {
       if (typeof chunk.gitTags === 'string') {
         var match = /tag:\s*(.+?)[,\)]/gi.exec(chunk.gitTags);
@@ -60,9 +69,9 @@ function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsO
 
   writerOpts.includeDetails = true;
 
-  var loadPkg = (!context.host || !context.repository || !context.version) && changelogOpts.pkg;
+  var loadPkg = (!context.host || !context.repository || !context.version) && changelogOpts.pkg.path;
   if (loadPkg) {
-    pkgPromise = Q.nfcall(fs.readFile, changelogOpts.pkg, 'utf8');
+    pkgPromise = Q.nfcall(fs.readFile, changelogOpts.pkg.path, 'utf8');
   }
 
   Q.allSettled([pkgPromise])
