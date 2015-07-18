@@ -2,14 +2,20 @@
 
 > Make a new GitHub release from git metadata
 
-Please checkout this module's [releases](https://github.com/stevemao/conventional-github-releaser/releases) as an example.
-
 
 ## Install
 
 ```sh
 $ npm install --save conventional-github-releaser
 ```
+
+[Synopsis of Conventions](https://github.com/ajoslin/conventional-changelog/tree/master/conventions)
+
+
+## Example output
+
+- https://github.com/stevemao/conventional-github-releaser/releases
+- https://github.com/ajoslin/conventional-changelog/releases
 
 
 ## Usage
@@ -23,30 +29,6 @@ var AUTH = {
 };
 
 conventionalGithubReleaser(AUTH, changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts, callback);
-```
-
-```sh
-$ npm install --global conventional-github-releaser
-$ conventional-github-releaser --help
-
-  Make a new GitHub release from git metadata
-
-  Usage
-    conventional-github-releaser
-
-  Example
-    conventional-github-releaser -p angular
-
-  Options
-    -t, --token               Your auth token
-    -p, --preset              Name of the preset you want to use
-    -k, --pkg                 A filepath of where your package.json is located
-    -b, --all-blocks          Generate all blocks
-    -v, --verbose             Verbose output
-    -c, --context             A filepath of a javascript that is used to define template variables
-    --git-raw-commits-opts    A filepath of a javascript that is used to define git-raw-commits options
-    --parser-opts             A filepath of a javascript that is used to define conventional-commits-parser options
-    --writer-opts             A filepath of a javascript that is used to define conventional-changelog-writer options
 ```
 
 
@@ -80,6 +62,30 @@ It is always `true`.
 
 
 ## CLI
+
+```sh
+$ npm install --global conventional-github-releaser
+$ conventional-github-releaser --help
+
+  Make a new GitHub release from git metadata
+
+  Usage
+    conventional-github-releaser
+
+  Example
+    conventional-github-releaser -p angular
+
+  Options
+    -t, --token               Your auth token
+    -p, --preset              Name of the preset you want to use
+    -k, --pkg                 A filepath of where your package.json is located
+    -b, --all-blocks          Generate all blocks
+    -v, --verbose             Verbose output
+    -c, --context             A filepath of a javascript that is used to define template variables
+    --git-raw-commits-opts    A filepath of a javascript that is used to define git-raw-commits options
+    --parser-opts             A filepath of a javascript that is used to define conventional-commits-parser options
+    --writer-opts             A filepath of a javascript that is used to define conventional-changelog-writer options
+```
 
 You can supply your auth token by a flag `-t` or `--token`. You can also set up an environment variable `CONVENTIONAL_GITHUB_RELEASER_TOKEN` to avoid typing your token every time.
 
