@@ -3,6 +3,17 @@
 > Make a new GitHub release from git metadata
 
 
+## Why
+
+- Based on [conventional-changelog](https://github.com/ajoslin/conventional-changelog).
+- Everything internally or externally is pluggable.
+- High performant. It doesn't spawn any extra child process to fetch data.
+- Intelligently setup defaults but you can still modify them to your needs.
+- Fully configurable. There are several presets that you can use if you just want to use the same conventions. But it is also possible to configure if you want to go down to the nth degree.
+- Task runner integrations: [grunt](https://github.com/stevemao/grunt-conventional-github-releaser).
+- Actively maintained.
+
+
 ## Install
 
 ```sh
