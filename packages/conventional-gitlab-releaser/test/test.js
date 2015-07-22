@@ -1,12 +1,21 @@
 'use strict';
 var conventionalGithubReleaser = require('../');
 var expect = require('chai').expect;
+var fs = require('fs');
+var Github = require('github');
 var githubRemoveAllReleases = require('github-remove-all-releases');
+var shell = require('shelljs');
 
 var AUTH = {
   type: 'oauth',
   token: process.env.CONVENTIONAL_GITHUB_RELEASER_TOKEN
 };
+
+var github = new Github({
+  version: '3.0.0'
+});
+
+github.authenticate(AUTH);
 
 describe('conventional-github-releaser', function() {
   before(function(done) {
@@ -32,8 +41,16 @@ describe('conventional-github-releaser', function() {
       },
     }, function(err, responses) {
       expect(responses[0].state).to.equal('fulfilled');
-
-      done(err);
+      github.releases.getRelease({
+        // jscs:disable
+        owner: 'stevemaotest',
+        repo: 'conventional-github-releaser-test',
+        id: responses[0].value.id
+        // jscs:enable
+      }, function(err, data) {
+        expect(data.body).to.match(/First commit/);
+        done();
+      });
     });
   });
 
@@ -45,6 +62,89 @@ describe('conventional-github-releaser', function() {
     }, function(err, responses) {
       expect(responses[0].state).to.equal('rejected');
 
+      done(err);
+    });
+  });
+
+  it('should create a prerelease', function(done) {
+    fs.writeFileSync('test2', '');
+    shell.exec('git add --all && git commit -m"feat(awesome): second commit"');
+
+    conventionalGithubReleaser(AUTH, {
+      pkg: {
+        path: __dirname + '/fixtures/_package.json'
+      },
+    }, {
+      version: '0.0.1-beta'
+    }, function(err, responses) {
+      expect(responses[0].state).to.equal('fulfilled');
+      github.releases.getRelease({
+        // jscs:disable
+        owner: 'stevemaotest',
+        repo: 'conventional-github-releaser-test',
+        id: responses[0].value.id
+        // jscs:enable
+      }, function(err, data) {
+        expect(data.prerelease).to.equal(true);
+        done();
+      });
+    });
+  });
+
+  it('should error if git-raw-commits opts is wrong', function(done) {
+    conventionalGithubReleaser(AUTH, {}, {}, {
+      version: '0.0.1'
+    }, function(err) {
+      expect(err).to.be.ok; // jshint ignore:line
+
+      done();
+    });
+  });
+
+  it('should error if no version can be found', function(done) {
+    conventionalGithubReleaser(AUTH, function(err) {
+      expect(err).to.be.ok; // jshint ignore:line
+
+      done();
+    });
+  });
+
+  it('should ignore the header template if using a preset', function(done) {
+    conventionalGithubReleaser(AUTH, {
+      pkg: {
+        path: __dirname + '/fixtures/_package.json'
+      },
+      preset: 'angular'
+    }, {
+      version: '0.0.2'
+    }, function(err, responses) {
+      github.releases.getRelease({
+        // jscs:disable
+        owner: 'stevemaotest',
+        repo: 'conventional-github-releaser-test',
+        id: responses[0].value.id
+        // jscs:enable
+      }, function(err, data) {
+        expect(data.body).to.not.match(/<\/a>/);
+        done();
+      });
+    });
+  });
+
+  it('should generate multiple releases', function(done) {
+    shell.exec('git tag v0.0.3');
+    fs.writeFileSync('test3', '');
+    shell.exec('git add --all && git commit -m"Third commit"');
+
+    conventionalGithubReleaser(AUTH, {
+      pkg: {
+        path: __dirname + '/fixtures/_package.json'
+      },
+      allBlocks: true
+    }, {
+      version: '0.0.4'
+    }, function(err, responses) {
+      expect(responses.length).to.equal(2);
       done(err);
     });
   });
