@@ -88,10 +88,6 @@ Default: latest semver tag
 
 #### writerOpts
 
-##### transform
-
-It doesn't change version by default.
-
 ##### includeDetails
 
 It is always `true`.
