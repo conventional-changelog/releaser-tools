@@ -91,7 +91,7 @@ $ conventional-github-releaser --help
     -t, --token               Your auth token
     -p, --preset              Name of the preset you want to use
     -k, --pkg                 A filepath of where your package.json is located
-    -b, --all-blocks          Generate all blocks
+    -r, --release-count       How many releases to be generated from the latest
     -v, --verbose             Verbose output
     -c, --context             A filepath of a javascript that is used to define template variables
     --git-raw-commits-opts    A filepath of a javascript that is used to define git-raw-commits options
