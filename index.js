@@ -1,7 +1,9 @@
 'use strict';
+var assign = require('object-assign');
 var conventionalChangelog = require('conventional-changelog');
 var dateFormat = require('dateformat');
 var Github = require('github');
+var gitSemverTags = require('git-semver-tags');
 var merge = require('lodash.merge');
 var Q = require('q');
 var semver = require('semver');
@@ -38,16 +40,6 @@ function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsO
   writerOpts = changelogArgs[4];
 
   changelogOpts = merge({
-    pkg: {
-      path: 'package.json',
-      transform: function(pkg) {
-        if (pkg.version && pkg.version[0].toLowerCase() !== 'v') {
-          pkg.version = 'v' + pkg.version;
-        }
-
-        return pkg;
-      }
-    },
     transform: through.obj(function(chunk, enc, cb) {
       if (typeof chunk.gitTags === 'string') {
         var match = /tag:\s*(.+?)[,\)]/gi.exec(chunk.gitTags);
@@ -61,7 +53,8 @@ function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsO
       }
 
       cb(null, chunk);
-    })
+    }),
+    releaseCount: 1
   }, changelogOpts);
 
   writerOpts.includeDetails = true;
@@ -70,41 +63,64 @@ function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsO
     writerOpts.headerPartial = writerOpts.headerPartial || '';
   }
 
+  writerOpts.transform = assign({
+    version: function(version) {
+      return version;
+    }
+  }, writerOpts.transform);
+
   github.authenticate(auth);
 
-  conventionalChangelog(changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts)
-    .on('error', function(err) {
-      userCb(err);
-    })
-    .pipe(through.obj(function(chunk, enc, cb) {
-      var version = (chunk.keyCommit && chunk.keyCommit.version) || context.version;
-
-      if (!version) {
-        setImmediate(userCb, new Error('Cannot find a version used for the release tag'));
+  Q.nfcall(gitSemverTags)
+    .then(function(tags) {
+      if (!tags || !tags.length) {
+        setImmediate(userCb, new Error('No tags found'));
         return;
       }
 
-      var prerelease = semver.parse(version).prerelease.length > 0;
-
-      var promise = Q.nfcall(github.releases.createRelease, {
-        // jscs:disable
-        owner: context.owner,
-        repo: context.repository,
-        tag_name: version,
-        body: chunk.log,
-        prerelease: prerelease
-        // jscs:enable
-      });
-
-      promises.push(promise);
-
-      cb();
-    }, function() {
-      Q.allSettled(promises)
-        .then(function(responses) {
-          setImmediate(userCb, null, responses);
+      var releaseCount = changelogOpts.releaseCount;
+      if (releaseCount !== 0) {
+        gitRawCommitsOpts = assign({
+          from: tags[releaseCount]
         });
-    }));
+      }
+
+      gitRawCommitsOpts.to = gitRawCommitsOpts.to || tags[0];
+
+      conventionalChangelog(changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts)
+        .on('error', function(err) {
+          userCb(err);
+        })
+        .pipe(through.obj(function(chunk, enc, cb) {
+          if (!chunk.keyCommit || !chunk.keyCommit.version) {
+            cb();
+            return;
+          }
+
+          var version =  chunk.keyCommit.version;
+
+          var prerelease = semver.parse(version).prerelease.length > 0;
+
+          var promise = Q.nfcall(github.releases.createRelease, {
+            // jscs:disable
+            owner: context.owner,
+            repo: context.repository,
+            tag_name: version,
+            body: chunk.log,
+            prerelease: prerelease
+            // jscs:enable
+          });
+
+          promises.push(promise);
+
+          cb();
+        }, function() {
+          Q.allSettled(promises)
+            .then(function(responses) {
+              setImmediate(userCb, null, responses);
+            });
+        }));
+    });
 }
 
 module.exports = conventionalGithubReleaser;
