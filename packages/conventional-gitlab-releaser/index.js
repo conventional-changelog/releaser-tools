@@ -63,12 +63,6 @@ function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsO
     writerOpts.headerPartial = writerOpts.headerPartial || '';
   }
 
-  writerOpts.transform = assign({
-    version: function(version) {
-      return version;
-    }
-  }, writerOpts.transform);
-
   github.authenticate(auth);
 
   Q.nfcall(gitSemverTags)
