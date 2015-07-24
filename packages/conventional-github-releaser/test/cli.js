@@ -1,6 +1,8 @@
 'use strict';
 var expect = require('chai').expect;
+var fs = require('fs');
 var githubRemoveAllReleases = require('github-remove-all-releases');
+var shell = require('shelljs');
 var spawn = require('child_process').spawn;
 
 var cliPath = __dirname + '/../cli.js';
@@ -12,9 +14,19 @@ var AUTH = {
 
 describe('cli', function() {
   before(function(done) {
+    shell.cd('cli');
+    shell.exec('git init');
+    fs.writeFileSync('test1', '');
+    shell.exec('git add --all && git commit -m"First commit"');
+    shell.exec('git tag v0.0.1');
+
     githubRemoveAllReleases(AUTH, 'stevemaotest', 'conventional-github-releaser-test', function() {
       done();
     });
+  });
+
+  after(function() {
+    shell.cd('../');
   });
 
   it('should work', function(done) {

@@ -19,9 +19,18 @@ github.authenticate(AUTH);
 
 describe('conventional-github-releaser', function() {
   before(function(done) {
+    shell.cd('test');
+    shell.exec('git init');
+    fs.writeFileSync('test1', '');
+    shell.exec('git add --all && git commit -m"First commit"');
+
     githubRemoveAllReleases(AUTH, 'stevemaotest', 'conventional-github-releaser-test', function() {
       done();
     });
+  });
+
+  after(function() {
+    shell.cd('../');
   });
 
   it('should throw if no auth is passed', function() {
@@ -34,12 +43,33 @@ describe('conventional-github-releaser', function() {
     }).to.throw('Expected an callback');
   });
 
+  it('should error if git-raw-commits opts is wrong', function(done) {
+    conventionalGithubReleaser(AUTH, {}, {}, {
+      version: '0.0.1'
+    }, function(err) {
+      expect(err).to.be.ok; // jshint ignore:line
+
+      done();
+    });
+  });
+
+  it('should error if no version can be found', function(done) {
+    conventionalGithubReleaser(AUTH, function(err) {
+      expect(err).to.be.ok; // jshint ignore:line
+
+      done();
+    });
+  });
+
   it('should create a release', function(done) {
+    shell.exec('git tag v1.0.0');
+
     conventionalGithubReleaser(AUTH, {
       pkg: {
         path: __dirname + '/fixtures/_package.json'
       },
     }, function(err, responses) {
+      expect(responses.length).to.equal(1);
       expect(responses[0].state).to.equal('fulfilled');
       github.releases.getRelease({
         // jscs:disable
@@ -69,14 +99,14 @@ describe('conventional-github-releaser', function() {
   it('should create a prerelease', function(done) {
     fs.writeFileSync('test2', '');
     shell.exec('git add --all && git commit -m"feat(awesome): second commit"');
+    shell.exec('git tag v2.0.0-beta');
 
     conventionalGithubReleaser(AUTH, {
       pkg: {
         path: __dirname + '/fixtures/_package.json'
       },
-    }, {
-      version: '0.0.1-beta'
     }, function(err, responses) {
+      expect(responses.length).to.equal(1);
       expect(responses[0].state).to.equal('fulfilled');
       github.releases.getRelease({
         // jscs:disable
@@ -91,33 +121,18 @@ describe('conventional-github-releaser', function() {
     });
   });
 
-  it('should error if git-raw-commits opts is wrong', function(done) {
-    conventionalGithubReleaser(AUTH, {}, {}, {
-      version: '0.0.1'
-    }, function(err) {
-      expect(err).to.be.ok; // jshint ignore:line
-
-      done();
-    });
-  });
-
-  it('should error if no version can be found', function(done) {
-    conventionalGithubReleaser(AUTH, function(err) {
-      expect(err).to.be.ok; // jshint ignore:line
-
-      done();
-    });
-  });
-
   it('should ignore the header template if using a preset', function(done) {
+    fs.writeFileSync('test3', '');
+    shell.exec('git add --all && git commit -m"feat(awesome): third commit"');
+    shell.exec('git tag v2.0.0');
+
     conventionalGithubReleaser(AUTH, {
       pkg: {
         path: __dirname + '/fixtures/_package.json'
       },
       preset: 'angular'
-    }, {
-      version: '0.0.2'
     }, function(err, responses) {
+      expect(responses.length).to.equal(1);
       github.releases.getRelease({
         // jscs:disable
         owner: 'stevemaotest',
@@ -132,19 +147,32 @@ describe('conventional-github-releaser', function() {
   });
 
   it('should generate multiple releases', function(done) {
-    shell.exec('git tag v0.0.3');
-    fs.writeFileSync('test3', '');
-    shell.exec('git add --all && git commit -m"Third commit"');
+    fs.writeFileSync('test4', '');
+    shell.exec('git add --all && git commit -m"feat(awesome): forth commit"');
+    shell.exec('git tag v3.0.0');
+    fs.writeFileSync('test5', '');
+    shell.exec('git add --all && git commit -m"feat(awesome): fifth commit"');
+    shell.exec('git tag v4.0.0');
 
     conventionalGithubReleaser(AUTH, {
       pkg: {
         path: __dirname + '/fixtures/_package.json'
       },
-      allBlocks: true
-    }, {
-      version: '0.0.4'
+      releaseCount: 2
     }, function(err, responses) {
       expect(responses.length).to.equal(2);
+      done(err);
+    });
+  });
+
+  it('should attempt to generate all releases', function(done) {
+    conventionalGithubReleaser(AUTH, {
+      pkg: {
+        path: __dirname + '/fixtures/_package.json'
+      },
+      releaseCount: 0
+    }, function(err, responses) {
+      expect(responses.length).to.equal(5);
       done(err);
     });
   });

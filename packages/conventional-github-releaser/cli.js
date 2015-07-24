@@ -15,7 +15,7 @@ var cli = meow({
     '  -t, --token               Your auth token',
     '  -p, --preset              Name of the preset you want to use',
     '  -k, --pkg                 A filepath of where your package.json is located',
-    '  -b, --all-blocks          Generate all blocks',
+    '  -r, --release-count       How many releases to be generated from the latest',
     '  -v, --verbose             Verbose output',
     '  -c, --context             A filepath of a javascript that is used to define template variables',
     '  --git-raw-commits-opts    A filepath of a javascript that is used to define git-raw-commits options',
@@ -25,10 +25,9 @@ var cli = meow({
 }, {
   alias: {
     t: 'token',
-    n: 'noPrefixV',
     p: 'preset',
     k: 'pkg',
-    b: 'allBlocks',
+    r: 'releaseCount',
     v: 'verbose',
     c: 'context'
   }
@@ -75,7 +74,7 @@ conventionalGithubReleaser({
   pkg: {
     path: flags.pkg
   },
-  allBlocks: flags.allBlocks,
+  releaseCount: flags.releaseCount,
   warn: warn
 }, templateContext, gitRawCommitsOpts, parserOpts, writerOpts, function(err, data) {
   if (err) {
