@@ -66,11 +66,39 @@ Please check [conventional-changelog](https://github.com/ajoslin/conventional-ch
 
 There are some changes:
 
+#### changelogOpts
+
+##### transform
+
+It matches the whole tag for the version including a leading v.
+
+##### releaseCount
+
+How many releases of changelog you want to generate. It counts from the latest semver tag. Useful when you forgot to generate any previous releases. Set to `0` to regenerate all.
+
+#### gitRawCommitsOpts
+
+##### from
+
+Default: based on `options.releaseCount`.
+
+##### to
+
+Default: latest semver tag
+
 #### writerOpts
+
+##### transform
+
+It doesn't change version by default.
 
 ##### includeDetails
 
 It is always `true`.
+
+##### headerPartial
+
+If there is any preset, this defaults to `''` because header in presets usually contains the version and date which are already in the release.
 
 
 ## CLI
@@ -111,6 +139,19 @@ Use [github-remove-all-releases](https://github.com/stevemao/github-remove-all-r
 ### How do I setup my token for cli?
 
 [Create a new token](https://github.com/settings/tokens/new) and set your environment variable `CONVENTIONAL_GITHUB_RELEASER_TOKEN` to the token you just created. You can google [How to set environment variable](https://www.google.com.au/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=how%20to%20set%20environment%20variable). The scopes for the token you need is `public_repo` or `repo` (if you need to access private repos). [More details](https://developer.github.com/v3/oauth/#scopes).
+
+### What's the recommended workflow?
+
+1. Make changes
+2. Commit those changes
+3. Make sure Travis turns green
+4. Bump version in `package.json`
+5. Commit `package.json` files
+6. Tag
+7. Push
+8. `conventionalGithubReleaser`
+
+You have to have a tag to make a release. hence `gitRawCommitsOpts.to` defaults to the latest semver tag.
 
 
 ## Related
