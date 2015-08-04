@@ -70,9 +70,11 @@ There are some changes:
 
 ##### transform
 
-It matches the whole tag for the version including a leading v.
+Default: grab the whole tag for the version (including a leading v) and format date.
 
 ##### releaseCount
+
+Default: `1`
 
 How many releases of changelog you want to generate. It counts from the latest semver tag. Useful when you forgot to generate any previous releases. Set to `0` to regenerate all.
 
