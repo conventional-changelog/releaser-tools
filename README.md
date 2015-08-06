@@ -5,14 +5,13 @@
 
 ## Why
 
-- Based on [conventional-changelog](https://github.com/ajoslin/conventional-changelog).
+- Based on [conventional-changelog](https://github.com/ajoslin/conventional-changelog) but GitHub releases are more elegant.
 - Everything internally or externally is pluggable.
 - High performant. It doesn't spawn any extra child process to fetch data.
 - Intelligently setup defaults but you can still modify them to your needs.
 - Fully configurable. There are several presets that you can use if you just want to use the same conventions. But it is also possible to configure if you want to go down to the nth degree.
-- Task runner integrations: [grunt](https://github.com/stevemao/grunt-conventional-github-releaser).
-- Auto detects prerelease based on semver.
-- Actively maintained.
+- Detecting prerelease based on semver, ignoring reverted commits, templating with [handlebars.js](https://github.com/wycats/handlebars.js) and links to references, etc. Open an [issue](../../issues/new) if you want more reasonable features.
+- A lot of tests and actively maintained.
 
 
 ## Install
@@ -150,6 +149,11 @@ Use [github-remove-all-releases](https://github.com/stevemao/github-remove-all-r
 8. `conventionalGithubReleaser`
 
 You have to have a tag to make a release. hence `gitRawCommitsOpts.to` defaults to the latest semver tag.
+
+
+## Task runners
+
+- [grunt](https://github.com/stevemao/grunt-conventional-github-releaser).
 
 
 ## Related
