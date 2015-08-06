@@ -153,7 +153,8 @@ You have to have a tag to make a release. hence `gitRawCommitsOpts.to` defaults 
 
 ## Task runners
 
-- [grunt](https://github.com/stevemao/grunt-conventional-github-releaser).
+- [grunt](https://github.com/stevemao/grunt-conventional-github-releaser)
+- gulp? No need a wrapper.
 
 
 ## Related
