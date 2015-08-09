@@ -40,7 +40,7 @@ function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsO
   writerOpts = changelogArgs[4];
 
   changelogOpts = merge({
-    transform: through.obj(function(chunk, enc, cb) {
+    transform: function(chunk, cb) {
       if (typeof chunk.gitTags === 'string') {
         var match = /tag:\s*(.+?)[,\)]/gi.exec(chunk.gitTags);
         if (match) {
@@ -53,7 +53,7 @@ function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsO
       }
 
       cb(null, chunk);
-    }),
+    },
     releaseCount: 1
   }, changelogOpts);
 
