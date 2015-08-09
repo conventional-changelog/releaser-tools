@@ -26,7 +26,7 @@
     "log"
   ],
   "dependencies": {
-    "conventional-changelog": "^0.2.0",
+    "conventional-changelog": "^0.3.0",
     "dateformat": "^1.0.11",
     "git-semver-tags": "^1.0.0",
     "github": "^0.2.4",
@@ -42,7 +42,7 @@
     "coveralls": "^2.11.2",
     "github-remove-all-releases": "^1.0.0",
     "istanbul": "^0.3.17",
-    "jscs": "^1.13.1",
+    "jscs": "^2.0.0",
     "jshint": "^2.8.0",
     "mocha": "*",
     "shelljs": "^0.5.1"
