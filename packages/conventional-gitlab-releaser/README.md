@@ -162,6 +162,7 @@ You have to have a tag to make a release. hence `gitRawCommitsOpts.to` defaults 
 - [conventional-changelog](https://github.com/ajoslin/conventional-changelog) - Generate a changelog from git metadata
 - [conventional-recommended-bump](https://github.com/stevemao/conventional-recommended-bump) - Get a recommended version bump based on conventional commits
 - [github-remove-all-releases](https://github.com/stevemao/github-remove-all-releases) - Remove all releases of your GitHub repo
+- [conventional-commits-detector](https://github.com/stevemao/conventional-commits-detector) - Detect what commit message convention your repository is using
 
 
 ## License
