@@ -36,7 +36,7 @@ var conventionalGithubReleaser = require('conventional-github-releaser');
 
 var AUTH = {
   type: "oauth",
-  token: '0126af95c0e2d9b0a7c78738c4c00a860b04acc8'
+  token: '0126af95c0e2d9b0a7c78738c4c00a860b04acc8'// change this to your own GitHub token or use an environment variable
 };
 
 conventionalGithubReleaser(AUTH, changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts, callback);
