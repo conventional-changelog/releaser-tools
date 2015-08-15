@@ -93,7 +93,7 @@ Type: `array`
 
 An array of responses returned by `github.releases.createRelease` calls.
 
-Please check [conventional-changelog](https://github.com/ajoslin/conventional-changelog) for other arguments.
+Please check [conventional-changelog](https://github.com/ajoslin/conventional-changelog#api) for other arguments.
 
 There are some changes:
 
