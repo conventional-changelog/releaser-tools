@@ -2,25 +2,40 @@
 
 > Make a new GitHub release from git metadata
 
-
-## Why
-
-- Based on [conventional-changelog](https://github.com/ajoslin/conventional-changelog) but GitHub releases are more elegant.
-- Everything internally or externally is pluggable.
-- High performant. It doesn't spawn any extra child process to fetch data.
-- Intelligently setup defaults but you can still modify them to your needs.
-- Fully configurable. There are [many presets](https://github.com/ajoslin/conventional-changelog/tree/master/presets) that you can use if you just want to use the same conventions. But it is also possible to configure if you want to go down to the nth degree.
-- Detecting prerelease based on semver, ignoring reverted commits, templating with [handlebars.js](https://github.com/wycats/handlebars.js) and links to references, etc. Open an [issue](../../issues/new) if you want more reasonable features.
-- A lot of tests and actively maintained.
+[Synopsis of Conventions](https://github.com/ajoslin/conventional-changelog/tree/master/conventions)
 
 
-## Install
+## Quick start
+
+[Set up a token first](#setup-token-for-cli).
 
 ```sh
-$ npm install --save conventional-github-releaser
+$ npm install -g conventional-github-releaser
+$ cd my-project
+$ conventional-github-releaser -p angular
 ```
 
-[Synopsis of Conventions](https://github.com/ajoslin/conventional-changelog/tree/master/conventions)
+The above generates a GitHub Release based on commits since the last semver tag that match the pattern of a "Feature", "Fix", "Performance Improvement" or "Breaking Changes".
+
+**Hint:** You can alias your command or add it to your package.json. EG: `"github-release": "conventional-github-releaser -p angular -r 0"`.
+
+Or use one of the plugins if you are already using the tool:  [grunt](https://github.com/stevemao/grunt-conventional-github-releaser)/[atom](https://github.com/stevemao/atom-conventional-changelog)
+
+
+### Recommended workflow
+
+1. Make changes
+2. Commit those changes
+3. Make sure Travis turns green
+4. Bump version in `package.json`
+5. Commit `package.json` files
+6. Tag
+7. Push
+8. `conventionalGithubReleaser`
+
+You have to have a tag on GitHub to make a release. hence `gitRawCommitsOpts.to` defaults to the latest semver tag.
+
+Please use this [gist](https://gist.github.com/stevemao/280ef22ee861323993a0) to make a release or change it to your needs.
 
 
 ## Example output
@@ -29,7 +44,22 @@ $ npm install --save conventional-github-releaser
 - https://github.com/ajoslin/conventional-changelog/releases
 
 
-## Usage
+## Why
+
+- Based on [conventional-changelog](https://github.com/ajoslin/conventional-changelog) but GitHub releases are more elegant.
+- Detecting prerelease based on semver, ignoring reverted commits, templating with [handlebars.js](https://github.com/wycats/handlebars.js) and links to references, etc. Open an [issue](../../issues/new) if you want more reasonable features.
+- Intelligently setup defaults but you can still modify them to your needs.
+- Fully configurable. There are [many presets](https://github.com/ajoslin/conventional-changelog/tree/master/presets) that you can use if you just want to use the same conventions. But it is also possible to configure if you want to go down to the nth degree.
+- Everything internally or externally is pluggable.
+- High performant. It doesn't spawn any extra child process to fetch data.
+- A lot of tests and actively maintained.
+
+
+## Programmatic Usage
+
+```sh
+$ npm install --save conventional-github-releaser
+```
 
 ```js
 var conventionalGithubReleaser = require('conventional-github-releaser');
@@ -39,7 +69,9 @@ var AUTH = {
   token: '0126af95c0e2d9b0a7c78738c4c00a860b04acc8'// change this to your own GitHub token or use an environment variable
 };
 
-conventionalGithubReleaser(AUTH, changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts, callback);
+conventionalGithubReleaser(AUTH, {
+  preset: 'angular'
+}, callback);
 ```
 
 
@@ -102,59 +134,20 @@ If there is any preset, this defaults to `''` because header in presets usually 
 
 ```sh
 $ npm install --global conventional-github-releaser
-$ conventional-github-releaser --help
-
-  Make a new GitHub release from git metadata
-
-  Usage
-    conventional-github-releaser
-
-  Example
-    conventional-github-releaser -p angular
-
-  Options
-    -t, --token               Your auth token
-    -p, --preset              Name of the preset you want to use
-    -k, --pkg                 A filepath of where your package.json is located
-    -r, --release-count       How many releases to be generated from the latest
-    -v, --verbose             Verbose output
-    -c, --context             A filepath of a javascript that is used to define template variables
-    --git-raw-commits-opts    A filepath of a javascript that is used to define git-raw-commits options
-    --parser-opts             A filepath of a javascript that is used to define conventional-commits-parser options
-    --writer-opts             A filepath of a javascript that is used to define conventional-changelog-writer options
+$ conventional-github-releaser --help # for more details
 ```
 
 You can supply your auth token by a flag `-t` or `--token`. You can also set up an environment variable `CONVENTIONAL_GITHUB_RELEASER_TOKEN` to avoid typing your token every time.
 
 
-## FAQ
-
-### How can I regenerate all the releases?
+## Regenerate all the releases
 
 Use [github-remove-all-releases](https://github.com/stevemao/github-remove-all-releases) to remove all releases and set `changelogOpts.allBlocks` to `true` to regenerate.
 
-### How do I setup my token for cli?
+
+## Setup token for cli
 
 [Create a new token](https://github.com/settings/tokens/new) and set your environment variable `CONVENTIONAL_GITHUB_RELEASER_TOKEN` to the token you just created. You can google [How to set environment variable](https://www.google.com.au/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=how%20to%20set%20environment%20variable). The scopes for the token you need is `public_repo` or `repo` (if you need to access private repos). [More details](https://developer.github.com/v3/oauth/#scopes).
-
-### What's the recommended workflow?
-
-1. Make changes
-2. Commit those changes
-3. Make sure Travis turns green
-4. Bump version in `package.json`
-5. Commit `package.json` files
-6. Tag
-7. Push
-8. `conventionalGithubReleaser`
-
-You have to have a tag to make a release. hence `gitRawCommitsOpts.to` defaults to the latest semver tag.
-
-
-## Task runners
-
-- [grunt](https://github.com/stevemao/grunt-conventional-github-releaser)
-- gulp? No need a wrapper.
 
 
 ## Related
