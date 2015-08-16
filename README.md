@@ -17,6 +17,14 @@ $ conventional-github-releaser -p angular
 
 The above generates a GitHub Release based on commits since the last semver tag that match the pattern of a "Feature", "Fix", "Performance Improvement" or "Breaking Changes".
 
+If you first time use this tool and want to generate all previous releases, you could do
+
+```sh
+$ conventional-github-releaser -p angular -r 0
+```
+
+This will *not* overwrite the releases you have already made. Read ["Regenerate all the releases"](#regenerate-all-the-releases) section if you do.
+
 **Hint:** You can alias your command or add it to your package.json. EG: `"github-release": "conventional-github-releaser -p angular -r 0"`.
 
 Or use one of the plugins if you are already using the tool:  [grunt](https://github.com/stevemao/grunt-conventional-github-releaser)/[atom](https://github.com/stevemao/atom-conventional-changelog)
