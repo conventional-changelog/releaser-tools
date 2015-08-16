@@ -150,7 +150,7 @@ You can supply your auth token by a flag `-t` or `--token`. You can also set up 
 
 ## Regenerate all the releases
 
-Use [github-remove-all-releases](https://github.com/stevemao/github-remove-all-releases) to remove all releases and set `changelogOpts.allBlocks` to `true` to regenerate.
+Use [github-remove-all-releases](https://github.com/stevemao/github-remove-all-releases) to remove all releases and set `changelogOpts.releaseCount` to `0` to regenerate.
 
 
 ## Setup token for cli
