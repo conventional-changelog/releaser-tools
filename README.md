@@ -23,7 +23,7 @@ If you first time use this tool and want to generate all previous releases, you 
 $ conventional-github-releaser -p angular -r 0
 ```
 
-This will *not* overwrite the releases you have already made. Read ["Regenerate all the releases"](#regenerate-all-the-releases) section if you do.
+This will *not* overwrite the releases you have already made. Read ["Regenerate all the releases"](#regenerate-all-the-releases) section if you want to.
 
 **Hint:** You can alias your command or add it to your package.json. EG: `"github-release": "conventional-github-releaser -p angular -r 0"`.
 
