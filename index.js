@@ -98,7 +98,7 @@ function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsO
           var promise = Q.nfcall(github.releases.createRelease, {
             // jscs:disable
             owner: context.owner,
-            repo: context.repository.replace(/^(?:http:\/\/|www\.|https:\/\/)([^\/]+\/)/, ''),
+            repo: context.repository,
             tag_name: version,
             body: chunk.log,
             prerelease: prerelease
