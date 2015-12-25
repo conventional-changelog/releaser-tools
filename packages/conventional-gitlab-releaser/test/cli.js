@@ -9,7 +9,7 @@ var cliPath = __dirname + '/../cli.js';
 
 var AUTH = {
   type: 'oauth',
-  token: process.env.CONVENTIONAL_GITHUB_RELEASER_TOKEN
+  token: process.env.TEST_CONVENTIONAL_GITHUB_RELEASER_TOKEN
 };
 
 describe('cli', function() {
