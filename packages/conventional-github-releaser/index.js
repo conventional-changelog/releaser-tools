@@ -114,6 +114,9 @@ function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsO
               setImmediate(userCb, null, responses);
             });
         }));
+    })
+    .catch(function(err) {
+      userCb(err);
     });
 }
 
