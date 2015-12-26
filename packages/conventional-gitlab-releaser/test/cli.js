@@ -30,8 +30,12 @@ describe('cli', function() {
   });
 
   it('should work', function(done) {
-    var cp = spawn(cliPath, ['--pkg',  __dirname + '/fixtures/_package.json', '-t', AUTH.token], {
+    var cp = spawn(cliPath, ['--pkg',  __dirname + '/fixtures/_package.json', '-t', AUTH.token, '-v'], {
       stdio: [process.stdin, null, null]
+    });
+
+    cp.stdout.on('data', function(data) {
+      expect(data.toString()).to.include('state: \'fulfilled\'');
     });
 
     cp.on('close', function(code) {
