@@ -30,7 +30,7 @@ describe('cli', function() {
   });
 
   it('should work', function(done) {
-    var cp = spawn(cliPath, ['--pkg',  __dirname + '/fixtures/_package.json'], {
+    var cp = spawn(cliPath, ['--pkg',  __dirname + '/fixtures/_package.json', '-t', AUTH.token], {
       stdio: [process.stdin, null, null]
     });
 
