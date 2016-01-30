@@ -84,5 +84,12 @@ conventionalGithubReleaser({
 
   if (flags.verbose) {
     console.log(data);
+  } else if (data.length === 1) {
+    var result = data[0];
+
+    if (result.state === 'rejected') {
+      console.log(result.reason.toString());
+      process.exit(1);
+    }
   }
 });
