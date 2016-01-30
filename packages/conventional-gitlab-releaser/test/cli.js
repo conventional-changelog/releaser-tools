@@ -44,4 +44,36 @@ describe('cli', function() {
       done();
     });
   });
+
+  it('should print out error message and exit with `1` if there is one result and it errors', function(done) {
+    var cp = spawn(cliPath, ['--pkg',  __dirname + '/fixtures/_package.json', '-t', AUTH.token], {
+      stdio: [process.stdin, null, null]
+    });
+
+    cp.stderr.on('data', function(data) {
+      expect(data.toString()).to.include('already_exists');
+    });
+
+    cp.on('close', function(code) {
+      expect(code).to.equal(1);
+
+      done();
+    });
+  });
+
+  it('should print out error message and exit with `1` if there is one result and it errors with verbose', function(done) {
+    var cp = spawn(cliPath, ['--pkg',  __dirname + '/fixtures/_package.json', '-t', AUTH.token, '-v'], {
+      stdio: [process.stdin, null, null]
+    });
+
+    cp.stderr.on('data', function(data) {
+      expect(data.toString()).to.include('already_exists');
+    });
+
+    cp.on('close', function(code) {
+      expect(code).to.equal(1);
+
+      done();
+    });
+  });
 });
