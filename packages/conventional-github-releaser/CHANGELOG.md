@@ -1,3 +1,14 @@
+<a name="0.5.2"></a>
+## [0.5.2](https://github.com/stevemao/conventional-github-releaser/compare/v0.5.1...v0.5.2) (2016-01-30)
+
+
+### Bug Fixes
+
+* **cli:** fail if theres one failing result ([2814a62](https://github.com/stevemao/conventional-github-releaser/commit/2814a62)), closes [#6](https://github.com/stevemao/conventional-github-releaser/issues/6)
+* **err:** better message ([8c07bde](https://github.com/stevemao/conventional-github-releaser/commit/8c07bde)), closes [#8](https://github.com/stevemao/conventional-github-releaser/issues/8)
+
+
+
 <a name="0.5.1"></a>
 ## [0.5.1](https://github.com/stevemao/conventional-github-releaser/compare/v0.5.0...v0.5.1) (2015-12-25)
 
