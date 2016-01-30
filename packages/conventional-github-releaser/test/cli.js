@@ -29,7 +29,7 @@ describe('cli', function() {
     shell.cd('../');
   });
 
-  it('should work', function(done) {
+  it('should work with one release', function(done) {
     var cp = spawn(cliPath, ['--pkg',  __dirname + '/fixtures/_package.json', '-t', AUTH.token, '-v'], {
       stdio: [process.stdin, null, null]
     });
@@ -45,7 +45,7 @@ describe('cli', function() {
     });
   });
 
-  it('should print out error message and exit with `1` if there is one result and it errors', function(done) {
+  it('should print out error message and exit with `1` if all results error', function(done) {
     var cp = spawn(cliPath, ['--pkg',  __dirname + '/fixtures/_package.json', '-t', AUTH.token], {
       stdio: [process.stdin, null, null]
     });
@@ -61,7 +61,7 @@ describe('cli', function() {
     });
   });
 
-  it('should print out error message and exit with `1` if there is one result and it errors with verbose', function(done) {
+  it('should print out error message and exit with `1` if all results error when verbose', function(done) {
     var cp = spawn(cliPath, ['--pkg',  __dirname + '/fixtures/_package.json', '-t', AUTH.token, '-v'], {
       stdio: [process.stdin, null, null]
     });
@@ -76,4 +76,37 @@ describe('cli', function() {
       done();
     });
   });
+
+  it('should exit with `0` if not all results error', function(done) {
+    fs.writeFileSync('test2', '');
+    shell.exec('git add --all && git commit -m"Second commit"');
+    shell.exec('git tag v0.0.2');
+
+    var cp = spawn(cliPath, ['--pkg',  __dirname + '/fixtures/_package.json', '-t', AUTH.token, '-r', '0'], {
+      stdio: [process.stdin, null, null]
+    });
+
+    cp.on('close', function(code) {
+      expect(code).to.equal(0);
+
+      done();
+    });
+  });
+
+  it('should exit with `1` if all results error', function(done) {
+    var cp = spawn(cliPath, ['--pkg',  __dirname + '/fixtures/_package.json', '-t', AUTH.token, '-r', '0'], {
+      stdio: [process.stdin, null, null]
+    });
+
+    cp.stderr.on('data', function(data) {
+      expect(data.toString()).to.include('already_exists');
+    });
+
+    cp.on('close', function(code) {
+      expect(code).to.equal(1);
+
+      done();
+    });
+  });
+
 });
