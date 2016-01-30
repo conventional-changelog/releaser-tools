@@ -68,7 +68,7 @@ function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsO
   Q.nfcall(gitSemverTags)
     .then(function(tags) {
       if (!tags || !tags.length) {
-        setImmediate(userCb, new Error('No tags found'));
+        setImmediate(userCb, new Error('No semver tags found'));
         return;
       }
 
