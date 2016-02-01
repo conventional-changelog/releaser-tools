@@ -2,8 +2,6 @@
 
 > Make a new GitHub release from git metadata
 
-[Synopsis of Conventions](https://github.com/ajoslin/conventional-changelog/tree/master/conventions)
-
 
 ## Quick start
 
