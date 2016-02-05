@@ -1,3 +1,9 @@
+<a name="1.0.0"></a>
+# [1.0.0](https://github.com/stevemao/conventional-github-releaser/compare/v0.5.3...v1.0.0) (2016-02-05)
+
+
+
+
 <a name="0.5.3"></a>
 ## [0.5.3](https://github.com/stevemao/conventional-github-releaser/compare/v0.5.2...v0.5.3) (2016-01-30)
 
