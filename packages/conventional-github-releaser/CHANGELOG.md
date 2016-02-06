@@ -2,6 +2,15 @@
 # [1.0.0](https://github.com/stevemao/conventional-github-releaser/compare/v0.5.3...v1.0.0) (2016-02-05)
 
 
+### Chores
+
+* **deps:** bump ([00c939a](https://github.com/stevemao/conventional-github-releaser/commit/00c939a))
+
+
+### BREAKING CHANGES
+
+* deps: Use conventional-changelog 1.0.0.
+
 
 
 <a name="0.5.3"></a>
@@ -53,6 +62,79 @@
 
 <a name="0.4.0"></a>
 # [0.4.0](https://github.com/stevemao/conventional-github-releaser/compare/v0.3.0...v0.4.0) (2015-08-15)
+
+
+
+
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/stevemao/conventional-github-releaser/compare/v0.2.0...v0.3.0) (2015-08-09)
+
+
+### Bug Fixes
+
+* **transform:** use new syntax of conventional-changelog@0.3.0 ([a14397d](https://github.com/stevemao/conventional-github-releaser/commit/a14397d))
+
+### Features
+
+* **deps:** use conventional-changelog@0.3.0 ([d707ef6](https://github.com/stevemao/conventional-github-releaser/commit/d707ef6))
+
+
+### BREAKING CHANGES
+
+* deps: .
+
+
+
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/stevemao/conventional-github-releaser/compare/v0.1.0...v0.2.0) (2015-07-24)
+
+
+### Bug Fixes
+
+* the latest version should be last semver tag ([e7922fa](https://github.com/stevemao/conventional-github-releaser/commit/e7922fa))
+* **writeOpts:** do not overwrite transform ([4f0787f](https://github.com/stevemao/conventional-github-releaser/commit/4f0787f))
+
+
+
+<a name="0.1.0"></a>
+# [0.1.0](https://github.com/stevemao/conventional-github-releaser/compare/v0.0.4...v0.1.0) (2015-07-22)
+
+
+
+
+<a name="0.0.4"></a>
+## [0.0.4](https://github.com/stevemao/conventional-github-releaser/compare/v0.0.3...v0.0.4) (2015-07-20)
+
+
+### Features
+
+* **prerelease:** auto detect based on semver ([981c704](https://github.com/stevemao/conventional-github-releaser/commit/981c704))
+
+
+
+<a name="0.0.3"></a>
+## [0.0.3](https://github.com/stevemao/conventional-github-releaser/compare/v0.0.2...v0.0.3) (2015-07-17)
+
+
+### Features
+
+* **partial:** no header if using preset by default ([861730f](https://github.com/stevemao/conventional-github-releaser/commit/861730f))
+
+
+
+<a name="0.0.2"></a>
+## [0.0.2](https://github.com/stevemao/conventional-github-releaser/compare/v0.0.1...v0.0.2) (2015-07-17)
+
+
+### Bug Fixes
+
+* **cli:** alias ([1a1c20f](https://github.com/stevemao/conventional-github-releaser/commit/1a1c20f))
+* **opts:** merge options to deep assign ([88ae81c](https://github.com/stevemao/conventional-github-releaser/commit/88ae81c))
+
+
+
+<a name="0.0.1"></a>
+## 0.0.1 (2015-07-15)
 
 
 
