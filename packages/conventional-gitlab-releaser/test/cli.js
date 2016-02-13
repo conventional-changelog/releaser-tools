@@ -4,6 +4,7 @@ var fs = require('fs');
 var githubRemoveAllReleases = require('github-remove-all-releases');
 var shell = require('shelljs');
 var spawn = require('child_process').spawn;
+var concat = require('concat-stream');
 
 var cliPath = __dirname + '/../cli.js';
 
@@ -34,9 +35,10 @@ describe('cli', function() {
       stdio: [process.stdin, null, null]
     });
 
-    cp.stdout.on('data', function(data) {
+    cp.stdout.pipe(concat(function(data) {
+      expect(data.toString()).to.include('Your git-log command is:');
       expect(data.toString()).to.include('state: \'fulfilled\'');
-    });
+    }));
 
     cp.on('close', function(code) {
       expect(code).to.equal(0);
@@ -50,9 +52,9 @@ describe('cli', function() {
       stdio: [process.stdin, null, null]
     });
 
-    cp.stderr.on('data', function(data) {
+    cp.stderr.pipe(concat(function(data) {
       expect(data.toString()).to.include('already_exists');
-    });
+    }));
 
     cp.on('close', function(code) {
       expect(code).to.equal(1);
@@ -66,9 +68,9 @@ describe('cli', function() {
       stdio: [process.stdin, null, null]
     });
 
-    cp.stderr.on('data', function(data) {
+    cp.stderr.pipe(concat(function(data) {
       expect(data.toString()).to.include('already_exists');
-    });
+    }));
 
     cp.on('close', function(code) {
       expect(code).to.equal(1);
@@ -98,9 +100,9 @@ describe('cli', function() {
       stdio: [process.stdin, null, null]
     });
 
-    cp.stderr.on('data', function(data) {
+    cp.stderr.pipe(concat(function(data) {
       expect(data.toString()).to.include('already_exists');
-    });
+    }));
 
     cp.on('close', function(code) {
       expect(code).to.equal(1);
