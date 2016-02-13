@@ -1,3 +1,20 @@
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/stevemao/conventional-github-releaser/compare/v1.0.0...v1.1.0) (2016-02-13)
+
+
+### Features
+
+* use conventional-changelog v1.1.0 ([8617e57](https://github.com/stevemao/conventional-github-releaser/commit/8617e57))
+
+
+### BREAKING CHANGES
+
+* cli options are different.
+`--config` is added.
+`--git-raw-commits-opts`, `--parser-opts` and `--writer-opts` are removed.
+
+
+
 <a name="1.0.0"></a>
 # [1.0.0](https://github.com/stevemao/conventional-github-releaser/compare/v0.5.3...v1.0.0) (2016-02-05)
 
