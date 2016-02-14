@@ -2,6 +2,8 @@
 
 > Make a new GitHub release from git metadata
 
+**Note** You don't have to use the angular commit convention. For the best result of the tool to tokenize you commit and produce flexible output, it's recommended to use a commit convention.
+
 
 ## Quick start
 
@@ -30,6 +32,12 @@ All available command line parameters can be listed using [CLI](#cli) : `convent
 Or use one of the plugins if you are already using the tool:  [grunt](https://github.com/stevemao/grunt-conventional-github-releaser)/[atom](https://github.com/stevemao/atom-conventional-changelog)
 
 
+## Example output
+
+- https://github.com/stevemao/conventional-github-releaser/releases
+- https://github.com/ajoslin/conventional-changelog/releases
+
+
 ### Recommended workflow
 
 1. Make changes
@@ -46,15 +54,10 @@ You have to have a tag on GitHub to make a release. hence `gitRawCommitsOpts.to`
 Please use this [gist](https://gist.github.com/stevemao/280ef22ee861323993a0) to make a release or change it to your needs.
 
 
-## Example output
-
-- https://github.com/stevemao/conventional-github-releaser/releases
-- https://github.com/ajoslin/conventional-changelog/releases
-
-
 ## Why
 
 - Based on [conventional-changelog](https://github.com/ajoslin/conventional-changelog) but GitHub releases are more elegant.
+- Easy fully automate changelog generation. You could still add more points on top of it.
 - Detecting prerelease based on semver, ignoring reverted commits, templating with [handlebars.js](https://github.com/wycats/handlebars.js) and links to references, etc. Open an [issue](../../issues/new) if you want more reasonable features.
 - Intelligently setup defaults but yet fully configurable with presets of [popular projects](https://github.com/ajoslin/conventional-changelog#preset).
 - Everything internally or externally is pluggable.
