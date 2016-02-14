@@ -28,6 +28,7 @@ var cli = meow({
     '                            Default: false',
     '',
     '  -n, --config              A filepath of your config script',
+    '                            Example: https://github.com/stevemao/conventional-changelog-angular/blob/master/index.js',
     '                            This value is ignored if preset is specified',
     '',
     '  -c, --context             A filepath of a javascript that is used to define template variables'
