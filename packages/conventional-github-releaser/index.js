@@ -59,9 +59,8 @@ function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsO
 
   writerOpts.includeDetails = true;
 
-  if (changelogOpts.preset) {
-    writerOpts.headerPartial = writerOpts.headerPartial || '';
-  }
+  // ignore the default header partial
+  writerOpts.headerPartial = writerOpts.headerPartial || '';
 
   github.authenticate(auth);
 
