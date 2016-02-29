@@ -1,3 +1,13 @@
+<a name="1.1.1"></a>
+## [1.1.1](https://github.com/stevemao/conventional-github-releaser/compare/v1.1.0...v1.1.1) (2016-02-29)
+
+
+### Bug Fixes
+
+* **partial:** always ignore the default header partial ([73c27d9](https://github.com/stevemao/conventional-github-releaser/commit/73c27d9))
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/stevemao/conventional-github-releaser/compare/v1.0.0...v1.1.0) (2016-02-13)
 
