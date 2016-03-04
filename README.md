@@ -118,6 +118,18 @@ Default: `1`
 
 How many releases of changelog you want to generate. It counts from the latest semver tag. Useful when you forgot to generate any previous releases. Set to `0` to regenerate all.
 
+##### name
+
+Default: same as version tag
+
+Name that should be applied to the release on GitHub.
+
+##### targetCommitish
+
+Default: `undefined` (uses the tag to determine commit)
+
+Specific `target_commitish` in GitHub release
+
 #### gitRawCommitsOpts
 
 ##### from

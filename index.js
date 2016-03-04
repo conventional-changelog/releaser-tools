@@ -100,7 +100,9 @@ function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsO
             repo: context.repository,
             tag_name: version,
             body: chunk.log,
-            prerelease: prerelease
+            prerelease: prerelease,
+            target_commitish: changelogOpts.targetCommitish,
+            name: changelogOpts.name || version
             // jscs:enable
           });
 
