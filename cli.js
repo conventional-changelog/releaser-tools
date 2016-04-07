@@ -31,7 +31,20 @@ var cli = meow({
     '                            Example of a config script: https://github.com/stevemao/conventional-changelog-angular/blob/master/index.js',
     '                            This value is ignored if preset is specified',
     '',
-    '  -c, --context             A filepath of a javascript that is used to define template variables'
+    '  -c, --context             A filepath of a javascript that is used to define template variables',
+    '',
+    'Options ( Github Enterprise )',
+    '  --github-host              Github host name',
+    '                            Default: api.github.com',
+    '',
+    '  --github-path-prefix       Github api path prefix',
+    '                            Default: none',
+    '',
+    '  --github-protocol          Github protocoll',
+    '                            Default: https',
+    '',
+    '  --github-port              Github port',
+    '                            Default: 80 (http), 443 (https)',
   ]
 }, {
   alias: {
@@ -82,15 +95,28 @@ var changelogOpts = {
   config: flags.config
 };
 
+var githubOpts = Object
+  .keys(flags)
+  .filter(function (key) {
+    return /github/.test(key)
+  })
+  .reduce(function (config, key) {
+    var prop = key.replace(/github([A-Z])/, function (m, char) {
+      return char.toLowerCase()
+    })
+    config[prop] = flags[key].toString()
+    return config
+  }, {
+    type: 'oauth',
+    token: flags.token || process.env.CONVENTIONAL_GITHUB_RELEASER_TOKEN
+  })
+
 if (flags.verbose) {
   changelogOpts.debug = console.info.bind(console);
   changelogOpts.warn = console.warn.bind(console);
 }
 
-conventionalGithubReleaser({
-  type: 'oauth',
-  token: flags.token || process.env.CONVENTIONAL_GITHUB_RELEASER_TOKEN
-}, changelogOpts, templateContext, function(err, data) {
+conventionalGithubReleaser(githubOpts, changelogOpts, templateContext, function(err, data) {
   if (err) {
     console.error(err.toString());
     process.exit(1);

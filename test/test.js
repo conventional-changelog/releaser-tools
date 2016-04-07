@@ -37,12 +37,12 @@ describe('conventional-github-releaser', function() {
 
   it('should throw if no cb is passed', function() {
     expect(function() {
-      conventionalGithubReleaser({});
+      conventionalGithubReleaser({token: 'anything'});
     }).to.throw('Expected an callback');
   });
 
   it('should error if git-raw-commits opts is wrong', function(done) {
-    conventionalGithubReleaser(AUTH, {}, {}, {
+    conventionalGithubReleaser(AUTH, {}, {
       version: '0.0.1'
     }, function(err) {
       expect(err).to.be.ok; // jshint ignore:line
