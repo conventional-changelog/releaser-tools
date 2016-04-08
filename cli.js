@@ -33,17 +33,16 @@ var cli = meow({
     '',
     '  -c, --context             A filepath of a javascript that is used to define template variables',
     '',
-    'Options ( Github Enterprise )',
-    '  --github-host              Github host name',
+    '  --host                    Github host name',
     '                            Default: api.github.com',
     '',
-    '  --github-path-prefix       Github api path prefix',
+    '  --path-prefix             Github api path prefix',
     '                            Default: none',
     '',
-    '  --github-protocol          Github protocoll',
+    '  --protocol                Github protocol',
     '                            Default: https',
     '',
-    '  --github-port              Github port',
+    '  --port                    Github port',
     '                            Default: 80 (http), 443 (https)',
   ]
 }, {
@@ -86,29 +85,25 @@ try {
   process.exit(1);
 }
 
-var changelogOpts = {
-  preset: flags.preset,
-  pkg: {
-    path: flags.pkg
-  },
-  releaseCount: flags.releaseCount,
-  config: flags.config
+var auth = {
+  type: 'oauth',
+  token: flags.token || process.env.CONVENTIONAL_GITHUB_RELEASER_TOKEN
 };
 
-var githubOpts = Object.
-  keys(flags).
-  filter(function(key) {
-    return /github/.test(key);
-  }).
+var githubKeys = ['host', 'pathPrefix', 'protocol', 'port'];
+var changelogOpts = githubKeys.
   reduce(function(config, key) {
-    var prop = key.replace(/github([A-Z])/, function(m, char) {
-      return char.toLowerCase();
-    });
-    config[prop] = flags[key].toString();
+    if (flags[key]) {
+      config[key] = flags[key].toString();
+    }
     return config;
-  }, {
-    type: 'oauth',
-    token: flags.token || process.env.CONVENTIONAL_GITHUB_RELEASER_TOKEN
+  },{
+    preset: flags.preset,
+    pkg: {
+      path: flags.pkg
+    },
+    releaseCount: flags.releaseCount,
+    config: flags.config
   });
 
 if (flags.verbose) {
@@ -116,7 +111,7 @@ if (flags.verbose) {
   changelogOpts.warn = console.warn.bind(console);
 }
 
-conventionalGithubReleaser(githubOpts, changelogOpts, templateContext, function(err, data) {
+conventionalGithubReleaser(auth, changelogOpts, templateContext, function(err, data) {
   if (err) {
     console.error(err.toString());
     process.exit(1);

@@ -18,18 +18,21 @@ describe('Github Enterprise', function() {
       release.reset();
     });
 
-    it('should accept github-* params', function() {
+    it('should accept http releated params', function() {
       run([
         '-t' +  auth.token,
-        '--github-port', '80',
-        '--github-protocol', 'https',
-        '--github-host', 'github.com',
-        '--github-path-prefix', '/api/v3'
+        '--port', '80',
+        '--protocol', 'https',
+        '--host', 'github.com',
+        '--path-prefix', '/api/v3'
       ]);
 
       expect(release.getCall(0).args[0]).to.eql({
         token: auth.token,
         type: auth.type,
+      });
+
+      expect(release.getCall(0).args[1]).to.include({
         host: 'github.com',
         pathPrefix: '/api/v3',
         port: '80',
@@ -83,6 +86,7 @@ describe('Github Enterprise', function() {
       expect(GitHub.getCall(0).args[0]).to.eql(Object.assign(githubOpts, {
         version: '3.0.0'
       }));
+
     });
   });
 });
