@@ -2,7 +2,10 @@ var proxyquire = require('proxyquire').noPreserveCache();
 var sinon = require('sinon');
 var expect = require('chai').expect;
 
-var auth = {token: ' any token', type: 'oauth'};
+var repo = require('./fixtures').ghe;
+var auth = require('./fixtures').auth;
+
+var merge = Object.assign.bind(Object);
 
 describe('Github Enterprise', function() {
   describe('cli', function() {
@@ -50,45 +53,47 @@ describe('Github Enterprise', function() {
     });
   });
 
-  describe('library', function() {
-    var GitHub = sinon.spy();
-    var release = proxyquire('../index', {'github': GitHub});
+  describe('programmatically', function() {
+    var Github = require('github');
+    var github = new Github({version: '3.0.0'});
+    var FakeGithub = sinon.stub().returns(github);
+    var release = proxyquire('../index', {'github': FakeGithub});
+
+    var changelogOpts = {pkg: repo.pkg};
+    var githubOpts = {
+      host: 'github.com',
+      pathPrefix: '/api/v3',
+      port: '80',
+      protocol: 'https'
+    };
+    var options = merge(githubOpts, changelogOpts);
+
+    before(function() {
+      sinon.spy(github.releases, 'createRelease');
+    });
 
     afterEach(function() {
-      GitHub.reset();
+      FakeGithub.reset();
+      github.releases.createRelease.reset();
     });
 
     it('should accept ghe params', function() {
-      var changelogOpts = {};
-      var context = {};
-      var gitRawCommitsOpts = {};
-      var parserOpts = {};
-      var writerOpts = {};
-      var cb = sinon.spy();
-
-      var githubOpts = {
-        host: 'github.com',
-        pathPrefix: '/api/v3',
-        port: '80',
-        protocol: 'https'
-      };
-
-      var options = Object.assign(githubOpts, changelogOpts);
-
-      release(
-        auth,
-        options,
-        context,
-        gitRawCommitsOpts,
-        parserOpts,
-        writerOpts,
-        cb
-      );
-
-      expect(GitHub.getCall(0).args[0]).to.eql(Object.assign(githubOpts, {
+      var params = merge(githubOpts, {
         version: '3.0.0'
-      }));
+      });
+      release(auth, options, sinon.spy());
+      expect(FakeGithub.getCall(0).args[0]).to.include(params);
+    });
 
+    it('should parse ghe repository', function(done) {
+      release(auth, options, function() {
+        var githubRelease = github.releases.createRelease.getCall(0).args[0];
+        expect(githubRelease).to.include({
+          'owner': 'programmer',
+          'repo': 'ghe-repo'
+        });
+        done();
+      });
     });
   });
 });

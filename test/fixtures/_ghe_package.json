@@ -1,0 +1,8 @@
+{
+  "name": "ghe-repo",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "http://github.mycompany.dev/programmer/ghe-repo.git"
+  }
+}
