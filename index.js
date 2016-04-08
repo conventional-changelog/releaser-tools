@@ -10,14 +10,14 @@ var semver = require('semver');
 var through = require('through2');
 var parse = require('@bahmutov/parse-github-repo-url');
 
-function conventionalGithubReleaser(githubOpts, changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts, userCb) {
-  if (!githubOpts || !githubOpts.token) {
+function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts, userCb) {
+  if (!auth) {
     throw new Error('Expected an auth object');
   }
 
   var github = new Github(Object.assign({
     version: '3.0.0'
-  }, githubOpts));
+  }, changelogOpts));
 
   var promises = [];
 
@@ -63,7 +63,7 @@ function conventionalGithubReleaser(githubOpts, changelogOpts, context, gitRawCo
   // ignore the default header partial
   writerOpts.headerPartial = writerOpts.headerPartial || '';
 
-  github.authenticate(githubOpts);
+  github.authenticate(auth);
 
   Q.nfcall(gitSemverTags)
     .then(function(tags) {

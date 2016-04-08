@@ -118,6 +118,36 @@ Default: `1`
 
 How many releases of changelog you want to generate. It counts from the latest semver tag. Useful when you forgot to generate any previous releases. Set to `0` to regenerate all.
 
+##### host
+
+Default: `api.github.com`
+
+Github API hostname
+
+##### pathPrefix
+
+Default: `none`
+
+Github API pathPrefix 
+
+##### protocol
+
+Default: `https`
+
+Github API protocol 
+
+##### port
+
+Default: `80 (http), 443 (https)`
+
+Github API port
+
+#### context
+
+Default: `none`
+
+A object that is used to define conventional changelog template variables
+
 #### gitRawCommitsOpts
 
 ##### from
@@ -138,6 +168,11 @@ It is always `true`.
 
 If there is any preset, this defaults to `''` because header in presets usually contains the version and date which are already in the release.
 
+#### parserOpts
+
+Default: `none`
+
+A object that is used to define how conventional changelog will parse the commits
 
 ## CLI
 

@@ -66,16 +66,18 @@ describe('Github Enterprise', function() {
       var writerOpts = {};
       var cb = sinon.spy();
 
-      var githubOpts = Object.assign({
+      var githubOpts = {
         host: 'github.com',
         pathPrefix: '/api/v3',
         port: '80',
         protocol: 'https'
-      }, auth);
+      };
+
+      var options = Object.assign(githubOpts, changelogOpts);
 
       release(
-        githubOpts,
-        changelogOpts,
+        auth,
+        options,
         context,
         gitRawCommitsOpts,
         parserOpts,
