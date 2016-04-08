@@ -7,8 +7,8 @@ var spawn = require('child_process').spawn;
 var concat = require('concat-stream');
 
 var cliPath = __dirname + '/../cli.js';
-var repo = require('./fixtures').repo
-var AUTH = require('./fixtures').auth
+var repo = require('./fixtures').repo;
+var AUTH = require('./fixtures').auth;
 
 describe('cli', function() {
   before(function(done) {
@@ -18,8 +18,8 @@ describe('cli', function() {
     shell.exec('git add --all && git commit -m"First commit"');
     shell.exec('git tag v0.0.1');
 
-    githubRemoveAllReleases(AUTH, repo.owner, repo.name, function () {
-      done()
+    githubRemoveAllReleases(AUTH, repo.owner, repo.name, function() {
+      done();
     });
   });
 

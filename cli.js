@@ -95,21 +95,21 @@ var changelogOpts = {
   config: flags.config
 };
 
-var githubOpts = Object
-  .keys(flags)
-  .filter(function (key) {
-    return /github/.test(key)
-  })
-  .reduce(function (config, key) {
-    var prop = key.replace(/github([A-Z])/, function (m, char) {
-      return char.toLowerCase()
-    })
-    config[prop] = flags[key].toString()
-    return config
+var githubOpts = Object.
+  keys(flags).
+  filter(function(key) {
+    return /github/.test(key);
+  }).
+  reduce(function(config, key) {
+    var prop = key.replace(/github([A-Z])/, function(m, char) {
+      return char.toLowerCase();
+    });
+    config[prop] = flags[key].toString();
+    return config;
   }, {
     type: 'oauth',
     token: flags.token || process.env.CONVENTIONAL_GITHUB_RELEASER_TOKEN
-  })
+  });
 
 if (flags.verbose) {
   changelogOpts.debug = console.info.bind(console);

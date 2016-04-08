@@ -6,8 +6,8 @@ var Github = require('github');
 var githubRemoveAllReleases = require('github-remove-all-releases');
 var shell = require('shelljs');
 
-var repo = require('./fixtures').repo
-var AUTH = require('./fixtures').auth
+var repo = require('./fixtures').repo;
+var AUTH = require('./fixtures').auth;
 
 var github = new Github({
   version: '3.0.0'
@@ -22,8 +22,8 @@ describe('conventional-github-releaser', function() {
     fs.writeFileSync('test1', '');
     shell.exec('git add --all && git commit -m"First commit"');
 
-    githubRemoveAllReleases(AUTH, repo.owner, repo.name, function () {
-      done()
+    githubRemoveAllReleases(AUTH, repo.owner, repo.name, function() {
+      done();
     });
   });
 

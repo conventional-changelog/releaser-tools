@@ -1,74 +1,74 @@
 var proxyquire = require('proxyquire').noPreserveCache();
-var sinon = require('sinon')
+var sinon = require('sinon');
 var expect = require('chai').expect;
 
-var auth = { token: " any token", type: "oauth" }
+var auth = {token: ' any token', type: 'oauth'};
 
-describe('Github Enterprise', function () {
-  describe('cli', function () {
-    var release = sinon.spy()
+describe('Github Enterprise', function() {
+  describe('cli', function() {
+    var release = sinon.spy();
     // run the cli with stub
     // conventionalGithubReleaser
     var run = function(args) {
-      process.argv = ['node', 'cli'].concat(args)
-      proxyquire('../cli', { './' : release })
-    }
+      process.argv = ['node', 'cli'].concat(args);
+      proxyquire('../cli', {'./': release});
+    };
 
-    afterEach(function () {
-      release.reset()
-    })
+    afterEach(function() {
+      release.reset();
+    });
 
-    it('should accept github-* params', function () {
+    it('should accept github-* params', function() {
       run([
         '-t' +  auth.token,
         '--github-port', '80',
         '--github-protocol', 'https',
         '--github-host', 'github.com',
         '--github-path-prefix', '/api/v3'
-      ])
+      ]);
 
       expect(release.getCall(0).args[0]).to.eql({
         token: auth.token,
         type: auth.type,
-        host: "github.com",
-        pathPrefix: "/api/v3",
-        port: "80",
-        protocol: "https"
-      })
-    })
+        host: 'github.com',
+        pathPrefix: '/api/v3',
+        port: '80',
+        protocol: 'https'
+      });
+    });
 
-    it('should github-* empty', function () {
-      run([ '-t',  auth.token])
+    it('should github-* empty', function() {
+      run(['-t', auth.token]);
 
       expect(release.getCall(0).args[0]).to.eql({
         token: auth.token,
         type: auth.type,
-      })
-    })
-  })
+      });
+    });
+  });
 
-  describe('library', function () {
-    var GitHub = sinon.spy()
-    var release = proxyquire('../index', { 'github' : GitHub })
+  describe('library', function() {
+    var GitHub = sinon.spy();
+    var release = proxyquire('../index', {'github': GitHub});
 
-    afterEach(function () {
-      GitHub.reset()
-    })
+    afterEach(function() {
+      GitHub.reset();
+    });
 
-    it('should accept ghe params', function () {
-      var changelogOpts = {}
-      var context = {}
-      var gitRawCommitsOpts = {}
-      var parserOpts = {}
-      var writerOpts = {}
-      var cb = sinon.spy()
+    it('should accept ghe params', function() {
+      var changelogOpts = {};
+      var context = {};
+      var gitRawCommitsOpts = {};
+      var parserOpts = {};
+      var writerOpts = {};
+      var cb = sinon.spy();
 
       var githubOpts = Object.assign({
-        host: "github.com",
-        pathPrefix: "/api/v3",
-        port: "80",
-        protocol: "https"
-      }, auth)
+        host: 'github.com',
+        pathPrefix: '/api/v3',
+        port: '80',
+        protocol: 'https'
+      }, auth);
 
       release(
         githubOpts,
@@ -78,11 +78,11 @@ describe('Github Enterprise', function () {
         parserOpts,
         writerOpts,
         cb
-      )
+      );
 
       expect(GitHub.getCall(0).args[0]).to.eql(Object.assign(githubOpts, {
         version: '3.0.0'
-      }))
-    })
-  })
-})
+      }));
+    });
+  });
+});
