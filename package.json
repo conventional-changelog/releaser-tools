@@ -2,13 +2,13 @@
   "name": "conventional-github-releaser",
   "version": "1.1.1",
   "description": "Make a new GitHub release from git metadata",
-  "homepage": "https://github.com/stevemao/conventional-github-releaser",
+  "homepage": "https://github.com/conventional-changelog/conventional-github-releaser",
   "author": {
     "name": "Steve Mao",
     "email": "maochenyan@gmail.com",
     "url": "https://github.com/stevemao"
   },
-  "repository": "stevemao/conventional-github-releaser",
+  "repository": "conventional-changelog/conventional-github-releaser",
   "license": "MIT",
   "files": [
     "index.js",
