@@ -29,13 +29,13 @@ All available command line parameters can be listed using [CLI](#cli) : `convent
 
 **Hint:** You can alias your command or add it to your package.json. EG: `"github-release": "conventional-github-releaser -p angular -r 0"`.
 
-Or use one of the plugins if you are already using the tool:  [grunt](https://github.com/stevemao/grunt-conventional-github-releaser)/[atom](https://github.com/stevemao/atom-conventional-changelog)
+Or use one of the plugins if you are already using the tool:  [grunt](https://github.com/conventional-changelog/grunt-conventional-github-releaser)/[atom](https://github.com/conventional-changelog/atom-conventional-changelog)
 
 
 ## Example output
 
-- https://github.com/stevemao/conventional-github-releaser/releases
-- https://github.com/ajoslin/conventional-changelog/releases
+- https://github.com/conventional-changelog/conventional-github-releaser/releases
+- https://github.com/conventional-changelog/conventional-changelog/releases
 
 
 ### Recommended workflow
@@ -165,10 +165,10 @@ Use [github-remove-all-releases](https://github.com/stevemao/github-remove-all-r
 
 ## Related
 
-- [conventional-changelog](https://github.com/stevemao/conventional-changelog-cli) - Generate a changelog from git metadata
-- [conventional-recommended-bump](https://github.com/stevemao/conventional-recommended-bump) - Get a recommended version bump based on conventional commits
+- [conventional-changelog](https://github.com/conventional-changelog/conventional-changelog-cli) - Generate a changelog from git metadata
+- [conventional-recommended-bump](https://github.com/conventional-changelog/conventional-recommended-bump) - Get a recommended version bump based on conventional commits
 - [github-remove-all-releases](https://github.com/stevemao/github-remove-all-releases) - Remove all releases of your GitHub repo
-- [conventional-commits-detector](https://github.com/stevemao/conventional-commits-detector) - Detect what commit message convention your repository is using
+- [conventional-commits-detector](https://github.com/conventional-changelog/conventional-commits-detector) - Detect what commit message convention your repository is using
 
 
 ## License
@@ -178,9 +178,9 @@ MIT © [Steve Mao](https://github.com/stevemao)
 
 [npm-image]: https://badge.fury.io/js/conventional-github-releaser.svg
 [npm-url]: https://npmjs.org/package/conventional-github-releaser
-[travis-image]: https://travis-ci.org/stevemao/conventional-github-releaser.svg?branch=master
-[travis-url]: https://travis-ci.org/stevemao/conventional-github-releaser
-[daviddm-image]: https://david-dm.org/stevemao/conventional-github-releaser.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/stevemao/conventional-github-releaser
-[coveralls-image]: https://coveralls.io/repos/stevemao/conventional-github-releaser/badge.svg
-[coveralls-url]: https://coveralls.io/r/stevemao/conventional-github-releaser
+[travis-image]: https://travis-ci.org/conventional-changelog/conventional-github-releaser.svg?branch=master
+[travis-url]: https://travis-ci.org/conventional-changelog/conventional-github-releaser
+[daviddm-image]: https://david-dm.org/conventional-changelog/conventional-github-releaser.svg?theme=shields.io
+[daviddm-url]: https://david-dm.org/conventional-changelog/conventional-github-releaser
+[coveralls-image]: https://coveralls.io/repos/conventional-changelog/conventional-github-releaser/badge.svg
+[coveralls-url]: https://coveralls.io/r/conventional-changelog/conventional-github-releaser
