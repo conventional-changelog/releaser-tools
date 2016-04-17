@@ -136,7 +136,9 @@ It is always `true`.
 
 ##### headerPartial
 
-If there is any preset, this defaults to `''` because header in presets usually contains the version and date which are already in the release.
+Default: `''`
+
+Default header contains the version and date which are already in the release.
 
 
 ## CLI
