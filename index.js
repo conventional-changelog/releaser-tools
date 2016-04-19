@@ -8,7 +8,6 @@ var merge = require('lodash.merge');
 var Q = require('q');
 var semver = require('semver');
 var through = require('through2');
-var parseSlug = require('@bahmutov/parse-github-repo-url');
 
 function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts, userCb) {
   if (!auth) {
@@ -94,14 +93,6 @@ function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsO
           var version =  chunk.keyCommit.version;
 
           var prerelease = semver.parse(version).prerelease.length > 0;
-
-          // conventional changelog don't parse
-          // owner/repo of ghe reposity yet
-          if (!context.owner) {
-            var parts = parseSlug(context.repository);
-            context.owner = parts[0];
-            context.repository = parts[1];
-          }
 
           var promise = Q.nfcall(github.releases.createRelease, {
             // jscs:disable
