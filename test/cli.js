@@ -1,6 +1,7 @@
 'use strict';
 var expect = require('chai').expect;
 var fs = require('fs');
+var Q = require('q');
 var githubRemoveAllReleases = require('github-remove-all-releases');
 var shell = require('shelljs');
 var spawn = require('child_process').spawn;
@@ -44,6 +45,40 @@ describe('cli', function() {
       expect(code).to.equal(0);
 
       done();
+    });
+  });
+
+  it('should work with no releases', function(done) {
+    Q.Promise(function(resolve, reject) {
+      var cp = spawn(cliPath, ['--pkg',  __dirname + '/fixtures/_package.json', '-t', AUTH.token, '-v'], {
+        stdio: [process.stdin, null, null]
+      });
+
+      cp.on('error', function(code) {
+        reject('Process exits with code ' + code);
+      });
+
+      cp.on('close', function(code) {
+        expect(code).to.equal(0);
+
+        resolve();
+      });
+    }).then(function() {
+      // we call it a second time, because there no tags are left to create a release from
+      var cp = spawn(cliPath, ['--pkg',  __dirname + '/fixtures/_package.json', '-t', AUTH.token, '-v'], {
+        stdio: [process.stdin, null, null]
+      });
+
+      cp.on('error', function(code) {
+        done('Process exits with code ' + code);
+      });
+
+      cp.on('close', function(code) {
+        // this time we also expect the cli to exit with code 0 due to #17
+        expect(code).to.equal(0);
+
+        done();
+      });
     });
   });
 
