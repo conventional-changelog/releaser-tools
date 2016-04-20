@@ -101,6 +101,11 @@ conventionalGithubReleaser({
     console.error(err.toString());
     process.exit(1);
   }
+  
+  if (0 === data.length) {
+    console.log('No GitHub releases created because no git tags available to work with.');
+    process.exit(0);
+  }
 
   var allRejected = true;
 
