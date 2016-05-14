@@ -14,7 +14,7 @@ function conventionalGithubReleaser(auth, options, context, gitRawCommitsOpts, p
     throw new Error('Expected an auth object');
   }
 
-  var github = new Github(Object.assign({
+  var github = new Github(assign({
     version: '3.0.0'
   }, options));
 
