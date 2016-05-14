@@ -91,7 +91,7 @@ var auth = {
 };
 
 var githubKeys = ['host', 'pathPrefix', 'protocol', 'port'];
-var changelogOpts = githubKeys.
+var options = githubKeys.
   reduce(function(config, key) {
     if (flags[key]) {
       config[key] = flags[key].toString();
@@ -107,11 +107,11 @@ var changelogOpts = githubKeys.
   });
 
 if (flags.verbose) {
-  changelogOpts.debug = console.info.bind(console);
-  changelogOpts.warn = console.warn.bind(console);
+  options.debug = console.info.bind(console);
+  options.warn = console.warn.bind(console);
 }
 
-conventionalGithubReleaser(auth, changelogOpts, templateContext, function(err, data) {
+conventionalGithubReleaser(auth, options, templateContext, function(err, data) {
   if (err) {
     console.error(err.toString());
     process.exit(1);
