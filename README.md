@@ -160,6 +160,8 @@ Default: latest semver tag
 
 #### writerOpts
 
+#### parserOpts
+
 ##### includeDetails
 
 It is always `true`.
@@ -167,12 +169,6 @@ It is always `true`.
 ##### headerPartial
 
 If there is any preset, this defaults to `''` because header in presets usually contains the version and date which are already in the release.
-
-#### parserOpts
-
-Default: `none`
-
-A object that is used to define how conventional changelog will parse the commits
 
 ## CLI
 
