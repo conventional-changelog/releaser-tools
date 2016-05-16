@@ -57,8 +57,5 @@
   },
   "bin": {
     "conventional-github-releaser": "cli.js"
-  },
-  "engines": {
-    "node": ">= 4.4.2"
   }
 }
