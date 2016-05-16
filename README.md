@@ -118,30 +118,6 @@ Default: `1`
 
 How many releases of changelog you want to generate. It counts from the latest semver tag. Useful when you forgot to generate any previous releases. Set to `0` to regenerate all.
 
-##### host
-
-Default: `api.github.com`
-
-Github API hostname
-
-##### pathPrefix
-
-Default: `none`
-
-Github API pathPrefix 
-
-##### protocol
-
-Default: `https`
-
-Github API protocol 
-
-##### port
-
-Default: `80 (http), 443 (https)`
-
-Github API port
-
 #### context
 
 Default: `none`
@@ -159,8 +135,6 @@ Default: based on `options.releaseCount`.
 Default: latest semver tag
 
 #### writerOpts
-
-#### parserOpts
 
 ##### includeDetails
 
