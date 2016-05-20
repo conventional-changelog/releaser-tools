@@ -2,21 +2,18 @@
 var assign = require('object-assign');
 var conventionalChangelog = require('conventional-changelog');
 var dateFormat = require('dateformat');
-var Github = require('github');
 var gitSemverTags = require('git-semver-tags');
 var merge = require('lodash.merge');
 var Q = require('q');
 var semver = require('semver');
 var through = require('through2');
 
-var github = new Github({
-  version: '3.0.0'
-});
-
-function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts, userCb) {
+function conventionalGitlabReleaser(auth, changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts, userCb) {
   if (!auth) {
     throw new Error('Expected an auth object');
   }
+
+  var gitlab = require('gitlab')(auth);
 
   var promises = [];
 
@@ -62,10 +59,9 @@ function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsO
   // ignore the default header partial
   writerOpts.headerPartial = writerOpts.headerPartial || '';
 
-  github.authenticate(auth);
-
   Q.nfcall(gitSemverTags)
     .then(function(tags) {
+      console.log('tag', tags);
       if (!tags || !tags.length) {
         setImmediate(userCb, new Error('No semver tags found'));
         return;
@@ -94,17 +90,16 @@ function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsO
 
           var prerelease = semver.parse(version).prerelease.length > 0;
 
-          var promise = Q.nfcall(github.releases.createRelease, {
-            // jscs:disable
-            owner: context.owner,
-            repo: context.repository,
+          console.log('log', chunk.log);
+          /*var promise = Q.nfcall(gitlab.projects.repository.addTag, {
+            id: projectID,
             tag_name: version,
-            body: chunk.log,
-            prerelease: prerelease
-            // jscs:enable
+            ref: ref,
+            message: 'Release ' + version,
+            release_description: chunk.log
           });
 
-          promises.push(promise);
+          promises.push(promise);*/
 
           cb();
         }, function() {
@@ -119,4 +114,4 @@ function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsO
     });
 }
 
-module.exports = conventionalGithubReleaser;
+module.exports = conventionalGitlabReleaser;

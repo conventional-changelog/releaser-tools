@@ -1,18 +1,19 @@
 #!/usr/bin/env node
 'use strict';
 var meow = require('meow');
-var conventionalGithubReleaser = require('./');
+var conventionalGitlabReleaser = require('./');
 
 var cli = meow({
   help: [
     'Usage',
-    '  conventional-github-releaser',
+    '  conventional-gitlab-releaser',
     '',
     'Example',
-    '  conventional-github-releaser -p angular',
+    '  conventional-gitlab-releaser -p angular',
     '',
     'Options',
-    '  -t, --token               Your GitHub auth token',
+    ' -u,  --url                 URL of your GitLab provider. Defaults to `https://gitlab.com`',
+    '  -t, --token               Your GitLab auth token',
     '',
     '  -p, --preset              Name of the preset you want to use. Must be one of the following:',
     '                            angular, atom, codemirror, ember, eslint, express, jquery, jscs or jshint',
@@ -35,6 +36,7 @@ var cli = meow({
   ]
 }, {
   alias: {
+    u: 'url',
     t: 'token',
     p: 'preset',
     k: 'pkg',
@@ -87,9 +89,9 @@ if (flags.verbose) {
   changelogOpts.warn = console.warn.bind(console);
 }
 
-conventionalGithubReleaser({
-  type: 'oauth',
-  token: flags.token || process.env.CONVENTIONAL_GITHUB_RELEASER_TOKEN
+conventionalGitlabReleaser({
+  url: flags.url || process.env.CONVENTIONAL_GITLAB_URL || 'https://gitlab.com',
+  token: flags.token || process.env.CONVENTIONAL_GITLAB_RELEASER_TOKEN
 }, changelogOpts, templateContext, function(err, data) {
   if (err) {
     console.error(err.toString());

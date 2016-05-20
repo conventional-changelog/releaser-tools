@@ -1,23 +1,22 @@
 {
-  "name": "conventional-github-releaser",
-  "version": "1.1.2",
-  "description": "Make a new GitHub release from git metadata",
-  "homepage": "https://github.com/conventional-changelog/conventional-github-releaser",
+  "name": "conventional-gitlab-releaser",
+  "version": "1.0.0",
+  "description": "Make a new GitLab release from git metadata",
+  "homepage": "https://gitlab.com/hutson/semantic-release-gitlab",
   "author": {
     "name": "Steve Mao",
     "email": "maochenyan@gmail.com",
     "url": "https://github.com/stevemao"
   },
-  "repository": "conventional-changelog/conventional-github-releaser",
+  "repository": "https://gitlab.com/hutson/semantic-release-gitlab.git",
   "license": "MIT",
   "files": [
     "index.js",
     "cli.js"
   ],
   "keywords": [
-    "conventional-github-releaser",
-    "github",
-    "gh",
+    "conventional-gitlab-releaser",
+    "gitlab",
     "release",
     "releases",
     "conventional-changelog",
@@ -29,7 +28,7 @@
     "conventional-changelog": "^1.1.0",
     "dateformat": "^1.0.11",
     "git-semver-tags": "^1.0.0",
-    "github": "^0.2.4",
+    "gitlab": "^1.6.0",
     "lodash.merge": "^4.0.2",
     "meow": "^3.3.0",
     "object-assign": "^4.0.1",
@@ -54,6 +53,6 @@
     "test": "npm run-script lint && mocha --timeout 50000"
   },
   "bin": {
-    "conventional-github-releaser": "cli.js"
+    "conventional-gitlab-releaser": "cli.js"
   }
 }
