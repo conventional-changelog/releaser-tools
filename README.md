@@ -169,6 +169,7 @@ Use [github-remove-all-releases](https://github.com/stevemao/github-remove-all-r
 - [conventional-recommended-bump](https://github.com/conventional-changelog/conventional-recommended-bump) - Get a recommended version bump based on conventional commits
 - [github-remove-all-releases](https://github.com/stevemao/github-remove-all-releases) - Remove all releases of your GitHub repo
 - [conventional-commits-detector](https://github.com/conventional-changelog/conventional-commits-detector) - Detect what commit message convention your repository is using
+- [conventional-gitlab-releaser](https://gitlab.com/hutson/conventional-gitlab-releaser) - Similar to `conventional-github-releaser`, but makes a GitLab release.
 
 
 ## License
