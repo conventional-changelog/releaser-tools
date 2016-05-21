@@ -28,12 +28,11 @@
     "conventional-changelog": "^1.1.0",
     "dateformat": "^1.0.11",
     "git-semver-tags": "^1.0.0",
-    "gitlab": "^1.6.0",
+    "gitlab": "git+https://github.com/node-gitlab/node-gitlab.git#develop",
     "lodash.merge": "^4.0.2",
     "meow": "^3.3.0",
     "object-assign": "^4.0.1",
     "q": "^1.4.1",
-    "semver": "^5.0.1",
     "through2": "^2.0.0"
   },
   "devDependencies": {

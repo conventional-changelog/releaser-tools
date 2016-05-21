@@ -5,7 +5,6 @@ var dateFormat = require('dateformat');
 var gitSemverTags = require('git-semver-tags');
 var merge = require('lodash.merge');
 var Q = require('q');
-var semver = require('semver');
 var through = require('through2');
 
 function conventionalGitlabReleaser(auth, changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts, userCb) {
@@ -88,18 +87,22 @@ function conventionalGitlabReleaser(auth, changelogOpts, context, gitRawCommitsO
 
           var version =  chunk.keyCommit.version;
 
-          var prerelease = semver.parse(version).prerelease.length > 0;
-
-          console.log('log', chunk.log);
-          /*var promise = Q.nfcall(gitlab.projects.repository.addTag, {
-            id: projectID,
+          var deferred = Q.defer();
+          gitlab.projects.repository.addTag({
+            id: context.owner + '/' + context.repository,
             tag_name: version,
-            ref: ref,
+            ref: chunk.keyCommit.raw.hash,
             message: 'Release ' + version,
             release_description: chunk.log
+          }, function (response) {
+            if (response === true) {
+              return deferred.reject(response);
+            }
+
+            deferred.resolve(response);
           });
 
-          promises.push(promise);*/
+          promises.push(deferred);
 
           cb();
         }, function() {
