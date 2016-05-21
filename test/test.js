@@ -6,10 +6,8 @@ var Github = require('github');
 var githubRemoveAllReleases = require('github-remove-all-releases');
 var shell = require('shelljs');
 
-var AUTH = {
-  type: 'oauth',
-  token: process.env.TEST_CONVENTIONAL_GITHUB_RELEASER_TOKEN
-};
+var repo = require('./fixtures').repo;
+var AUTH = require('./fixtures').auth;
 
 var github = new Github({
   version: '3.0.0'
@@ -24,7 +22,7 @@ describe('conventional-github-releaser', function() {
     fs.writeFileSync('test1', '');
     shell.exec('git add --all && git commit -m"First commit"');
 
-    githubRemoveAllReleases(AUTH, 'stevemaotest', 'conventional-github-releaser-test', function() {
+    githubRemoveAllReleases(AUTH, repo.owner, repo.name, function() {
       done();
     });
   });
@@ -39,12 +37,12 @@ describe('conventional-github-releaser', function() {
 
   it('should throw if no cb is passed', function() {
     expect(function() {
-      conventionalGithubReleaser({});
+      conventionalGithubReleaser({token: 'anything'});
     }).to.throw('Expected an callback');
   });
 
   it('should error if git-raw-commits opts is wrong', function(done) {
-    conventionalGithubReleaser(AUTH, {}, {}, {
+    conventionalGithubReleaser(AUTH, {}, {
       version: '0.0.1'
     }, function(err) {
       expect(err).to.be.ok; // jshint ignore:line
@@ -65,16 +63,14 @@ describe('conventional-github-releaser', function() {
     shell.exec('git tag v1.0.0');
 
     conventionalGithubReleaser(AUTH, {
-      pkg: {
-        path: __dirname + '/fixtures/_package.json'
-      },
+      pkg: repo.pkg,
     }, function(err, responses) {
       expect(responses.length).to.equal(1);
       expect(responses[0].state).to.equal('fulfilled');
       github.releases.getRelease({
         // jscs:disable
-        owner: 'stevemaotest',
-        repo: 'conventional-github-releaser-test',
+        owner: repo.owner,
+        repo: repo.name,
         id: responses[0].value.id
         // jscs:enable
       }, function(err, data) {
@@ -86,9 +82,7 @@ describe('conventional-github-releaser', function() {
 
   it('should fail if a release exists', function(done) {
     conventionalGithubReleaser(AUTH, {
-      pkg: {
-        path: __dirname + '/fixtures/_package.json'
-      },
+      pkg: repo.pkg,
     }, function(err, responses) {
       expect(responses[0].state).to.equal('rejected');
 
@@ -102,16 +96,14 @@ describe('conventional-github-releaser', function() {
     shell.exec('git tag v2.0.0-beta');
 
     conventionalGithubReleaser(AUTH, {
-      pkg: {
-        path: __dirname + '/fixtures/_package.json'
-      },
+      pkg: repo.pkg,
     }, function(err, responses) {
       expect(responses.length).to.equal(1);
       expect(responses[0].state).to.equal('fulfilled');
       github.releases.getRelease({
         // jscs:disable
-        owner: 'stevemaotest',
-        repo: 'conventional-github-releaser-test',
+        owner: repo.owner,
+        repo: repo.name,
         id: responses[0].value.id
         // jscs:enable
       }, function(err, data) {
@@ -127,16 +119,14 @@ describe('conventional-github-releaser', function() {
     shell.exec('git tag v2.0.0');
 
     conventionalGithubReleaser(AUTH, {
-      pkg: {
-        path: __dirname + '/fixtures/_package.json'
-      },
+      pkg: repo.pkg,
       preset: 'angular'
     }, function(err, responses) {
       expect(responses.length).to.equal(1);
       github.releases.getRelease({
         // jscs:disable
-        owner: 'stevemaotest',
-        repo: 'conventional-github-releaser-test',
+        owner: repo.owner,
+        repo: repo.name,
         id: responses[0].value.id
         // jscs:enable
       }, function(err, data) {
@@ -155,9 +145,7 @@ describe('conventional-github-releaser', function() {
     shell.exec('git tag v4.0.0');
 
     conventionalGithubReleaser(AUTH, {
-      pkg: {
-        path: __dirname + '/fixtures/_package.json'
-      },
+      pkg: repo.pkg,
       releaseCount: 2
     }, function(err, responses) {
       expect(responses.length).to.equal(2);
@@ -167,9 +155,7 @@ describe('conventional-github-releaser', function() {
 
   it('should attempt to generate all releases', function(done) {
     conventionalGithubReleaser(AUTH, {
-      pkg: {
-        path: __dirname + '/fixtures/_package.json'
-      },
+      pkg: repo.pkg,
       releaseCount: 0
     }, function(err, responses) {
       expect(responses.length).to.equal(5);

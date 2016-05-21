@@ -7,11 +7,8 @@ var spawn = require('child_process').spawn;
 var concat = require('concat-stream');
 
 var cliPath = __dirname + '/../cli.js';
-
-var AUTH = {
-  type: 'oauth',
-  token: process.env.TEST_CONVENTIONAL_GITHUB_RELEASER_TOKEN
-};
+var repo = require('./fixtures').repo;
+var AUTH = require('./fixtures').auth;
 
 describe('cli', function() {
   before(function(done) {
@@ -21,7 +18,7 @@ describe('cli', function() {
     shell.exec('git add --all && git commit -m"First commit"');
     shell.exec('git tag v0.0.1');
 
-    githubRemoveAllReleases(AUTH, 'stevemaotest', 'conventional-github-releaser-test', function() {
+    githubRemoveAllReleases(AUTH, repo.owner, repo.name, function() {
       done();
     });
   });
@@ -64,7 +61,7 @@ describe('cli', function() {
   });
 
   it('should print out error message and exit with `1` if all results error when verbose', function(done) {
-    var cp = spawn(cliPath, ['--pkg',  __dirname + '/fixtures/_package.json', '-t', AUTH.token, '-v'], {
+    var cp = spawn(cliPath, ['--pkg',  repo.pkg.path, '-t', AUTH.token, '-v'], {
       stdio: [process.stdin, null, null]
     });
 
@@ -84,7 +81,7 @@ describe('cli', function() {
     shell.exec('git add --all && git commit -m"Second commit"');
     shell.exec('git tag v0.0.2');
 
-    var cp = spawn(cliPath, ['--pkg',  __dirname + '/fixtures/_package.json', '-t', AUTH.token, '-r', '0'], {
+    var cp = spawn(cliPath, ['--pkg',  repo.pkg.path, '-t', AUTH.token, '-r', '0'], {
       stdio: [process.stdin, null, null]
     });
 
@@ -96,7 +93,7 @@ describe('cli', function() {
   });
 
   it('should exit with `1` if all results error', function(done) {
-    var cp = spawn(cliPath, ['--pkg',  __dirname + '/fixtures/_package.json', '-t', AUTH.token, '-r', '0'], {
+    var cp = spawn(cliPath, ['--pkg',  repo.pkg.path, '-t', AUTH.token, '-r', '0'], {
       stdio: [process.stdin, null, null]
     });
 

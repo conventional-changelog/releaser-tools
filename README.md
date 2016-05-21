@@ -118,6 +118,12 @@ Default: `1`
 
 How many releases of changelog you want to generate. It counts from the latest semver tag. Useful when you forgot to generate any previous releases. Set to `0` to regenerate all.
 
+#### context
+
+Default: `none`
+
+A object that is used to define conventional changelog template variables
+
 #### gitRawCommitsOpts
 
 ##### from
@@ -139,7 +145,6 @@ It is always `true`.
 Default: `''`
 
 Default header contains the version and date which are already in the release.
-
 
 ## CLI
 

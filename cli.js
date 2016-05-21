@@ -31,7 +31,19 @@ var cli = meow({
     '                            Example of a config script: https://github.com/conventional-changelog/conventional-changelog-angular/blob/master/index.js',
     '                            This value is ignored if preset is specified',
     '',
-    '  -c, --context             A filepath of a javascript that is used to define template variables'
+    '  -c, --context             A filepath of a javascript that is used to define template variables',
+    '',
+    '  --host                    Github host name',
+    '                            Default: api.github.com',
+    '',
+    '  --path-prefix             Github api path prefix',
+    '                            Default: none',
+    '',
+    '  --protocol                Github protocol',
+    '                            Default: https',
+    '',
+    '  --port                    Github port',
+    '                            Default: 80 (http), 443 (https)',
   ]
 }, {
   alias: {
@@ -73,24 +85,33 @@ try {
   process.exit(1);
 }
 
-var changelogOpts = {
-  preset: flags.preset,
-  pkg: {
-    path: flags.pkg
-  },
-  releaseCount: flags.releaseCount,
-  config: flags.config
-};
-
-if (flags.verbose) {
-  changelogOpts.debug = console.info.bind(console);
-  changelogOpts.warn = console.warn.bind(console);
-}
-
-conventionalGithubReleaser({
+var auth = {
   type: 'oauth',
   token: flags.token || process.env.CONVENTIONAL_GITHUB_RELEASER_TOKEN
-}, changelogOpts, templateContext, function(err, data) {
+};
+
+var githubKeys = ['host', 'pathPrefix', 'protocol', 'port'];
+var options = githubKeys.
+  reduce(function(config, key) {
+    if (flags[key]) {
+      config[key] = flags[key].toString();
+    }
+    return config;
+  },{
+    preset: flags.preset,
+    pkg: {
+      path: flags.pkg
+    },
+    releaseCount: flags.releaseCount,
+    config: flags.config
+  });
+
+if (flags.verbose) {
+  options.debug = console.info.bind(console);
+  options.warn = console.warn.bind(console);
+}
+
+conventionalGithubReleaser(auth, options, templateContext, function(err, data) {
   if (err) {
     console.error(err.toString());
     process.exit(1);
