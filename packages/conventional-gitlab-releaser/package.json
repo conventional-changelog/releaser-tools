@@ -1,6 +1,6 @@
 {
   "name": "conventional-gitlab-releaser",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Make a new GitLab release from git metadata",
   "homepage": "https://gitlab.com/hutson/semantic-release-gitlab",
   "author": {
