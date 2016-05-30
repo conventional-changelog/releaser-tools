@@ -9,6 +9,8 @@ cache:
     - node_modules/
 
 .all_jobs: &all_jobs_definition
+  after_script:
+    - $(npm bin)/codecov
   script:
     - $(npm bin)/npm install
     - $(npm bin)/npm run lint
@@ -83,5 +85,5 @@ publish:
   only:
     - master@hutson/conventional-gitlab-releaser
   script:
-    - echo "Release."
+    - $(npm bin)/semantic-release-gitlab
   stage: deploy
