@@ -89,11 +89,11 @@ function conventionalGitlabReleaser(auth, changelogOpts, context, gitRawCommitsO
           var deferred = Q.defer();
           gitlab.projects.repository.addTag({
             id: context.owner + '/' + context.repository,
-            tag_name: version,
+            'tag_name': version,
             ref: chunk.keyCommit.raw.hash,
             message: 'Release ' + version,
-            release_description: chunk.log
-          }, function (response) {
+            'release_description': chunk.log
+          }, function(response) {
             if (response === true) {
               return deferred.reject(response);
             }
