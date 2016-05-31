@@ -90,7 +90,7 @@ function conventionalGitlabReleaser(auth, changelogOpts, context, gitRawCommitsO
           gitlab.projects.repository.addTag({
             id: context.owner + '/' + context.repository,
             'tag_name': version,
-            ref: chunk.keyCommit.raw.hash,
+            ref: chunk.keyCommit.hash,
             message: 'Release ' + version,
             'release_description': chunk.log
           }, function(response) {
