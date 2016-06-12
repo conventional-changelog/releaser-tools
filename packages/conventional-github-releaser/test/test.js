@@ -10,6 +10,7 @@ var AUTH = {
   type: 'oauth',
   token: process.env.TEST_CONVENTIONAL_GITHUB_RELEASER_TOKEN
 };
+var GITHUB_USER = process.env.TEST_CONVENTIONAL_GITHUB_USER || 'stevemaotest';
 
 var github = new Github({
   version: '3.0.0'
@@ -24,7 +25,7 @@ describe('conventional-github-releaser', function() {
     fs.writeFileSync('test1', '');
     shell.exec('git add --all && git commit -m"First commit"');
 
-    githubRemoveAllReleases(AUTH, 'stevemaotest', 'conventional-github-releaser-test', function() {
+    githubRemoveAllReleases(AUTH, GITHUB_USER, 'conventional-github-releaser-test', function() {
       done();
     });
   });
@@ -73,7 +74,7 @@ describe('conventional-github-releaser', function() {
       expect(responses[0].state).to.equal('fulfilled');
       github.releases.getRelease({
         // jscs:disable
-        owner: 'stevemaotest',
+        owner: GITHUB_USER,
         repo: 'conventional-github-releaser-test',
         id: responses[0].value.id
         // jscs:enable
@@ -110,7 +111,7 @@ describe('conventional-github-releaser', function() {
       expect(responses[0].state).to.equal('fulfilled');
       github.releases.getRelease({
         // jscs:disable
-        owner: 'stevemaotest',
+        owner: GITHUB_USER,
         repo: 'conventional-github-releaser-test',
         id: responses[0].value.id
         // jscs:enable
@@ -135,7 +136,7 @@ describe('conventional-github-releaser', function() {
       expect(responses.length).to.equal(1);
       github.releases.getRelease({
         // jscs:disable
-        owner: 'stevemaotest',
+        owner: GITHUB_USER,
         repo: 'conventional-github-releaser-test',
         id: responses[0].value.id
         // jscs:enable
