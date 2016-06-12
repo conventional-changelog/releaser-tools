@@ -47,6 +47,40 @@ describe('cli', function() {
     });
   });
 
+  it('--preset should work', function(done) {
+    fs.writeFileSync('angular', '');
+    shell.exec('git add --all && git commit -m"fix: fix it!"');
+    var cp = spawn(cliPath, ['--pkg',  __dirname + '/fixtures/_package.json', '--preset', 'angular', '-t', AUTH.token], {
+      stdio: [process.stdin, null, null]
+    });
+
+    cp.stdout.pipe(concat(function(data) {
+      expect(data.toString()).to.include('Bug Fixes');
+    }));
+
+    cp.on('close', function(code) {
+      expect(code).to.equal(0);
+
+      done();
+    });
+  });
+
+  it('--config should work with --preset', function(done) {
+    var cp = spawn(cliPath, ['--pkg',  __dirname + '/fixtures/_package.json', '--preset', 'angular', '--config', __dirname + '/fixtures/config.js', '-t', AUTH.token], {
+      stdio: [process.stdin, null, null]
+    });
+
+    cp.stdout.pipe(concat(function(data) {
+      expect(data.toString()).to.equal('Bug Fixestemplate');
+    }));
+
+    cp.on('close', function(code) {
+      expect(code).to.equal(0);
+
+      done();
+    });
+  });
+
   it('should print out error message and exit with `1` if all results error', function(done) {
     var cp = spawn(cliPath, ['--pkg',  __dirname + '/fixtures/_package.json', '-t', AUTH.token], {
       stdio: [process.stdin, null, null]
@@ -110,5 +144,4 @@ describe('cli', function() {
       done();
     });
   });
-
 });

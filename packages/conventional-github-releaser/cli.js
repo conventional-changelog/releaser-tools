@@ -2,6 +2,7 @@
 'use strict';
 var meow = require('meow');
 var conventionalGithubReleaser = require('./');
+var resolve = require('path').resolve;
 
 var cli = meow({
   help: [
@@ -29,7 +30,6 @@ var cli = meow({
     '',
     '  -n, --config              A filepath of your config script',
     '                            Example of a config script: https://github.com/conventional-changelog/conventional-changelog-angular/blob/master/index.js',
-    '                            This value is ignored if preset is specified',
     '',
     '  -c, --context             A filepath of a javascript that is used to define template variables'
   ]
@@ -45,6 +45,7 @@ var cli = meow({
   }
 });
 
+var config;
 var flags = cli.flags;
 
 var templateContext;
@@ -54,19 +55,25 @@ var writerOpts;
 
 try {
   if (flags.context) {
-    templateContext = require(flags.context);
+    templateContext = require(resolve(process.cwd(), flags.context));
   }
 
-  if (flags.gitRawCommitsOpts) {
-    gitRawCommitsOpts = require(flags.gitRawCommitsOpts);
+  if (flags.config) {
+    config = require(resolve(process.cwd(), flags.config));
+  } else {
+    config = {};
   }
 
-  if (flags.parserOpts) {
-    parserOpts = require(flags.parserOpts);
+  if (config.gitRawCommitsOpts) {
+    gitRawCommitsOpts = config.gitRawCommitsOpts;
   }
 
-  if (flags.writerOpts) {
-    writerOpts = require(flags.writerOpts);
+  if (config.parserOpts) {
+    parserOpts = config.parserOpts;
+  }
+
+  if (config.writerOpts) {
+    writerOpts = config.writerOpts;
   }
 } catch (err) {
   console.error('Failed to get file. ' + err);
@@ -78,8 +85,7 @@ var changelogOpts = {
   pkg: {
     path: flags.pkg
   },
-  releaseCount: flags.releaseCount,
-  config: flags.config
+  releaseCount: flags.releaseCount
 };
 
 if (flags.verbose) {
@@ -90,7 +96,7 @@ if (flags.verbose) {
 conventionalGithubReleaser({
   type: 'oauth',
   token: flags.token || process.env.CONVENTIONAL_GITHUB_RELEASER_TOKEN
-}, changelogOpts, templateContext, function(err, data) {
+}, changelogOpts, templateContext, gitRawCommitsOpts, parserOpts, writerOpts, function(err, data) {
   if (err) {
     console.error(err.toString());
     process.exit(1);
