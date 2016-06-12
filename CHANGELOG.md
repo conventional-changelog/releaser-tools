@@ -1,3 +1,15 @@
+<a name="1.1.3"></a>
+## [1.1.3](https://github.com/conventional-changelog/conventional-github-releaser/compare/v1.1.2...v1.1.3) (2016-06-12)
+
+
+### Bug Fixes
+
+* **cli:** config option issue (#19) ([a958ea9](https://github.com/conventional-changelog/conventional-github-releaser/commit/a958ea9))
+* **cli:** fix unit test error ([6a80929](https://github.com/conventional-changelog/conventional-github-releaser/commit/6a80929))
+* **test:** use github user from env validable ([c787ea4](https://github.com/conventional-changelog/conventional-github-releaser/commit/c787ea4))
+
+
+
 <a name="1.1.2"></a>
 ## [1.1.2](https://github.com/conventional-changelog/conventional-github-releaser/compare/v1.1.1...v1.1.2) (2016-04-17)
 
