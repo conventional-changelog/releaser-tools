@@ -33,6 +33,7 @@
     "meow": "^3.3.0",
     "object-assign": "^4.0.1",
     "q": "^1.4.1",
+    "slumber": "^0.9.0",
     "through2": "^2.0.0"
   },
   "devDependencies": {
