@@ -4,7 +4,7 @@
 [![codecov.io](https://codecov.io/gitlab/hutson/conventional-gitlab-releaser/coverage.svg?branch=master)](https://codecov.io/gitlab/hutson/conventional-gitlab-releaser?branch=master)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.gitlab.io/cz-cli/)
 
-> Make a new GitLab release from git metadata
+> Make a new GitLab release from git metadata.
 
 **Note** You don't have to use the angular commit convention. For the best result of the tool to tokenize you commit and produce flexible output, it's recommended to use a commit convention.
 
