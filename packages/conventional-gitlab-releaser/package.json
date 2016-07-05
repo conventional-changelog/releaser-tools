@@ -1,6 +1,11 @@
 {
   "name": "conventional-gitlab-releaser",
   "version": "1.0.0",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
   "description": "Make a new GitLab release from git metadata",
   "homepage": "https://gitlab.com/hutson/semantic-release-gitlab",
   "author": {
@@ -40,6 +45,7 @@
     "chai": "^3.0.0",
     "concat-stream": "^1.5.1",
     "coveralls": "^2.11.2",
+    "cz-conventional-changelog": "^1.1.6",
     "github-remove-all-releases": "^1.0.0",
     "istanbul": "^0.4.1",
     "jscs": "^2.0.0",
