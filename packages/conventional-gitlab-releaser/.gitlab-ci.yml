@@ -13,7 +13,7 @@ cache:
     - $(npm bin)/codecov
   script:
     - $(npm bin)/npm install
-    - $(npm bin)/npm run lint
+    - $(npm bin)/npm test
 
 .node_010: &node_010_definition
   <<: *all_jobs_definition

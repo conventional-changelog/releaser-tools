@@ -57,7 +57,7 @@
   "scripts": {
     "coverage": "istanbul cover _mocha -- -R spec --timeout 50000 && rm -rf ./coverage",
     "lint": "jshint *.js test --exclude node_modules && jscs *.js test",
-    "test": "npm run-script lint && mocha --timeout 50000"
+    "test": "npm run lint"
   },
   "bin": {
     "conventional-gitlab-releaser": "cli.js"
