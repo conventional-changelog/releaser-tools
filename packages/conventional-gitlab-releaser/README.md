@@ -10,8 +10,6 @@
 
 ## Quick start
 
-[Set up a token first](#setup-token-for-cli).
-
 ```sh
 $ npm install -g conventional-gitlab-releaser
 $ cd my-project
