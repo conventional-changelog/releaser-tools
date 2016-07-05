@@ -101,7 +101,7 @@ function conventionalGitlabReleaser(auth, changelogOpts, context, gitRawCommitsO
             deferred.resolve(response);
           });
 
-          promises.push(deferred);
+          promises.push(deferred.promise);
 
           cb();
         }, function() {
