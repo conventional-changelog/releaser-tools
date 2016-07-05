@@ -4,13 +4,12 @@ stages:
     - test
     - deploy
 
-cache:
-  paths:
-    - node_modules/
-
 .all_jobs: &all_jobs_definition
   after_script:
     - $(npm bin)/codecov
+  cache:
+    paths:
+      - node_modules/
   script:
     - $(npm bin)/npm install
     - $(npm bin)/npm test
