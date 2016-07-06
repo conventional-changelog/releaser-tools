@@ -7,6 +7,8 @@ stages:
 .all_jobs: &all_jobs_definition
   after_script:
     - $(npm bin)/codecov
+  except:
+    - tags
   cache:
     paths:
       - node_modules/
