@@ -67,9 +67,9 @@ function conventionalGitlabReleaser(auth, changelogOpts, context, gitRawCommitsO
 
       var releaseCount = changelogOpts.releaseCount;
       if (releaseCount !== 0) {
-        gitRawCommitsOpts = assign(gitRawCommitsOpts, {
+        gitRawCommitsOpts = assign({
           from: tags[releaseCount]
-        });
+        }, gitRawCommitsOpts);
       }
 
       gitRawCommitsOpts.to = gitRawCommitsOpts.to || tags[0];
