@@ -1,5 +1,7 @@
 #  [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage Status][coveralls-image]][coveralls-url]
 
+[![Join the chat at https://gitter.im/conventional-changelog/conventional-github-releaser](https://badges.gitter.im/conventional-changelog/conventional-github-releaser.svg)](https://gitter.im/conventional-changelog/conventional-github-releaser?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 > Make a new GitHub release from git metadata
 
 **Note** You don't have to use the angular commit convention. For the best result of the tool to tokenize you commit and produce flexible output, it's recommended to use a commit convention.
