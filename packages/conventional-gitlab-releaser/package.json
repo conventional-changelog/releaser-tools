@@ -48,12 +48,12 @@
     "conventional-changelog": "^1.1.0",
     "dateformat": "^1.0.11",
     "git-semver-tags": "^1.0.0",
-    "gitlab": "git+https://github.com/node-gitlab/node-gitlab.git#develop",
+    "gitlab": "^1.7.1",
     "lodash.merge": "^4.0.2",
     "meow": "^3.3.0",
     "object-assign": "^4.0.1",
     "q": "^1.4.1",
-    "slumber": "^0.9.0",
+    "slumber": "^0.10.1",
     "through2": "^2.0.0"
   },
   "devDependencies": {
@@ -63,10 +63,10 @@
     "cz-conventional-changelog": "^1.1.6",
     "github-remove-all-releases": "^1.0.0",
     "istanbul": "^0.4.1",
-    "jscs": "^2.0.0",
+    "jscs": "^3.0.7",
     "jshint": "^2.9.1",
     "mocha": "*",
     "semantic-release-gitlab": "^2.0.2",
-    "shelljs": "^0.6.0"
+    "shelljs": "^0.7.4"
   }
 }
