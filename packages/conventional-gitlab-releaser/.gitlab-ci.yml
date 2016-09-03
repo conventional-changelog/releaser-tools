@@ -10,12 +10,13 @@ cache:
 
 .all_jobs: &all_jobs_definition
   after_script:
+    - $(npm bin)/npm update
+    - $(npm bin)/npm test
     - $(npm bin)/codecov
+  before_script:
+    - npm prune
   except:
     - tags
-  script:
-    - $(npm bin)/npm install
-    - $(npm bin)/npm test
 
 .node_010: &node_010_definition
   <<: *all_jobs_definition
@@ -35,49 +36,49 @@ cache:
 
 npm_2_node_010:
   <<: *node_010_definition
-  before_script:
+  script:
     - npm install npm@2
   stage: test
 
 npm_3_node_010:
   <<: *node_010_definition
-  before_script:
+  script:
     - npm install npm@3
   stage: test
 
 npm_2_node_012:
   <<: *node_012_definition
-  before_script:
+  script:
     - npm install npm@2
   stage: test
 
 npm_3_node_012:
   <<: *node_012_definition
-  before_script:
+  script:
     - npm install npm@3
   stage: test
 
 npm_2_node_4:
   <<: *node_4_definition
-  before_script:
+  script:
     - npm install npm@2
   stage: test
 
 npm_3_node_4:
   <<: *node_4_definition
-  before_script:
+  script:
     - npm install npm@3
   stage: test
 
 npm_2_node_6:
   <<: *node_6_definition
-  before_script:
+  script:
     - npm install npm@2
   stage: test
 
 npm_3_node_6:
   <<: *node_6_definition
-  before_script:
+  script:
     - npm install npm@3
   stage: test
 
