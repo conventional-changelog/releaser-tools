@@ -83,7 +83,7 @@ npm_3_node_6:
 
 publish:
   before_script:
-    - npm install
+    - npm install semantic-release-gitlab
   only:
     - master@hutson/conventional-gitlab-releaser
   script:
