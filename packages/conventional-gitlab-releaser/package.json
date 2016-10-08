@@ -18,7 +18,8 @@
   },
   "files": [
     "index.js",
-    "cli.js"
+    "cli.js",
+    "lib/"
   ],
   "homepage": "https://gitlab.com/hutson/conventional-gitlab-releaser",
   "keywords": [
@@ -39,14 +40,15 @@
     "url": "https://gitlab.com/hutson/conventional-gitlab-releaser.git"
   },
   "scripts": {
-    "coverage": "istanbul cover _mocha -- -R spec --timeout 50000 && rm -rf ./coverage",
-    "lint": "jshint *.js test --exclude node_modules && jscs *.js test",
-    "test": "npm run lint"
+    "coverage": "istanbul cover _mocha -- -R spec --timeout 50000 lib",
+    "lint": "jshint *.js lib test --exclude node_modules && jscs *.js lib test",
+    "test": "npm run-script lint && mocha --timeout 50000 lib"
   },
   "version": "1.0.0",
   "dependencies": {
     "conventional-changelog": "^1.1.0",
     "dateformat": "^1.0.11",
+    "find-versions": "^2.0.0",
     "git-semver-tags": "^1.0.0",
     "gitlab": "^1.7.1",
     "lodash.merge": "^4.0.2",
