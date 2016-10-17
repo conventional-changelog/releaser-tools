@@ -1,5 +1,3 @@
-image: node:6
-
 stages:
     - test
     - deploy
@@ -7,82 +5,87 @@ stages:
 cache:
   paths:
     - node_modules/
+    - ${HOME}/.yarn-cache
+    - ${HOME}/.npm
 
-.all_jobs: &all_jobs_definition
-  after_script:
-    - $(npm bin)/npm update
-    - $(npm bin)/npm test
-    - $(npm bin)/codecov
-  before_script:
-    - npm prune
+.common: &common
   except:
     - tags
+  stage: test
 
-.node_010: &node_010_definition
-  <<: *all_jobs_definition
+.node_0_10: &node_0_10
   image: node:0.10
 
-.node_012: &node_012_definition
-  <<: *all_jobs_definition
+.node_0_12: &node_0_12
   image: node:0.12
 
-.node_4: &node_4_definition
-  <<: *all_jobs_definition
+.node_4: &node_4
   image: node:4
 
-.node_6: &node_6_definition
-  <<: *all_jobs_definition
+.node_6: &node_6
   image: node:6
 
-npm_2_node_010:
-  <<: *node_010_definition
+.yarn: &yarn
+  after_script:
+    - $(yarn bin)/codecov
   script:
-    - npm install npm@2
-  stage: test
+    - yarn && yarn test
 
-npm_3_node_010:
-  <<: *node_010_definition
-  script:
-    - npm install npm@3
-  stage: test
+.yarn_0_15: &yarn_0_15
+  <<: [*yarn]
+  before_script:
+    - npm install --global yarn@0.15
 
-npm_2_node_012:
-  <<: *node_012_definition
-  script:
-    - npm install npm@2
-  stage: test
+.npm: &npm
+  after_script:
+    - npm update && npm test && $(npm bin)/codecov
+  before_script:
+    - npm prune
 
-npm_3_node_012:
-  <<: *node_012_definition
+.npm_2: &npm_2
+  <<: [*npm]
   script:
-    - npm install npm@3
-  stage: test
+    - npm install --global npm@2
 
-npm_2_node_4:
-  <<: *node_4_definition
+.npm_3: &npm_3
+  <<: [*npm]
   script:
-    - npm install npm@2
-  stage: test
+    - npm install --global npm@3
 
-npm_3_node_4:
-  <<: *node_4_definition
-  script:
-    - npm install npm@3
-  stage: test
+node_0_10_npme_2:
+  <<: [*common, *node_0_10, *npm_2]
 
-npm_2_node_6:
-  <<: *node_6_definition
-  script:
-    - npm install npm@2
-  stage: test
+node_0_10_npm_3:
+  <<: [*common, *node_0_10, *npm_3]
 
-npm_3_node_6:
-  <<: *node_6_definition
-  script:
-    - npm install npm@3
-  stage: test
+node_0_12_npme_2:
+  <<: [*common, *node_0_12, *npm_2]
+
+node_0_12_npm_3:
+  <<: [*common, *node_0_12, *npm_3]
+
+node_4_npm_2:
+  <<: [*common, *node_4, *npm_2]
+
+node_4_npm_3:
+  <<: [*common, *node_4, *npm_3]
+
+node_4_yarn_0_15:
+  <<: [*common, *node_4, *yarn_0_15]
+
+node_6_npm_2:
+  <<: [*common, *node_6, *npm_2]
+  allow_failure: true
+
+node_6_npm_3:
+  <<: [*common, *node_6, *npm_3]
+  allow_failure: true
+
+node_6_yarn_0_15:
+  <<: [*common, *node_6, *yarn_0_15]
 
 publish:
+  <<: [*node_6]
   before_script:
     - npm install semantic-release-gitlab
   only:
