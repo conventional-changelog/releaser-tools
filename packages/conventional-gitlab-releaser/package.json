@@ -42,7 +42,7 @@
   "scripts": {
     "coverage": "istanbul cover _mocha -- -R spec --timeout 50000 lib",
     "lint": "jshint *.js lib test --exclude node_modules && jscs *.js lib test",
-    "test": "npm run lint && npm run coverage"
+    "test": "jshint *.js lib test --exclude node_modules && jscs *.js lib test && istanbul cover _mocha -- -R spec --timeout 50000 lib"
   },
   "version": "1.0.0",
   "dependencies": {

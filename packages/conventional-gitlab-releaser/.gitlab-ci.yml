@@ -72,6 +72,7 @@ node_4_npm_3:
 
 node_4_yarn_0_15:
   <<: [*common, *node_4, *yarn_0_15]
+  allow_failure: true
 
 node_6_npm_2:
   <<: [*common, *node_6, *npm_2]
@@ -83,6 +84,7 @@ node_6_npm_3:
 
 node_6_yarn_0_15:
   <<: [*common, *node_6, *yarn_0_15]
+  allow_failure: true
 
 publish:
   <<: [*node_6]
