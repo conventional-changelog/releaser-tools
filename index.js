@@ -94,7 +94,7 @@ function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsO
 
           var prerelease = semver.parse(version).prerelease.length > 0;
 
-          var promise = Q.nfcall(github.releases.createRelease, {
+          var promise = Q.nfcall(github.repos.createRelease, {
             // jscs:disable
             owner: context.owner,
             repo: context.repository,
