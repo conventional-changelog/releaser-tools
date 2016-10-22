@@ -1,13 +1,13 @@
 'use strict';
 var assign = require('object-assign');
 var conventionalChangelog = require('conventional-changelog');
-var dateFormat = require('dateformat');
 var Github = require('github');
 var gitSemverTags = require('git-semver-tags');
 var merge = require('lodash.merge');
 var Q = require('q');
 var semver = require('semver');
 var through = require('through2');
+var transform = require('./lib/transform');
 
 var github = new Github({
   version: '3.0.0'
@@ -40,20 +40,7 @@ function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsO
   writerOpts = changelogArgs[4];
 
   changelogOpts = merge({
-    transform: function(chunk, cb) {
-      if (typeof chunk.gitTags === 'string') {
-        var match = /tag:\s*(.+?)[,\)]/gi.exec(chunk.gitTags);
-        if (match) {
-          chunk.version = match[1];
-        }
-      }
-
-      if (chunk.committerDate) {
-        chunk.committerDate = dateFormat(chunk.committerDate, 'yyyy-mm-dd', true);
-      }
-
-      cb(null, chunk);
-    },
+    transform: transform,
     releaseCount: 1
   }, changelogOpts);
 

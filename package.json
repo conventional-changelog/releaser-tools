@@ -28,6 +28,7 @@
   "dependencies": {
     "conventional-changelog": "^1.1.0",
     "dateformat": "^1.0.11",
+    "find-versions": "^2.0.0",
     "git-semver-tags": "^1.0.0",
     "github": "^2.0.0",
     "lodash.merge": "^4.0.2",
@@ -49,9 +50,9 @@
     "shelljs": "^0.7.0"
   },
   "scripts": {
-    "coverage": "istanbul cover _mocha -- -R spec --timeout 50000 && rm -rf ./coverage",
-    "lint": "jshint *.js test --exclude node_modules && jscs *.js test",
-    "test": "npm run-script lint && mocha --timeout 50000"
+    "coverage": "istanbul cover _mocha -- -R spec --timeout 50000 lib",
+    "lint": "jshint *.js lib test --exclude node_modules && jscs *.js lib test",
+    "test": "jshint *.js lib test --exclude node_modules && jscs *.js lib test && istanbul cover _mocha -- -R spec --timeout 50000 lib"
   },
   "bin": {
     "conventional-github-releaser": "cli.js"
