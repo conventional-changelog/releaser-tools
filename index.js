@@ -75,7 +75,7 @@ function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsO
       if (releaseCount !== 0) {
         gitRawCommitsOpts = assign({
           from: tags[releaseCount]
-        });
+        }, gitRawCommitsOpts);
       }
 
       gitRawCommitsOpts.to = gitRawCommitsOpts.to || tags[0];
