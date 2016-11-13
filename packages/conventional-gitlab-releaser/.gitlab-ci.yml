@@ -91,7 +91,7 @@ publish:
   before_script:
     - npm install semantic-release-gitlab
   only:
-    - master@hutson/conventional-gitlab-releaser
+    - master@hyper-expanse/conventional-gitlab-releaser
   script:
     - $(npm bin)/semantic-release-gitlab
   stage: deploy

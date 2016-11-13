@@ -1,7 +1,7 @@
 #  conventional-gitlab-releaser
 
-[![build status](https://gitlab.com/hutson/conventional-gitlab-releaser/badges/master/build.svg)](https://gitlab.com/hutson/conventional-gitlab-releaser/commits/master)
-[![codecov.io](https://codecov.io/gitlab/hutson/conventional-gitlab-releaser/coverage.svg?branch=master)](https://codecov.io/gitlab/hutson/conventional-gitlab-releaser?branch=master)
+[![build status](https://gitlab.com/hyper-expanse/conventional-gitlab-releaser/badges/master/build.svg)](https://gitlab.com/hyper-expanse/conventional-gitlab-releaser/commits/master)
+[![codecov.io](https://codecov.io/gitlab/hyper-expanse/conventional-gitlab-releaser/coverage.svg?branch=master)](https://codecov.io/gitlab/hyper-expanse/conventional-gitlab-releaser?branch=master)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.gitlab.io/cz-cli/)
 
 > Make a new GitLab release from git metadata.

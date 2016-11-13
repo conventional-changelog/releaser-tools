@@ -5,7 +5,7 @@
     "url": "https://github.com/stevemao"
   },
   "bin": "./cli.js",
-  "bugs": "https://gitlab.com/hutson/conventional-gitlab-releaser/issues",
+  "bugs": "https://gitlab.com/hyper-expanse/conventional-gitlab-releaser/issues",
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
@@ -21,7 +21,7 @@
     "cli.js",
     "lib/"
   ],
-  "homepage": "https://gitlab.com/hutson/conventional-gitlab-releaser",
+  "homepage": "https://gitlab.com/hyper-expanse/conventional-gitlab-releaser",
   "keywords": [
     "conventional-gitlab-releaser",
     "gitlab",
@@ -37,7 +37,7 @@
   "name": "conventional-gitlab-releaser",
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/hutson/conventional-gitlab-releaser.git"
+    "url": "https://gitlab.com/hyper-expanse/conventional-gitlab-releaser.git"
   },
   "scripts": {
     "coverage": "istanbul cover _mocha -- -R spec --timeout 50000 lib",
