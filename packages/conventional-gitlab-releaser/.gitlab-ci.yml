@@ -13,9 +13,6 @@ cache:
     - tags
   stage: test
 
-.node_0_10: &node_0_10
-  image: node:0.10
-
 .node_0_12: &node_0_12
   image: node:0.12
 
@@ -25,22 +22,23 @@ cache:
 .node_6: &node_6
   image: node:6
 
+.node_next: &node_next
+  image: node:latest
+
 .yarn: &yarn
   after_script:
-    - $(yarn bin)/codecov
-  script:
-    - yarn && yarn test
-
-.yarn_0_15: &yarn_0_15
-  <<: [*yarn]
-  before_script:
-    - npm install --global yarn@0.15
+    - yarn && yarn test && $(yarn bin)/codecov
 
 .npm: &npm
   after_script:
     - npm update && npm test && $(npm bin)/codecov
   before_script:
     - npm prune
+
+.yarn_0_16: &yarn_0_16
+  <<: [*yarn]
+  script:
+    - npm install --global yarn@0.16
 
 .npm_2: &npm_2
   <<: [*npm]
@@ -52,11 +50,15 @@ cache:
   script:
     - npm install --global npm@3
 
-node_0_10_npme_2:
-  <<: [*common, *node_0_10, *npm_2]
+.npm_4: &npm_4
+  <<: [*npm]
+  script:
+    - npm install --global npm@4
 
-node_0_10_npm_3:
-  <<: [*common, *node_0_10, *npm_3]
+.npm_next: &npm_next
+  <<: [*npm]
+  script:
+    - npm install --global npm@next
 
 node_0_12_npme_2:
   <<: [*common, *node_0_12, *npm_2]
@@ -64,15 +66,28 @@ node_0_12_npme_2:
 node_0_12_npm_3:
   <<: [*common, *node_0_12, *npm_3]
 
+node_0_12_npm_4:
+  <<: [*common, *node_0_12, *npm_4]
+
+node_0_12_npm_next:
+  <<: [*common, *node_0_12, *npm_next]
+  allow_failure: true
+
 node_4_npm_2:
   <<: [*common, *node_4, *npm_2]
 
 node_4_npm_3:
   <<: [*common, *node_4, *npm_3]
 
-node_4_yarn_0_15:
-  <<: [*common, *node_4, *yarn_0_15]
+node_4_npm_4:
+  <<: [*common, *node_4, *npm_4]
+
+node_4_npm_next:
+  <<: [*common, *node_4, *npm_next]
   allow_failure: true
+
+node_4_yarn_0_16:
+  <<: [*common, *node_4, *yarn_0_16]
 
 node_6_npm_2:
   <<: [*common, *node_6, *npm_2]
@@ -82,8 +97,36 @@ node_6_npm_3:
   <<: [*common, *node_6, *npm_3]
   allow_failure: true
 
-node_6_yarn_0_15:
-  <<: [*common, *node_6, *yarn_0_15]
+node_6_npm_4:
+  <<: [*common, *node_6, *npm_4]
+  allow_failure: true
+
+node_6_npm_next:
+  <<: [*common, *node_6, *npm_next]
+  allow_failure: true
+
+node_6_yarn_0_16:
+  <<: [*common, *node_6, *yarn_0_16]
+  allow_failure: true
+
+node_next_npm_2:
+  <<: [*common, *node_next, *npm_2]
+  allow_failure: true
+
+node_next_npm_3:
+  <<: [*common, *node_next, *npm_3]
+  allow_failure: true
+
+node_next_npm_4:
+  <<: [*common, *node_next, *npm_4]
+  allow_failure: true
+
+node_next_npm_next:
+  <<: [*common, *node_next, *npm_next]
+  allow_failure: true
+
+node_next_yarn_0_16:
+  <<: [*common, *node_next, *yarn_0_16]
   allow_failure: true
 
 publish:
