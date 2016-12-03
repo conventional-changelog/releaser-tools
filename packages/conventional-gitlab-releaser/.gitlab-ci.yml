@@ -27,7 +27,7 @@ cache:
 
 .yarn: &yarn
   after_script:
-    - yarn && yarn test && $(yarn bin)/codecov
+    - yarn install && yarn test && $(yarn bin)/codecov
 
 .npm: &npm
   after_script:
@@ -35,10 +35,10 @@ cache:
   before_script:
     - npm prune
 
-.yarn_0_16: &yarn_0_16
+.yarn_latest: &yarn_latest
   <<: [*yarn]
   script:
-    - npm install --global yarn@0.16
+    - npm install --global yarn@latest
 
 .npm_2: &npm_2
   <<: [*npm]
@@ -86,8 +86,8 @@ node_4_npm_next:
   <<: [*common, *node_4, *npm_next]
   allow_failure: true
 
-node_4_yarn_0_16:
-  <<: [*common, *node_4, *yarn_0_16]
+node_4_yarn_latest:
+  <<: [*common, *node_4, *yarn_latest]
 
 node_6_npm_2:
   <<: [*common, *node_6, *npm_2]
@@ -105,8 +105,8 @@ node_6_npm_next:
   <<: [*common, *node_6, *npm_next]
   allow_failure: true
 
-node_6_yarn_0_16:
-  <<: [*common, *node_6, *yarn_0_16]
+node_6_yarn_latest:
+  <<: [*common, *node_6, *yarn_latest]
   allow_failure: true
 
 node_next_npm_2:
@@ -125,8 +125,8 @@ node_next_npm_next:
   <<: [*common, *node_next, *npm_next]
   allow_failure: true
 
-node_next_yarn_0_16:
-  <<: [*common, *node_next, *yarn_0_16]
+node_next_yarn_latest:
+  <<: [*common, *node_next, *yarn_latest]
   allow_failure: true
 
 publish:
@@ -134,7 +134,7 @@ publish:
   before_script:
     - npm install semantic-release-gitlab
   only:
-    - master@hyper-expanse/conventional-gitlab-releaser
+    - master
   script:
     - $(npm bin)/semantic-release-gitlab
   stage: deploy
