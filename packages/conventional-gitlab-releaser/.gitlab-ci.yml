@@ -5,16 +5,13 @@ stages:
 cache:
   paths:
     - node_modules/
-    - ${HOME}/.yarn-cache
+    - ${HOME}/.cache/yarn
     - ${HOME}/.npm
 
 .common: &common
   except:
     - tags
   stage: test
-
-.node_0_12: &node_0_12
-  image: node:0.12
 
 .node_4: &node_4
   image: node:4
@@ -27,6 +24,7 @@ cache:
 
 .yarn: &yarn
   after_script:
+    - source ${HOME}/.bashrc
     - yarn install && yarn test && $(yarn bin)/codecov
 
 .npm: &npm
@@ -38,7 +36,7 @@ cache:
 .yarn_latest: &yarn_latest
   <<: [*yarn]
   script:
-    - npm install --global yarn@latest
+    - curl -o- -L https://yarnpkg.com/install.sh | bash
 
 .npm_2: &npm_2
   <<: [*npm]
@@ -60,19 +58,6 @@ cache:
   script:
     - npm install --global npm@next
 
-node_0_12_npme_2:
-  <<: [*common, *node_0_12, *npm_2]
-
-node_0_12_npm_3:
-  <<: [*common, *node_0_12, *npm_3]
-
-node_0_12_npm_4:
-  <<: [*common, *node_0_12, *npm_4]
-
-node_0_12_npm_next:
-  <<: [*common, *node_0_12, *npm_next]
-  allow_failure: true
-
 node_4_npm_2:
   <<: [*common, *node_4, *npm_2]
 
@@ -88,6 +73,7 @@ node_4_npm_next:
 
 node_4_yarn_latest:
   <<: [*common, *node_4, *yarn_latest]
+  allow_failure: true
 
 node_6_npm_2:
   <<: [*common, *node_6, *npm_2]
