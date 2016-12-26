@@ -10,6 +10,7 @@ var expect = chai.expect;
 describe('transform', function() {
   beforeEach(function() {
     this.chunk = {
+      committerDate: 'June 8, 2012',
       gitTags: '',
     };
   });
@@ -44,6 +45,13 @@ describe('transform', function() {
 
     transform(this.chunk, function(err, chunk) {
       expect(chunk.version).to.equal('1.1.20');
+      done();
+    });
+  });
+
+  it('should format date', function(done) {
+    transform(this.chunk, function(err, chunk) {
+      expect(chunk.committerDate).to.equal('2012-06-08');
       done();
     });
   });
