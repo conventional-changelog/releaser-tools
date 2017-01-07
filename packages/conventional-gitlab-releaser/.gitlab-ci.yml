@@ -13,6 +13,9 @@ cache:
     - tags
   stage: test
 
+.node_0_12: &node_0_12
+  image: node:0.12
+
 .node_4: &node_4
   image: node:4
 
@@ -57,6 +60,19 @@ cache:
   <<: [*npm]
   script:
     - npm install --global npm@next
+
+node_0_12_npme_2:
+  <<: [*common, *node_0_12, *npm_2]
+
+node_0_12_npm_3:
+  <<: [*common, *node_0_12, *npm_3]
+
+node_0_12_npm_4:
+  <<: [*common, *node_0_12, *npm_4]
+
+node_0_12_npm_next:
+  <<: [*common, *node_0_12, *npm_next]
+  allow_failure: true
 
 node_4_npm_2:
   <<: [*common, *node_4, *npm_2]
