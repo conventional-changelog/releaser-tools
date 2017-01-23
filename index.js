@@ -81,10 +81,12 @@ function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsO
 
           var prerelease = semver.parse(version).prerelease.length > 0;
 
+          var repoUrl = context.repository.replace(/^(?:http:\/\/|www\.|https:\/\/)([^\/]+\/)/, '');
+
           var promise = Q.nfcall(github.releases.createRelease, {
             // jscs:disable
             owner: context.owner,
-            repo: context.repository,
+            repo: repoUrl,
             tag_name: version,
             body: chunk.log,
             prerelease: prerelease,
