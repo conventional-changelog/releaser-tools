@@ -50,9 +50,9 @@
     "shelljs": "^0.6.0"
   },
   "scripts": {
-    "coverage": "istanbul cover _mocha -- -R spec --timeout 50000 && rm -rf ./coverage",
-    "lint": "jshint *.js test --exclude node_modules && jscs *.js test",
-    "test": "npm run-script lint && mocha --timeout 50000"
+    "coverage": "istanbul cover _mocha -- -R spec --timeout 50000 lib",
+    "lint": "jshint *.js lib test --exclude node_modules && jscs *.js lib test",
+    "test": "jshint *.js lib test --exclude node_modules && jscs *.js lib test && istanbul cover _mocha -- -R spec --timeout 50000 lib"
   },
   "bin": {
     "conventional-github-releaser": "cli.js"
