@@ -69,7 +69,7 @@
     "jscs": "^3.0.7",
     "jshint": "^2.9.1",
     "mocha": "*",
-    "semantic-release-gitlab": "^2.0.2",
+    "semantic-release-gitlab": "^3.0.0",
     "shelljs": "^0.7.4"
   }
 }
