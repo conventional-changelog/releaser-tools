@@ -158,3 +158,7 @@ Note: If all results error, it will print the error messages to stderr and exit 
 ## License
 
 MIT © [Steve Mao](https://github.com/stevemao)
+
+## Contributing
+
+Please read our [contributing](https://gitlab.com/hyper-expanse/conventional-gitlab-releaser/blob/master/CONTRIBUTING.md) guide on how you can help improve this project.
