@@ -24,7 +24,7 @@ npm install
 
 ### Testing
 
-To run the project's tests, including unit tests, and building documentation, run the following command:
+To run the project's tests run the following command:
 
 ```bash
 npm test
