@@ -4,22 +4,15 @@
     "email": "maochenyan@gmail.com",
     "url": "https://github.com/stevemao"
   },
-  "bin": "./cli.js",
+  "bin": "./src/cli.js",
   "bugs": "https://gitlab.com/hyper-expanse/conventional-gitlab-releaser/issues",
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
   "description": "Make a new GitLab release from git metadata.",
   "engines": {
     "node": "^6.9.0 || ^4.2.0",
     "npm": "^4.0.0 || ^3.0.0 || ^2.1.9"
   },
   "files": [
-    "index.js",
-    "cli.js",
-    "lib/"
+    "src/"
   ],
   "homepage": "https://gitlab.com/hyper-expanse/conventional-gitlab-releaser",
   "keywords": [
@@ -33,16 +26,14 @@
     "log"
   ],
   "license": "MIT",
-  "main": "index.js",
+  "main": "src/index.js",
   "name": "conventional-gitlab-releaser",
   "repository": {
     "type": "git",
     "url": "https://gitlab.com/hyper-expanse/conventional-gitlab-releaser.git"
   },
   "scripts": {
-    "coverage": "istanbul cover _mocha -- -R spec --timeout 50000 lib",
-    "lint": "jshint *.js lib test --exclude node_modules && jscs *.js lib test",
-    "test": "jshint *.js lib test --exclude node_modules && jscs *.js lib test && istanbul cover _mocha -- -R spec --timeout 50000 lib"
+    "test": "jshint src/ && jscs src/ && nyc --all --cache --exclude=src/**/*.spec.js --include=src/ --reporter=lcov --reporter=text mocha --check-leaks --full-trace --inline-diffs --no-exit --recursive --reporter=progress --retries 1 src/*.spec.js"
   },
   "version": "1.0.0",
   "dependencies": {
@@ -60,16 +51,11 @@
   },
   "devDependencies": {
     "chai": "^3.0.0",
-    "codecov": "^1.0.1",
-    "concat-stream": "^1.5.1",
-    "coveralls": "^2.11.2",
-    "cz-conventional-changelog": "^1.1.6",
-    "github-remove-all-releases": "^1.0.0",
-    "istanbul": "^0.4.1",
+    "codecov": "^2.1.0",
     "jscs": "^3.0.7",
     "jshint": "^2.9.1",
-    "mocha": "*",
-    "semantic-release-gitlab": "^3.0.0",
-    "shelljs": "^0.7.4"
+    "mocha": "^3.2.0",
+    "nyc": "^10.1.2",
+    "semantic-release-gitlab": "^3.0.0"
   }
 }

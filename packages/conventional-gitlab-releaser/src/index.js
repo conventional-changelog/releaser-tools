@@ -5,7 +5,7 @@ var gitSemverTags = require('git-semver-tags');
 var merge = require('lodash.merge');
 var Q = require('q');
 var through = require('through2');
-var transform = require('./lib/transform');
+var transform = require('./transform');
 
 function conventionalGitlabReleaser(auth, changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts, userCb) {
   if (!auth) {
