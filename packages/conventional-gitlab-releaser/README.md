@@ -175,4 +175,4 @@ JavaScript package managers should allow you to install this package with any ve
 
 ## Contributing
 
-Please read our [contributing](https://gitlab.com/hyper-expanse/conventional-gitlab-releaser/blob/master/CONTRIBUTING.md) guide on how you can help improve this project.
+Please read our [contributing guide](https://gitlab.com/hyper-expanse/conventional-gitlab-releaser/blob/master/CONTRIBUTING.md) to see how you may contribute to this project.
