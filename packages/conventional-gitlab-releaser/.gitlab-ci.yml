@@ -25,7 +25,7 @@ cache:
 .yarn: &yarn
   script:
     - source ${HOME}/.bashrc
-    - yarn install && yarn test && $(yarn bin)/codecov
+    - yarn install --frozen-lockfile && yarn test && $(yarn bin)/codecov
 
 .npm: &npm
   script:
