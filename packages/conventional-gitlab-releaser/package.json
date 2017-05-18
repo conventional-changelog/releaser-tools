@@ -33,7 +33,7 @@
     "url": "https://gitlab.com/hyper-expanse/conventional-gitlab-releaser.git"
   },
   "scripts": {
-    "test": "jshint src/ && jscs src/ && nyc --all --cache --exclude=src/**/*.spec.js --include=src/ --reporter=lcov --reporter=text mocha --check-leaks --full-trace --inline-diffs --no-exit --recursive --reporter=progress --retries 1 src/*.spec.js"
+    "test": "jshint src/ && jscs src/ && nyc --all --cache --include=src/ --exclude=src/**/*.spec.js --reporter=lcov --reporter=text mocha --check-leaks --full-trace --globals __core-js_shared__,__coverage__,YamlEscaper --inline-diffs --no-exit --recursive --reporter=progress --retries 1 src/**/*.spec.js"
   },
   "version": "1.0.0",
   "dependencies": {
@@ -55,6 +55,7 @@
     "jscs": "^3.0.7",
     "jshint": "^2.9.1",
     "mocha": "^3.2.0",
+    "npm-publish-git-tag": "^1.0.9",
     "nyc": "^10.1.2",
     "semantic-release-gitlab": "^3.0.0"
   }
