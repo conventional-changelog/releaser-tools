@@ -31,7 +31,10 @@ var cli = meow({
     '  -n, --config              A filepath of your config script',
     '                            Example of a config script: https://github.com/conventional-changelog/conventional-changelog-angular/blob/master/index.js',
     '',
-    '  -c, --context             A filepath of a javascript that is used to define template variables'
+    '  -c, --context             A filepath of a javascript that is used to define template variables',
+    '',
+    '  -d, --draft               Publishes a draft instead of a real release',
+    '                            Default: false'
   ]
 }, {
   alias: {
@@ -41,7 +44,8 @@ var cli = meow({
     r: 'releaseCount',
     v: 'verbose',
     n: 'config',
-    c: 'context'
+    c: 'context',
+    d: 'draft'
   }
 });
 
@@ -85,7 +89,8 @@ var changelogOpts = {
   pkg: {
     path: flags.pkg
   },
-  releaseCount: flags.releaseCount
+  releaseCount: flags.releaseCount,
+  draft: flags.draft
 };
 
 if (flags.verbose) {
