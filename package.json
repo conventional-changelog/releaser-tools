@@ -1,6 +1,6 @@
 {
   "name": "conventional-github-releaser",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "Make a new GitHub release from git metadata",
   "homepage": "https://github.com/conventional-changelog/conventional-github-releaser",
   "author": {
@@ -28,8 +28,9 @@
   "dependencies": {
     "conventional-changelog": "^1.1.0",
     "dateformat": "^1.0.11",
+    "find-versions": "^2.0.0",
     "git-semver-tags": "^1.0.0",
-    "github": "^2.0.0",
+    "github": "^0.2.4",
     "lodash.merge": "^4.0.2",
     "meow": "^3.3.0",
     "object-assign": "^4.0.1",
@@ -43,15 +44,17 @@
     "coveralls": "^2.11.2",
     "github-remove-all-releases": "^1.0.0",
     "istanbul": "^0.4.1",
-    "jscs": "^3.0.5",
+    "jscs": "^2.0.0",
     "jshint": "^2.9.1",
     "mocha": "*",
-    "shelljs": "^0.7.0"
+    "nyc": "^10.3.2",
+    "shelljs": "^0.6.0"
   },
   "scripts": {
     "coverage": "istanbul cover _mocha -- -R spec --timeout 50000 && rm -rf ./coverage",
     "lint": "jshint *.js test --exclude node_modules && jscs *.js test",
-    "test": "npm run-script lint && mocha --timeout 50000"
+    "formertest": "npm run-script lint && mocha --timeout 50000",
+    "test": "jshint lib/ && jscs lib/ && nyc --all --cache --include=lib/ --exclude=lib/**/*.spec.js --reporter=lcov --reporter=text mocha --check-leaks --full-trace --globals __core-js_shared__,__coverage__,YamlEscaper --inline-diffs --no-exit --recursive --reporter=progress --retries 1 lib/**/*.spec.js"
   },
   "bin": {
     "conventional-github-releaser": "cli.js"
