@@ -164,6 +164,8 @@ $ conventional-github-releaser --help # for more details
 
 You can supply your auth token by a flag `-t` or `--token`. You can also set up an environment variable `CONVENTIONAL_GITHUB_RELEASER_TOKEN` to avoid typing your token every time.
 
+You can also submit your release as a draft version via the '--draft' flag. This allows you to review the and edit the release notes before an official release.
+
 Note: If all results error, it will print the error messages to stderr and exit with code `1`.
 
 

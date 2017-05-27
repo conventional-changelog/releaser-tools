@@ -81,13 +81,16 @@ function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsO
 
           var prerelease = semver.parse(version).prerelease.length > 0;
 
-          var promise = Q.nfcall(github.releases.createRelease, {
+          var draft = changelogOpts.draft || false;
+
+          var promise = Q.nfcall(github.repos.createRelease, {
             // jscs:disable
             owner: context.owner,
             repo: context.repository,
             tag_name: version,
             body: chunk.log,
             prerelease: prerelease,
+            draft: draft,
             target_commitish: changelogOpts.targetCommitish,
             name: changelogOpts.name || version
             // jscs:enable
