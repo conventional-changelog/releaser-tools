@@ -47,12 +47,14 @@
     "jscs": "^2.0.0",
     "jshint": "^2.9.1",
     "mocha": "*",
+    "nyc": "^10.3.2",
     "shelljs": "^0.6.0"
   },
   "scripts": {
     "coverage": "istanbul cover _mocha -- -R spec --timeout 50000 && rm -rf ./coverage",
     "lint": "jshint *.js test --exclude node_modules && jscs *.js test",
-    "test": "npm run-script lint && mocha --timeout 50000"
+    "formertest": "npm run-script lint && mocha --timeout 50000",
+    "test": "jshint lib/ && jscs lib/ && nyc --all --cache --include=lib/ --exclude=lib/**/*.spec.js --reporter=lcov --reporter=text mocha --check-leaks --full-trace --globals __core-js_shared__,__coverage__,YamlEscaper --inline-diffs --no-exit --recursive --reporter=progress --retries 1 lib/**/*.spec.js"
   },
   "bin": {
     "conventional-github-releaser": "cli.js"
