@@ -90,7 +90,7 @@ function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsO
             tag_name: version,
             body: chunk.log,
             prerelease: prerelease,
-            draft: draft
+            draft: draft,
             target_commitish: changelogOpts.targetCommitish,
             name: changelogOpts.name || version
             // jscs:enable
