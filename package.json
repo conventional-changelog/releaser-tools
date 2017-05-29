@@ -1,24 +1,23 @@
 {
-  "name": "conventional-github-releaser",
-  "version": "1.1.7",
-  "description": "Make a new GitHub release from git metadata",
-  "homepage": "https://github.com/conventional-changelog/conventional-github-releaser",
   "author": {
     "name": "Steve Mao",
     "email": "maochenyan@gmail.com",
     "url": "https://github.com/stevemao"
   },
-  "repository": "conventional-changelog/conventional-github-releaser",
-  "license": "MIT",
+  "bin": "./src/cli.js",
+  "bugs": "https://github.com/conventional-changelog/conventional-github-releaser/issues",
+  "description": "Make a new GitHub release from git metadata.",
+  "engines": {
+    "node": "^6.9.0 || ^4.2.0",
+    "npm": "^4.0.0 || ^3.0.0 || ^2.1.9"
+  },
   "files": [
-    "index.js",
-    "cli.js",
-    "lib/"
+    "src/"
   ],
+  "homepage": "https://github.com/conventional-changelog/conventional-github-releaser",
   "keywords": [
     "conventional-github-releaser",
     "github",
-    "gh",
     "release",
     "releases",
     "conventional-changelog",
@@ -26,6 +25,17 @@
     "changelog",
     "log"
   ],
+  "license": "MIT",
+  "main": "src/index.js",
+  "name": "conventional-github-releaser",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/conventional-changelog/conventional-github-releaser.git"
+  },
+  "scripts": {
+    "test": "jshint src/ && jscs src/ && nyc --all --cache --include=src/ --exclude=src/**/*.spec.js --reporter=lcov --reporter=text mocha --check-leaks --full-trace --globals __core-js_shared__,__coverage__,YamlEscaper --inline-diffs --no-exit --recursive --reporter=progress --retries 1 src/**/*.spec.js"
+  },
+  "version": "1.1.7",
   "dependencies": {
     "conventional-changelog": "^1.1.0",
     "dateformat": "^1.0.11",
@@ -43,21 +53,9 @@
     "chai": "^3.0.0",
     "concat-stream": "^1.5.1",
     "coveralls": "^2.11.2",
-    "github-remove-all-releases": "^1.0.0",
-    "istanbul": "^0.4.1",
-    "jscs": "^2.0.0",
+    "jscs": "^3.0.7",
     "jshint": "^2.9.1",
-    "mocha": "*",
-    "nyc": "^10.3.2",
-    "shelljs": "^0.6.0"
-  },
-  "scripts": {
-    "coverage": "istanbul cover _mocha -- -R spec --timeout 50000 && rm -rf ./coverage",
-    "lint": "jshint *.js test --exclude node_modules && jscs *.js test",
-    "formertest": "npm run-script lint && mocha --timeout 50000",
-    "test": "jshint lib/ && jscs lib/ && nyc --all --cache --include=lib/ --exclude=lib/**/*.spec.js --reporter=lcov --reporter=text mocha --check-leaks --full-trace --globals __core-js_shared__,__coverage__,YamlEscaper --inline-diffs --no-exit --recursive --reporter=progress --retries 1 lib/**/*.spec.js"
-  },
-  "bin": {
-    "conventional-github-releaser": "cli.js"
+    "mocha": "^3.2.0",
+    "nyc": "^10.3.2"
   }
 }

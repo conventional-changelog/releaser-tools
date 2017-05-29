@@ -7,7 +7,7 @@ var merge = require('lodash.merge');
 var Q = require('q');
 var semver = require('semver');
 var through = require('through2');
-var transform = require('./lib/transform');
+var transform = require('./transform');
 
 var github = new Github({
   version: '3.0.0'

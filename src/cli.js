@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 var meow = require('meow');
-var conventionalGithubReleaser = require('./');
+var conventionalGithubReleaser = require('./index');
 var resolve = require('path').resolve;
 
 var cli = meow({
