@@ -83,7 +83,7 @@ function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsO
 
           var draft = changelogOpts.draft || false;
 
-          var promise = Q.nfcall(github.repos.createRelease, {
+          var promise = Q.nfcall(github.releases.createRelease, {
             // jscs:disable
             owner: context.owner,
             repo: context.repository,
