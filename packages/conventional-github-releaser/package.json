@@ -35,7 +35,7 @@
   "scripts": {
     "test": "jshint src/ && jscs src/ && nyc --all --cache --include=src/ --exclude=src/**/*.spec.js --reporter=lcov --reporter=text mocha --check-leaks --full-trace --globals __core-js_shared__,__coverage__,YamlEscaper --inline-diffs --no-exit --recursive --reporter=progress --retries 1 src/**/*.spec.js"
   },
-  "version": "1.1.7",
+  "version": "1.1.8",
   "dependencies": {
     "conventional-changelog": "^1.1.0",
     "dateformat": "^1.0.11",
