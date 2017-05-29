@@ -1,11 +1,13 @@
-#  [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage Status][coveralls-image]][coveralls-url]
+# conventional-github-releaser
 
+[![Build Status](https://travis-ci.org/conventional-changelog/conventional-github-releaser.svg?branch=master)](https://travis-ci.org/conventional-changelog/conventional-github-releaser)
+[![Coverage Status](https://coveralls.io/repos/github/conventional-changelog/conventional-github-releaser/badge.svg?branch=master)](https://coveralls.io/github/conventional-changelog/conventional-github-releaser?branch=master)
+[![dependencies Status](https://david-dm.org/conventional-changelog/conventional-github-releaser/status.svg)](https://david-dm.org/conventional-changelog/conventional-github-releaser)
 [![Join the chat at https://gitter.im/conventional-changelog/conventional-github-releaser](https://badges.gitter.im/conventional-changelog/conventional-github-releaser.svg)](https://gitter.im/conventional-changelog/conventional-github-releaser?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-> Make a new GitHub release from git metadata
+> Make a new GitHub release from git metadata.
 
 **Note** You don't have to use the angular commit convention. For the best result of the tool to tokenize you commit and produce flexible output, it's recommended to use a commit convention.
-
 
 ## Quick start
 
@@ -33,18 +35,16 @@ All available command line parameters can be listed using [CLI](#cli) : `convent
 
 Or use one of the plugins if you are already using the tool:  [grunt](https://github.com/conventional-changelog/grunt-conventional-github-releaser)/[atom](https://github.com/conventional-changelog/atom-conventional-changelog)
 
-
 ## Example output
 
 - https://github.com/conventional-changelog/conventional-github-releaser/releases
 - https://github.com/conventional-changelog/conventional-changelog/releases
 
-
 ### Recommended workflow
 
 1. Make changes
 2. Commit those changes
-3. Make sure Travis turns green
+3. Make sure Travis CI turns green
 4. Bump version in `package.json`
 5. Commit `package.json` files
 6. Tag
@@ -55,7 +55,6 @@ You have to have a tag on GitHub to make a release. hence `gitRawCommitsOpts.to`
 
 Please use this [gist](https://gist.github.com/stevemao/280ef22ee861323993a0) to make a release or change it to your needs.
 
-
 ## Why
 
 - Based on [conventional-changelog](https://github.com/ajoslin/conventional-changelog) but GitHub releases are more elegant.
@@ -64,7 +63,6 @@ Please use this [gist](https://gist.github.com/stevemao/280ef22ee861323993a0) to
 - Intelligently setup defaults but yet fully configurable with presets of [popular projects](https://github.com/ajoslin/conventional-changelog#preset).
 - Everything internally or externally is pluggable.
 - A lot of tests and actively maintained.
-
 
 ## Programmatic Usage
 
@@ -76,15 +74,14 @@ $ npm install --save conventional-github-releaser
 var conventionalGithubReleaser = require('conventional-github-releaser');
 
 var AUTH = {
-  type: "oauth",
-  token: '0126af95c0e2d9b0a7c78738c4c00a860b04acc8'// change this to your own GitHub token or use an environment variable
+  type: 'oauth',
+  token: '0126af95c0e2d9b0a7c78738c4c00a860b04acc8' // change this to your own GitHub token or use an environment variable
 };
 
 conventionalGithubReleaser(AUTH, {
   preset: 'angular'
 }, callback);
 ```
-
 
 ## API
 
@@ -154,7 +151,6 @@ Default: `''`
 
 Default header contains the version and date which are already in the release.
 
-
 ## CLI
 
 ```sh
@@ -168,36 +164,23 @@ You can also submit your release as a draft version via the '--draft' flag. This
 
 Note: If all results error, it will print the error messages to stderr and exit with code `1`.
 
-
 ## Regenerate all the releases
 
 Use [github-remove-all-releases](https://github.com/stevemao/github-remove-all-releases) to remove all releases and set `changelogOpts.releaseCount` to `0` to regenerate.
-
 
 ## Setup token for cli
 
 [Create a new token](https://github.com/settings/tokens/new) and set your environment variable `CONVENTIONAL_GITHUB_RELEASER_TOKEN` to the token you just created. You can google [How to set environment variable](https://www.google.com.au/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=how%20to%20set%20environment%20variable). The scopes for the token you need is `public_repo` or `repo` (if you need to access private repos). [More details](https://developer.github.com/v3/oauth/#scopes).
 
-
 ## Related
 
 - [conventional-changelog](https://github.com/conventional-changelog/conventional-changelog-cli) - Generate a changelog from git metadata
 - [conventional-recommended-bump](https://github.com/conventional-changelog/conventional-recommended-bump) - Get a recommended version bump based on conventional commits
-- [github-remove-all-releases](https://github.com/stevemao/github-remove-all-releases) - Remove all releases of your GitHub repo
 - [conventional-commits-detector](https://github.com/conventional-changelog/conventional-commits-detector) - Detect what commit message convention your repository is using
+- [github-remove-all-releases](https://github.com/stevemao/github-remove-all-releases) - Remove all releases of your GitHub repo
 - [conventional-gitlab-releaser](https://gitlab.com/hutson/conventional-gitlab-releaser) - Similar to `conventional-github-releaser`, but makes a GitLab release.
-
 
 ## License
 
 MIT © [Steve Mao](https://github.com/stevemao)
 
-
-[npm-image]: https://badge.fury.io/js/conventional-github-releaser.svg
-[npm-url]: https://npmjs.org/package/conventional-github-releaser
-[travis-image]: https://travis-ci.org/conventional-changelog/conventional-github-releaser.svg?branch=master
-[travis-url]: https://travis-ci.org/conventional-changelog/conventional-github-releaser
-[daviddm-image]: https://david-dm.org/conventional-changelog/conventional-github-releaser.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/conventional-changelog/conventional-github-releaser
-[coveralls-image]: https://coveralls.io/repos/conventional-changelog/conventional-github-releaser/badge.svg
-[coveralls-url]: https://coveralls.io/r/conventional-changelog/conventional-github-releaser
