@@ -28,5 +28,5 @@ node_js:
   - "node"
 before_install:
   - npm install --global npm@${NPM_VERSION}
-after_script:
-  - cat ./coverage/lcov.info | node $(npm bin)/coveralls.js
+after_success:
+  - cat ./coverage/lcov.info | node $(npm bin)/coveralls
