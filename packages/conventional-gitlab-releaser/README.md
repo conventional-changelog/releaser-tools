@@ -1,4 +1,4 @@
-#  conventional-gitlab-releaser
+# conventional-gitlab-releaser
 
 [![build status](https://gitlab.com/hyper-expanse/conventional-gitlab-releaser/badges/master/build.svg)](https://gitlab.com/hyper-expanse/conventional-gitlab-releaser/commits/master)
 [![codecov.io](https://codecov.io/gitlab/hyper-expanse/conventional-gitlab-releaser/coverage.svg?branch=master)](https://codecov.io/gitlab/hyper-expanse/conventional-gitlab-releaser?branch=master)
@@ -9,6 +9,8 @@
 **Note** You don't have to use the angular commit convention. For the best result of the tool to tokenize you commit and produce flexible output, it's recommended to use a commit convention.
 
 ## Quick start
+
+[Set up a token first](#setup-token-for-cli).
 
 ```sh
 $ npm install -g conventional-gitlab-releaser
@@ -70,7 +72,7 @@ var conventionalGitlabReleaser = require('conventional-gitlab-releaser');
 
 var AUTH = {
   url: 'https://gitlab.com',,
-  token: '0126af95c0e2d9b0a7c78738c4c00a860b04acc8'// change this to your own GitLab token or use an environment variable
+  token: '0126af95c0e2d9b0a7c78738c4c00a860b04acc8' // change this to your own GitLab token or use an environment variable
 };
 
 conventionalGitlabReleaser(AUTH, {
@@ -147,7 +149,7 @@ Note: If all results error, it will print the error messages to stderr and exit 
 
 ## Setup token for cli
 
-[Get your token](https://gitlab.com/profile/account) and set your environment variable `CONVENTIONAL_GITLAB_RELEASER_TOKEN` to the token you just created. You can google [How to set environment variable](https://www.google.com.au/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=how%20to%20set%20environment%20variable).
+[Get your token](https://gitlab.com/profile/account) and set your environment variable `CONVENTIONAL_GITLAB_RELEASER_TOKEN` to the token you just retrieved. You can google [How to set environment variable](https://www.google.com.au/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=how%20to%20set%20environment%20variable).
 
 ## Related
 
