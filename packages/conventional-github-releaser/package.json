@@ -39,7 +39,6 @@
   "dependencies": {
     "conventional-changelog": "^1.1.0",
     "dateformat": "^1.0.11",
-    "find-versions": "^2.0.0",
     "git-semver-tags": "^1.0.0",
     "github": "^0.2.4",
     "lodash.merge": "^4.0.2",
@@ -47,6 +46,7 @@
     "object-assign": "^4.0.1",
     "q": "^1.4.1",
     "semver": "^5.0.1",
+    "semver-regex": "^1.0.0",
     "through2": "^2.0.0"
   },
   "devDependencies": {

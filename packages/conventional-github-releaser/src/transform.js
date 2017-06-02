@@ -1,11 +1,11 @@
 'use strict';
 
 var dateFormat = require('dateformat');
-var findVersions = require('find-versions');
+var semverRegex = require('semver-regex');
 
 function transform(chunk, cb) {
   if (typeof chunk.gitTags === 'string') {
-    chunk.version = findVersions(chunk.gitTags)[0];
+    chunk.version = (chunk.gitTags.match(semverRegex()) || [])[0];
   }
 
   if (chunk.committerDate) {
