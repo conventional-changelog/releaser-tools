@@ -39,13 +39,13 @@
   "dependencies": {
     "conventional-changelog": "^1.1.0",
     "dateformat": "^2.0.0",
-    "find-versions": "^2.0.0",
     "git-semver-tags": "^1.0.0",
     "gitlab": "^1.7.1",
     "lodash.merge": "^4.0.2",
     "meow": "^3.3.0",
     "object-assign": "^4.0.1",
     "q": "^1.4.1",
+    "semver-regex": "^1.0.0",
     "through2": "^2.0.0"
   },
   "devDependencies": {

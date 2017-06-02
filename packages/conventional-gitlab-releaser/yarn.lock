@@ -37,6 +37,10 @@ ansi-styles@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-1.0.0.tgz#cb102df1c56f5123eab8b67cd7b98027a0279178"
 
+any-promise@^1.1.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/any-promise/-/any-promise-1.3.0.tgz#abc6afeedcea52e809cdc0376aed3ce39635d17f"
+
 append-transform@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/append-transform/-/append-transform-0.4.0.tgz#d76ebf8ca94d276e247a36bad44a4b74ab611991"
@@ -44,8 +48,8 @@ append-transform@^0.4.0:
     default-require-extensions "^1.0.0"
 
 aproba@^1.0.3:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/aproba/-/aproba-1.1.1.tgz#95d3600f07710aa0e9298c726ad5ecf2eacbabab"
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/aproba/-/aproba-1.1.2.tgz#45c6629094de4e96f693ef7eab74ae079c240fc1"
 
 archy@^1.0.0:
   version "1.0.0"
@@ -58,7 +62,7 @@ are-we-there-yet@~1.1.2:
     delegates "^1.0.0"
     readable-stream "^2.0.6"
 
-argparse@^1.0.2, argparse@^1.0.7:
+argparse@^1.0.2:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/argparse/-/argparse-1.0.9.tgz#73d83bc263f86e97f8cc4f6bae1b0e90a7d22c86"
   dependencies:
@@ -219,8 +223,8 @@ babel-types@^6.18.0, babel-types@^6.24.1:
     to-fast-properties "^1.0.1"
 
 babylon@^6.11.0, babylon@^6.13.0, babylon@^6.15.0, babylon@^6.8.1:
-  version "6.17.1"
-  resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.17.1.tgz#17f14fddf361b695981fe679385e4f1c01ebd86f"
+  version "6.17.2"
+  resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.17.2.tgz#201d25ef5f892c41bae49488b08db0dd476e9f5c"
 
 balanced-match@^0.4.1:
   version "0.4.2"
@@ -265,7 +269,7 @@ browser-stdout@1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/browser-stdout/-/browser-stdout-1.3.0.tgz#f351d32969d32fa5d7a5567154263d928ae3bd1f"
 
-buffer-shims@^1.0.0, buffer-shims@~1.0.0:
+buffer-shims@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/buffer-shims/-/buffer-shims-1.0.0.tgz#9978ce317388c649ad8793028c3477ef044a8b51"
 
@@ -601,8 +605,8 @@ conventional-commits-parser@^1.0.0, conventional-commits-parser@^1.0.1, conventi
     trim-off-newlines "^1.0.0"
 
 conventional-gitlab-releaser@^2.0.4:
-  version "2.0.7"
-  resolved "https://registry.yarnpkg.com/conventional-gitlab-releaser/-/conventional-gitlab-releaser-2.0.7.tgz#c8258e2a011eb3528938c59edcb59c061293be01"
+  version "2.0.10"
+  resolved "https://registry.yarnpkg.com/conventional-gitlab-releaser/-/conventional-gitlab-releaser-2.0.10.tgz#dcb52185ea7ad67f1ad291a01bcd3c31d06802ae"
   dependencies:
     conventional-changelog "^1.1.0"
     dateformat "^2.0.0"
@@ -613,7 +617,6 @@ conventional-gitlab-releaser@^2.0.4:
     meow "^3.3.0"
     object-assign "^4.0.1"
     q "^1.4.1"
-    slumber "^0.10.1"
     through2 "^2.0.0"
 
 conventional-recommended-bump@^1.0.0:
@@ -727,8 +730,8 @@ debug-log@^1.0.1:
   resolved "https://registry.yarnpkg.com/debug-log/-/debug-log-1.0.1.tgz#2307632d4c04382b8df8a32f70b895046d52745f"
 
 debug@*, debug@^2.1.3, debug@^2.2.0, debug@^2.3.3, debug@^2.6.3:
-  version "2.6.7"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.7.tgz#92bad1f6d05bbb6bba22cca88bcd0ec894c2861e"
+  version "2.6.8"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.8.tgz#e731531ca2ede27d188222427da17821d68ff4fc"
   dependencies:
     ms "2.0.0"
 
@@ -799,6 +802,10 @@ detect-indent@^4.0.0:
   resolved "https://registry.yarnpkg.com/detect-indent/-/detect-indent-4.0.0.tgz#f76d064352cdf43a1cb6ce619c4ee3a9475de208"
   dependencies:
     repeating "^2.0.0"
+
+detect-indent@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/detect-indent/-/detect-indent-5.0.0.tgz#3871cc0a6a002e8c3e5b3cf7f336264675f06b9d"
 
 diff@3.2.0:
   version "3.2.0"
@@ -1078,6 +1085,13 @@ ggit@^1.13.7:
     quote "0.4.0"
     ramda "0.9.1"
 
+git-latest-semver-tag@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/git-latest-semver-tag/-/git-latest-semver-tag-1.0.2.tgz#061130cbf4274111cc6be4612b3ff3a6d93e2660"
+  dependencies:
+    git-semver-tags "^1.1.2"
+    meow "^3.3.0"
+
 git-raw-commits@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/git-raw-commits/-/git-raw-commits-0.1.2.tgz#2becbdcd3f96ef0b19f16863f7a2f6d9d8ab8369"
@@ -1105,7 +1119,7 @@ git-remote-origin-url@^2.0.0:
     gitconfiglocal "^1.0.0"
     pify "^2.3.0"
 
-git-semver-tags@^1.0.0, git-semver-tags@^1.2.0:
+git-semver-tags@^1.0.0, git-semver-tags@^1.1.2, git-semver-tags@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/git-semver-tags/-/git-semver-tags-1.2.0.tgz#b31fd02c8ab578bd6c9b5cacca5e1c64c1177ac1"
   dependencies:
@@ -1230,8 +1244,8 @@ growl@1.9.2:
   resolved "https://registry.yarnpkg.com/growl/-/growl-1.9.2.tgz#0ea7743715db8d8de2c5ede1775e1b45ac85c02f"
 
 handlebars@^4.0.2, handlebars@^4.0.3:
-  version "4.0.8"
-  resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.0.8.tgz#22b875cd3f0e6cbea30314f144e82bc7a72ff420"
+  version "4.0.10"
+  resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.0.10.tgz#3d30c718b09a3d96f23ea4cc1f403c4d3ba9ff4f"
   dependencies:
     async "^1.4.0"
     optimist "^0.6.1"
@@ -1371,8 +1385,8 @@ is-builtin-module@^1.0.0:
     builtin-modules "^1.0.0"
 
 is-dotfile@^1.0.0:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/is-dotfile/-/is-dotfile-1.0.2.tgz#2c132383f39199f8edc268ca01b9b007d205cc4d"
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/is-dotfile/-/is-dotfile-1.0.3.tgz#a6a2f32ffd2dfb04f5ca25ecd0f6b83cf798a1e1"
 
 is-equal-shallow@^0.1.3:
   version "0.1.3"
@@ -1517,50 +1531,50 @@ isstream@0.1.x, isstream@~0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
 
-istanbul-lib-coverage@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/istanbul-lib-coverage/-/istanbul-lib-coverage-1.1.0.tgz#caca19decaef3525b5d6331d701f3f3b7ad48528"
+istanbul-lib-coverage@^1.1.0, istanbul-lib-coverage@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/istanbul-lib-coverage/-/istanbul-lib-coverage-1.1.1.tgz#73bfb998885299415c93d38a3e9adf784a77a9da"
 
 istanbul-lib-hook@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/istanbul-lib-hook/-/istanbul-lib-hook-1.0.6.tgz#c0866d1e81cf2d5319249510131fc16dee49231f"
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/istanbul-lib-hook/-/istanbul-lib-hook-1.0.7.tgz#dd6607f03076578fe7d6f2a630cf143b49bacddc"
   dependencies:
     append-transform "^0.4.0"
 
 istanbul-lib-instrument@^1.7.1:
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/istanbul-lib-instrument/-/istanbul-lib-instrument-1.7.1.tgz#169e31bc62c778851a99439dd99c3cc12184d360"
+  version "1.7.2"
+  resolved "https://registry.yarnpkg.com/istanbul-lib-instrument/-/istanbul-lib-instrument-1.7.2.tgz#6014b03d3470fb77638d5802508c255c06312e56"
   dependencies:
     babel-generator "^6.18.0"
     babel-template "^6.16.0"
     babel-traverse "^6.18.0"
     babel-types "^6.18.0"
     babylon "^6.13.0"
-    istanbul-lib-coverage "^1.1.0"
+    istanbul-lib-coverage "^1.1.1"
     semver "^5.3.0"
 
 istanbul-lib-report@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/istanbul-lib-report/-/istanbul-lib-report-1.1.0.tgz#444c4ecca9afa93cf584f56b10f195bf768c0770"
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/istanbul-lib-report/-/istanbul-lib-report-1.1.1.tgz#f0e55f56655ffa34222080b7a0cd4760e1405fc9"
   dependencies:
-    istanbul-lib-coverage "^1.1.0"
+    istanbul-lib-coverage "^1.1.1"
     mkdirp "^0.5.1"
     path-parse "^1.0.5"
     supports-color "^3.1.2"
 
 istanbul-lib-source-maps@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/istanbul-lib-source-maps/-/istanbul-lib-source-maps-1.2.0.tgz#8c7706d497e26feeb6af3e0c28fd5b0669598d0e"
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/istanbul-lib-source-maps/-/istanbul-lib-source-maps-1.2.1.tgz#a6fe1acba8ce08eebc638e572e294d267008aa0c"
   dependencies:
     debug "^2.6.3"
-    istanbul-lib-coverage "^1.1.0"
+    istanbul-lib-coverage "^1.1.1"
     mkdirp "^0.5.1"
     rimraf "^2.6.1"
     source-map "^0.5.3"
 
 istanbul-reports@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/istanbul-reports/-/istanbul-reports-1.1.0.tgz#1ef3b795889219cfb5fad16365f6ce108d5f8c66"
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/istanbul-reports/-/istanbul-reports-1.1.1.tgz#042be5c89e175bc3f86523caab29c014e77fee4e"
   dependencies:
     handlebars "^4.0.3"
 
@@ -1986,8 +2000,8 @@ mkdirp@~0.3.3:
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.3.5.tgz#de3e5f8961c88c787ee1368df849ac4413eca8d7"
 
 mocha@^3.2.0:
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/mocha/-/mocha-3.4.1.tgz#a3802b4aa381934cacb38de70cf771621da8f9af"
+  version "3.4.2"
+  resolved "https://registry.yarnpkg.com/mocha/-/mocha-3.4.2.tgz#d0ef4d332126dbf18d0d640c9b382dd48be97594"
   dependencies:
     browser-stdout "1.3.0"
     commander "2.9.0"
@@ -2056,8 +2070,8 @@ normalize-path@^2.0.1:
     remove-trailing-separator "^1.0.1"
 
 npm-publish-git-tag@^1.0.9:
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/npm-publish-git-tag/-/npm-publish-git-tag-1.0.9.tgz#8b6c4650ae12f56bf37a3afc77359e3cbdd971af"
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/npm-publish-git-tag/-/npm-publish-git-tag-1.0.10.tgz#ddbeff719a13a1f27f91b7e4e922c5216d034625"
   dependencies:
     commander "^2.9.0"
     ggit "^1.13.7"
@@ -2326,7 +2340,7 @@ qs@~6.3.0:
   version "6.3.2"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.3.2.tgz#e75bd5f6e268122a2a0e0bda630b2550c166502c"
 
-querystring@0.2.0, querystring@^0.2.0:
+querystring@0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/querystring/-/querystring-0.2.0.tgz#b209849203bb25df820da756e747005878521620"
 
@@ -2393,14 +2407,14 @@ readable-stream@1.1:
     string_decoder "~0.10.x"
 
 readable-stream@^2.0.4, readable-stream@^2.0.6, readable-stream@^2.1.5, readable-stream@^2.2.2:
-  version "2.2.9"
-  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.2.9.tgz#cf78ec6f4a6d1eb43d26488cac97f042e74b7fc8"
+  version "2.2.10"
+  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.2.10.tgz#effe72bb7c884c0dd335e2379d526196d9d011ee"
   dependencies:
-    buffer-shims "~1.0.0"
     core-util-is "~1.0.0"
     inherits "~2.0.1"
     isarray "~1.0.0"
     process-nextick-args "~1.0.6"
+    safe-buffer "^5.0.1"
     string_decoder "~1.0.0"
     util-deprecate "~1.0.1"
 
@@ -2470,7 +2484,7 @@ repo-url@1.0.0:
   dependencies:
     silent-npm-registry-client "0.0.0"
 
-"request@2 >=2.25.0", request@2.79.0, request@^2.55.0, request@^2.72.0:
+"request@2 >=2.25.0", request@2.79.0, request@^2.55.0:
   version "2.79.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.79.0.tgz#4dfe5bf6be8b8cdc37fcf93e04b65577722710de"
   dependencies:
@@ -2538,12 +2552,12 @@ rimraf@2.x.x, rimraf@^2.2.8, rimraf@^2.3.3, rimraf@^2.5.4, rimraf@^2.6.1, rimraf
     glob "^7.0.5"
 
 safe-buffer@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.0.1.tgz#d263ca54696cd8a306b5ca6551e92de57918fbe7"
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.0.tgz#fe4c8460397f9eaaaa58e73be46273408a45e223"
 
 semantic-release-gitlab-notifier@^5.0.0:
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/semantic-release-gitlab-notifier/-/semantic-release-gitlab-notifier-5.0.4.tgz#2ff1499d2daee576b7480ab16fc178626e43392f"
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/semantic-release-gitlab-notifier/-/semantic-release-gitlab-notifier-5.1.2.tgz#e781674b3bf90f979ac8d857c08337bc68801755"
   dependencies:
     bluebird "^3.4.1"
     conventional-commits-parser "^1.2.2"
@@ -2556,8 +2570,8 @@ semantic-release-gitlab-notifier@^5.0.0:
     through2 "^2.0.1"
 
 semantic-release-gitlab-releaser@^3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/semantic-release-gitlab-releaser/-/semantic-release-gitlab-releaser-3.0.3.tgz#109f1fe04ca7299c478b75060d647b96d7bc7776"
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/semantic-release-gitlab-releaser/-/semantic-release-gitlab-releaser-3.0.6.tgz#ad09ca536955915c1327c8d308da62654ff42883"
   dependencies:
     bluebird "^3.3.4"
     conventional-gitlab-releaser "^2.0.4"
@@ -2566,20 +2580,22 @@ semantic-release-gitlab-releaser@^3.0.3:
     lodash "^4.0.1"
 
 semantic-release-gitlab@^4.0.6:
-  version "4.0.6"
-  resolved "https://registry.yarnpkg.com/semantic-release-gitlab/-/semantic-release-gitlab-4.0.6.tgz#8c1b22f39e4f6367c7cf650167a885d08de414f9"
+  version "4.0.11"
+  resolved "https://registry.yarnpkg.com/semantic-release-gitlab/-/semantic-release-gitlab-4.0.11.tgz#1b84c02561443e232b3e2a2ce6cfcf040fa1fb53"
   dependencies:
     bluebird "^3.3.4"
     commander "^2.9.0"
     conventional-commits-detector "^0.1.1"
     conventional-recommended-bump "^1.0.0"
     debug "^2.2.0"
-    ggit "^1.13.7"
+    git-latest-semver-tag "^1.0.2"
+    git-raw-commits "^1.2.0"
     lodash "^4.7.0"
     semantic-release-gitlab-notifier "^5.0.0"
     semantic-release-gitlab-releaser "^3.0.3"
     semver "^5.1.0"
     shelljs "^0.7.7"
+    stream-to-array "^2.3.0"
 
 semver-regex@^1.0.0:
   version "1.0.0"
@@ -2651,16 +2667,6 @@ slumber@0.9.0:
     request "^2.55.0"
   optionalDependencies:
     yamljs "0.1"
-
-slumber@^0.10.1:
-  version "0.10.1"
-  resolved "https://registry.yarnpkg.com/slumber/-/slumber-0.10.1.tgz#b05dbffda80336317f85bec4865d9f5826d6d81d"
-  dependencies:
-    debug "^2.2.0"
-    querystring "^0.2.0"
-    request "^2.72.0"
-  optionalDependencies:
-    yamljs "0.2"
 
 sntp@1.x.x:
   version "1.0.9"
@@ -2766,6 +2772,12 @@ stream-array@^1.1.2:
   dependencies:
     readable-stream "~2.1.0"
 
+stream-to-array@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/stream-to-array/-/stream-to-array-2.3.0.tgz#bbf6b39f5f43ec30bc71babcb37557acecf34353"
+  dependencies:
+    any-promise "^1.1.0"
+
 string-width@^1.0.1, string-width@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-1.0.2.tgz#118bdf5b8cdc51a2a7e70d211e07e2b0b9b107d3"
@@ -2779,10 +2791,10 @@ string_decoder@~0.10.x:
   resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-0.10.31.tgz#62e203bc41766c6c28c9fc84301dab1c5310fa94"
 
 string_decoder@~1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-1.0.0.tgz#f06f41157b664d86069f84bdbdc9b0d8ab281667"
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-1.0.1.tgz#62e200f039955a6810d8df0a33ffc0f013662d98"
   dependencies:
-    buffer-shims "~1.0.0"
+    safe-buffer "^5.0.1"
 
 stringstream@~0.0.4:
   version "0.0.5"
@@ -2833,8 +2845,8 @@ supports-color@^2.0.0:
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-2.0.0.tgz#535d045ce6b6363fa40117084629995e9df324c7"
 
 test-exclude@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/test-exclude/-/test-exclude-4.1.0.tgz#04ca70b7390dd38c98d4a003a173806ca7991c91"
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/test-exclude/-/test-exclude-4.1.1.tgz#4d84964b0966b0087ecc334a2ce002d3d9341e26"
   dependencies:
     arrify "^1.0.1"
     micromatch "^2.3.11"
@@ -2843,8 +2855,8 @@ test-exclude@^4.1.0:
     require-main-filename "^1.0.1"
 
 text-extensions@^1.0.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/text-extensions/-/text-extensions-1.4.0.tgz#c385d2e80879fe6ef97893e1709d88d9453726e9"
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/text-extensions/-/text-extensions-1.5.0.tgz#d1cb2d14b5d0bc45bfdca8a08a473f68c7eb0cbc"
 
 through2-concurrent@^1.1.0:
   version "1.1.1"
@@ -2918,8 +2930,8 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
 uglify-js@^2.6:
-  version "2.8.26"
-  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-2.8.26.tgz#3a1db8ae0a0aba7f92e1ddadadbd0293d549f90e"
+  version "2.8.28"
+  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-2.8.28.tgz#e335032df9bb20dcb918f164589d5af47f38834a"
   dependencies:
     source-map "~0.5.1"
     yargs "~3.10.0"
@@ -3018,8 +3030,8 @@ vow-queue@^0.4.1:
     vow "~0.4.0"
 
 vow@^0.4.7, vow@~0.4.0, vow@~0.4.8:
-  version "0.4.15"
-  resolved "https://registry.yarnpkg.com/vow/-/vow-0.4.15.tgz#0579163aff6ba0ae05c456b2c0e4ca6373f111b3"
+  version "0.4.16"
+  resolved "https://registry.yarnpkg.com/vow/-/vow-0.4.16.tgz#bb9d54d938d5f80520d658a740e7a895e30feeeb"
 
 weak-map@^1.0.5:
   version "1.0.5"
@@ -3093,9 +3105,10 @@ write-file-atomic@^2.0.0:
     slide "^1.1.5"
 
 write-json-file@^2.0.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/write-json-file/-/write-json-file-2.1.0.tgz#ba1cf3ac7ee89db26c3d528986e48421389046b7"
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/write-json-file/-/write-json-file-2.2.0.tgz#51862506bbb3b619eefab7859f1fd6c6d0530876"
   dependencies:
+    detect-indent "^5.0.0"
     graceful-fs "^4.1.2"
     make-dir "^1.0.0"
     pify "^2.0.0"
@@ -3140,13 +3153,6 @@ yamljs@0.1:
   dependencies:
     argparse "~0.1.4"
     glob "~3.1.11"
-
-yamljs@0.2:
-  version "0.2.10"
-  resolved "https://registry.yarnpkg.com/yamljs/-/yamljs-0.2.10.tgz#481cc7c25ca73af59f591f0c96e3ce56c757a40f"
-  dependencies:
-    argparse "^1.0.7"
-    glob "^7.0.5"
 
 yargs-parser@^5.0.0:
   version "5.0.0"
