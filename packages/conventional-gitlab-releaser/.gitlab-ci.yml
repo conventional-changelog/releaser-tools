@@ -19,6 +19,9 @@ cache:
 .node_6: &node_6
   image: node:6
 
+.node_8: &node_8
+  image: node:8
+
 .node_next: &node_next
   image: node:latest
 
@@ -59,6 +62,12 @@ cache:
     - npm prune
     - npm install --global npm@4
 
+.npm_5: &npm_5
+  <<: [*npm]
+  before_script:
+    - npm prune
+    - npm install --global npm@5
+
 .npm_next: &npm_next
   <<: [*npm]
   before_script:
@@ -74,8 +83,13 @@ node_4_npm_3:
 node_4_npm_4:
   <<: [*common, *node_4, *npm_4]
 
+node_4_npm_5:
+  <<: [*common, *node_4, *npm_5]
+  allow_failure: true
+
 node_4_npm_next:
   <<: [*common, *node_4, *npm_next]
+  allow_failure: true
 
 node_4_yarn_latest:
   <<: [*common, *node_4, *yarn_latest]
@@ -95,6 +109,10 @@ node_6_npm_4:
   <<: [*common, *node_6, *npm_4]
   allow_failure: true
 
+node_6_npm_5:
+  <<: [*common, *node_6, *npm_5]
+  allow_failure: true
+
 node_6_npm_next:
   <<: [*common, *node_6, *npm_next]
   allow_failure: true
@@ -104,6 +122,32 @@ node_6_yarn_latest:
 
 node_6_yarn_latest_rc:
   <<: [*common, *node_6, *yarn_latest_rc]
+
+node_8_npm_2:
+  <<: [*common, *node_8, *npm_2]
+  allow_failure: true
+
+node_8_npm_3:
+  <<: [*common, *node_8, *npm_3]
+  allow_failure: true
+
+node_8_npm_4:
+  <<: [*common, *node_8, *npm_4]
+  allow_failure: true
+
+node_8_npm_5:
+  <<: [*common, *node_8, *npm_5]
+  allow_failure: true
+
+node_8_npm_next:
+  <<: [*common, *node_8, *npm_next]
+  allow_failure: true
+
+node_8_yarn_latest:
+  <<: [*common, *node_8, *yarn_latest]
+
+node_8_yarn_latest_rc:
+  <<: [*common, *node_8, *yarn_latest_rc]
 
 node_next_npm_2:
   <<: [*common, *node_next, *npm_2]
@@ -115,6 +159,10 @@ node_next_npm_3:
 
 node_next_npm_4:
   <<: [*common, *node_next, *npm_4]
+  allow_failure: true
+
+node_next_npm_5:
+  <<: [*common, *node_next, *npm_5]
   allow_failure: true
 
 node_next_npm_next:
