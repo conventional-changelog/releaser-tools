@@ -16,6 +16,7 @@ env:
     - NPM_VERSION=2
     - NPM_VERSION=3
     - NPM_VERSION=4
+    - NPM_VERSION=5
     - NPM_VERSION=next
 matrix:
   fast_finish: true
@@ -25,6 +26,7 @@ matrix:
 node_js:
   - "4"
   - "6"
+  - "8"
   - "node"
 before_install:
   - npm install --global npm@${NPM_VERSION}
