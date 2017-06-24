@@ -1,7 +1,9 @@
 'use strict';
 var assign = require('object-assign');
 var conventionalChangelog = require('conventional-changelog');
+var escape = require('querystring').escape;
 var gitSemverTags = require('git-semver-tags');
+var glGot = require('gl-got');
 var merge = require('lodash.merge');
 var Q = require('q');
 var through = require('through2');
@@ -11,8 +13,6 @@ function conventionalGitlabReleaser(auth, changelogOpts, context, gitRawCommitsO
   if (!auth) {
     throw new Error('Expected an auth object');
   }
-
-  var gitlab = require('gitlab')(auth);
 
   var promises = [];
 
@@ -71,24 +71,18 @@ function conventionalGitlabReleaser(auth, changelogOpts, context, gitRawCommitsO
             return;
           }
 
-          var version =  chunk.keyCommit.version;
-
-          var deferred = Q.defer();
-          gitlab.projects.repository.addTag({
-            id: context.owner + '/' + context.repository,
-            'tag_name': version,
-            ref: chunk.keyCommit.hash,
-            message: 'Release ' + version,
-            'release_description': chunk.log
-          }, function(response) {
-            if (response === true) {
-              return deferred.reject(response);
+          var promise = glGot('projects/' + escape(context.owner + '/' + context.repository) + '/repository/tags', {
+            token: auth.token,
+            endpoint: auth.url + '/api/v3/',
+            body: {
+              'tag_name': chunk.keyCommit.version,
+              ref: chunk.keyCommit.hash,
+              message: 'Release ' + chunk.keyCommit.version,
+              'release_description': chunk.log
             }
-
-            deferred.resolve(response);
           });
 
-          promises.push(deferred.promise);
+          promises.push(promise);
 
           cb();
         }, function() {
