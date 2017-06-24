@@ -86,9 +86,12 @@ function conventionalGitlabReleaser(auth, changelogOpts, context, gitRawCommitsO
 
           cb();
         }, function() {
-          Q.allSettled(promises)
+          Q.all(promises)
             .then(function(responses) {
-              setImmediate(userCb, null, responses);
+              userCb(null, responses);
+            })
+            .catch(function(err) {
+              userCb(err);
             });
         }));
     })
