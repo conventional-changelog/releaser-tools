@@ -33,6 +33,7 @@
     "url": "https://gitlab.com/hyper-expanse/conventional-gitlab-releaser.git"
   },
   "scripts": {
+    "dev": "docker run --rm --user node -v \"$(pwd)\":/app -w /app -it node:4 sh -c \"yarn install && yarn test && bash\"",
     "test": "jshint src/ && jscs src/ && nyc --all --cache --include=src/ --exclude=src/**/*.spec.js --reporter=lcov --reporter=text mocha --check-leaks --full-trace --globals __core-js_shared__,__coverage__,YamlEscaper --inline-diffs --no-exit --recursive --reporter=progress --retries 1 src/**/*.spec.js"
   },
   "version": "1.0.0",
