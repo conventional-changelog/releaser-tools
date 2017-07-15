@@ -51,61 +51,56 @@ cache:
   <<: [*npm]
   before_script:
     - npm prune
-    - currentDirectory=$(pwd)
     - mkdir -p /tmp/npm-install-directory
-    - cd /tmp/npm-install-directory
+    - pushd /tmp/npm-install-directory
     - npm install npm@2
     - rm -rf /usr/local/lib/node_modules
     - mv node_modules /usr/local/lib/
-    - cd $currentDirectory
+    - popd
 
 .npm_3: &npm_3
   <<: [*npm]
   before_script:
     - npm prune
-    - currentDirectory=$(pwd)
     - mkdir -p /tmp/npm-install-directory
-    - cd /tmp/npm-install-directory
+    - pushd /tmp/npm-install-directory
     - npm install npm@3
     - rm -rf /usr/local/lib/node_modules
     - mv node_modules /usr/local/lib/
-    - cd $currentDirectory
+    - popd
 
 .npm_4: &npm_4
   <<: [*npm]
   before_script:
     - npm prune
-    - currentDirectory=$(pwd)
     - mkdir -p /tmp/npm-install-directory
-    - cd /tmp/npm-install-directory
+    - pushd /tmp/npm-install-directory
     - npm install npm@4
     - rm -rf /usr/local/lib/node_modules
     - mv node_modules /usr/local/lib/
-    - cd $currentDirectory
+    - popd
 
 .npm_5: &npm_5
   <<: [*npm]
   before_script:
     - npm prune
-    - currentDirectory=$(pwd)
     - mkdir -p /tmp/npm-install-directory
-    - cd /tmp/npm-install-directory
+    - pushd /tmp/npm-install-directory
     - npm install npm@5
     - rm -rf /usr/local/lib/node_modules
     - mv node_modules /usr/local/lib/
-    - cd $currentDirectory
+    - popd
 
 .npm_next: &npm_next
   <<: [*npm]
   before_script:
     - npm prune
-    - currentDirectory=$(pwd)
     - mkdir -p /tmp/npm-install-directory
-    - cd /tmp/npm-install-directory
+    - pushd /tmp/npm-install-directory
     - npm install npm@next
     - rm -rf /usr/local/lib/node_modules
     - mv node_modules /usr/local/lib/
-    - cd $currentDirectory
+    - popd
   allow_failure: true
 
 node_4_npm_2:
