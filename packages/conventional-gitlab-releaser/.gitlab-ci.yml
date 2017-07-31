@@ -90,6 +90,7 @@ cache:
     - rm -rf /usr/local/lib/node_modules
     - mv node_modules /usr/local/lib/
     - popd
+  allow_failure: true
 
 .npm_next: &npm_next
   <<: [*npm]
