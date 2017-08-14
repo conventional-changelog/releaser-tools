@@ -647,8 +647,8 @@ conventional-commits-parser@^2.0.0:
     trim-off-newlines "^1.0.0"
 
 conventional-gitlab-releaser@^2.0.4:
-  version "2.0.20"
-  resolved "https://registry.yarnpkg.com/conventional-gitlab-releaser/-/conventional-gitlab-releaser-2.0.20.tgz#c67f4c757fbbb07be9c52981252dd3f92db3c75f"
+  version "2.0.21"
+  resolved "https://registry.yarnpkg.com/conventional-gitlab-releaser/-/conventional-gitlab-releaser-2.0.21.tgz#047a282339523835e6b77830c4961dea21585399"
   dependencies:
     conventional-changelog "^1.1.0"
     dateformat "^2.0.0"
@@ -2128,8 +2128,8 @@ normalize-path@^2.0.1:
     remove-trailing-separator "^1.0.1"
 
 npm-publish-git-tag@^1.0.9:
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/npm-publish-git-tag/-/npm-publish-git-tag-1.1.5.tgz#2c907ad1e2f7db10d173e3c9177f63a6ce8340e5"
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/npm-publish-git-tag/-/npm-publish-git-tag-1.1.6.tgz#9a61db6ec40812b1c6fb3cc34dc657016f77a9a3"
   dependencies:
     bluebird "^3.5.0"
     commander "^2.9.0"
@@ -2637,8 +2637,8 @@ require-main-filename@^1.0.1:
   resolved "https://registry.yarnpkg.com/require-main-filename/-/require-main-filename-1.0.1.tgz#97f717b69d48784f5f526a6c5aa8ffdda055a4d1"
 
 reserved-words@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/reserved-words/-/reserved-words-0.1.1.tgz#6f7c15e5e5614c50da961630da46addc87c0cef2"
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/reserved-words/-/reserved-words-0.1.2.tgz#00a0940f98cd501aeaaac316411d9adc52b31ab1"
 
 resolve-from@^2.0.0:
   version "2.0.0"
@@ -2679,8 +2679,8 @@ scoped-regex@^1.0.0:
   resolved "https://registry.yarnpkg.com/scoped-regex/-/scoped-regex-1.0.0.tgz#a346bb1acd4207ae70bd7c0c7ca9e566b6baddb8"
 
 semantic-release-gitlab-notifier@^5.0.0:
-  version "5.1.11"
-  resolved "https://registry.yarnpkg.com/semantic-release-gitlab-notifier/-/semantic-release-gitlab-notifier-5.1.11.tgz#c86fc4464f2b0407669d5c741f23de9aec1d9ca8"
+  version "5.1.12"
+  resolved "https://registry.yarnpkg.com/semantic-release-gitlab-notifier/-/semantic-release-gitlab-notifier-5.1.12.tgz#85b80ca781dfe8b0e9fb56edb35cbe367584c5d9"
   dependencies:
     bluebird "^3.4.1"
     conventional-commits-parser "^2.0.0"
