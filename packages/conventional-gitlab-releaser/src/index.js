@@ -45,6 +45,8 @@ function conventionalGitlabReleaser(auth, changelogOpts, context, gitRawCommitsO
   // ignore the default header partial
   writerOpts.headerPartial = writerOpts.headerPartial || '';
 
+  let endpoint = `${auth.url}/api/v4/`;
+
   Q.nfcall(gitSemverTags)
     .then(function(tags) {
       if (!tags || !tags.length) {
@@ -60,7 +62,10 @@ function conventionalGitlabReleaser(auth, changelogOpts, context, gitRawCommitsO
       }
 
       gitRawCommitsOpts.to = gitRawCommitsOpts.to || tags[0];
-
+    })
+    .then(() => glGot(`version`, {token: auth.token, endpoint}))
+    .catch(() => { endpoint = `${auth.url}/api/v3/`; })
+    .then(() => {
       conventionalChangelog(changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts)
         .on('error', function(err) {
           userCb(err);
@@ -73,7 +78,7 @@ function conventionalGitlabReleaser(auth, changelogOpts, context, gitRawCommitsO
 
           var promise = glGot('projects/' + escape(context.owner + '/' + context.repository) + '/repository/tags', {
             token: auth.token,
-            endpoint: auth.url + '/api/v3/',
+            endpoint,
             body: {
               'tag_name': chunk.keyCommit.version,
               ref: chunk.keyCommit.hash,
