@@ -1,28 +1,29 @@
 'use strict';
-var assign = require('object-assign');
-var conventionalChangelog = require('conventional-changelog');
-var escape = require('querystring').escape;
-var gitSemverTags = require('git-semver-tags');
-var glGot = require('gl-got');
-var merge = require('lodash.merge');
-var Q = require('q');
-var through = require('through2');
-var transform = require('./transform');
 
+const assign = require('object-assign');
+const conventionalChangelog = require('conventional-changelog');
+const escape = require('querystring').escape;
+const gitSemverTags = require('git-semver-tags');
+const glGot = require('gl-got');
+const merge = require('lodash.merge');
+const Q = require('q');
+const through = require('through2');
+const transform = require('./transform');
+
+/* eslint max-params: ["error", 7] */
 function conventionalGitlabReleaser(auth, changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts, userCb) {
   if (!auth) {
     throw new Error('Expected an auth object');
   }
 
-  var promises = [];
+  const promises = [];
 
-  var changelogArgs = [changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts].map(function(arg) {
+  const changelogArgs = [changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts].map(function (arg) {
     if (typeof arg === 'function') {
       userCb = arg;
       return {};
-    } else {
-      return arg || {};
     }
+    return arg || {};
   });
 
   if (!userCb) {
@@ -37,7 +38,7 @@ function conventionalGitlabReleaser(auth, changelogOpts, context, gitRawCommitsO
 
   changelogOpts = merge({
     transform: transform,
-    releaseCount: 1
+    releaseCount: 1,
   }, changelogOpts);
 
   writerOpts.includeDetails = true;
@@ -48,59 +49,61 @@ function conventionalGitlabReleaser(auth, changelogOpts, context, gitRawCommitsO
   let endpoint = `${auth.url}/api/v4/`;
 
   Q.nfcall(gitSemverTags)
-    .then(function(tags) {
+    .then(function (tags) {
       if (!tags || !tags.length) {
         setImmediate(userCb, new Error('No semver tags found'));
         return;
       }
 
-      var releaseCount = changelogOpts.releaseCount;
+      const releaseCount = changelogOpts.releaseCount;
       if (releaseCount !== 0) {
         gitRawCommitsOpts = assign({
-          from: tags[releaseCount]
+          from: tags[releaseCount],
         }, gitRawCommitsOpts);
       }
 
       gitRawCommitsOpts.to = gitRawCommitsOpts.to || tags[0];
     })
     .then(() => glGot(`version`, {token: auth.token, endpoint}))
-    .catch(() => { endpoint = `${auth.url}/api/v3/`; })
+    .catch(() => {
+      endpoint = `${auth.url}/api/v3/`;
+    })
     .then(() => {
       conventionalChangelog(changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts)
-        .on('error', function(err) {
+        .on('error', function (err) {
           userCb(err);
         })
-        .pipe(through.obj(function(chunk, enc, cb) {
+        .pipe(through.obj(function (chunk, enc, cb) {
           if (!chunk.keyCommit || !chunk.keyCommit.version) {
             cb();
             return;
           }
 
-          var promise = glGot('projects/' + escape(context.owner + '/' + context.repository) + '/repository/tags', {
+          const promise = glGot('projects/' + escape(context.owner + '/' + context.repository) + '/repository/tags', {
             token: auth.token,
             endpoint,
             body: {
-              'tag_name': chunk.keyCommit.version,
+              tag_name: chunk.keyCommit.version,
               ref: chunk.keyCommit.hash,
               message: 'Release ' + chunk.keyCommit.version,
-              'release_description': chunk.log
-            }
+              release_description: chunk.log,
+            },
           });
 
           promises.push(promise);
 
           cb();
-        }, function() {
+        }, function () {
           Q.all(promises)
-            .then(function(responses) {
+            .then(function (responses) {
               userCb(null, responses);
             })
-            .catch(function(err) {
+            .catch(function (err) {
               userCb(err);
             });
         }));
     })
-    .catch(function(err) {
+    .catch(function (err) {
       userCb(err);
     });
 }

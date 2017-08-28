@@ -34,7 +34,7 @@
   },
   "scripts": {
     "dev": "docker run --rm --user node -v \"$(pwd)\":/app -w /app -it node:4 sh -c \"yarn install; yarn test; bash\"",
-    "test": "jshint src/ && jscs src/ && nyc --all --cache --include=src/ --exclude=src/**/*.spec.js --reporter=lcov --reporter=text mocha --check-leaks --full-trace --globals __core-js_shared__,__coverage__,YamlEscaper --inline-diffs --no-exit --recursive --reporter=progress --retries 1 src/**/*.spec.js"
+    "test": "eslint src/ && nyc --all --cache --include=src/ --exclude=src/cli.js --exclude=src/**/*.spec.js --exclude=src/**/*.mocks.js --reporter=lcov --reporter=text mocha --check-leaks --full-trace --globals __core-js_shared__,__coverage__,YamlEscaper --inline-diffs --no-exit --recursive --reporter=progress --retries 1 src/**/*.spec.js"
   },
   "version": "1.0.0",
   "dependencies": {
@@ -52,8 +52,8 @@
   "devDependencies": {
     "chai": "^4.0.2",
     "codecov": "^2.1.0",
-    "jscs": "^3.0.7",
-    "jshint": "^2.9.1",
+    "eslint": "^4.0.0",
+    "eslint-config-xo-space": "^0.16.0",
     "mocha": "^3.2.0",
     "npm-publish-git-tag": "^1.0.9",
     "nyc": "^11.0.2",

@@ -1,9 +1,11 @@
 #!/usr/bin/env node
-'use strict';
-var meow = require('meow');
-var conventionalGitlabReleaser = require('./');
 
-var cli = meow({
+'use strict';
+
+const meow = require('meow');
+const conventionalGitlabReleaser = require('./');
+
+const cli = meow({
   help: [
     'Usage',
     '  conventional-gitlab-releaser',
@@ -32,8 +34,8 @@ var cli = meow({
     '                            Example of a config script: https://github.com/conventional-changelog/conventional-changelog-angular/blob/master/index.js',
     '                            This value is ignored if preset is specified',
     '',
-    '  -c, --context             A filepath of a javascript that is used to define template variables'
-  ]
+    '  -c, --context             A filepath of a javascript that is used to define template constntiables',
+  ],
 }, {
   alias: {
     u: 'url',
@@ -43,45 +45,30 @@ var cli = meow({
     r: 'releaseCount',
     v: 'verbose',
     n: 'config',
-    c: 'context'
-  }
+    c: 'context',
+  },
 });
 
-var flags = cli.flags;
+const flags = cli.flags;
 
-var templateContext;
-var gitRawCommitsOpts;
-var parserOpts;
-var writerOpts;
+let templateContext;
 
 try {
   if (flags.context) {
     templateContext = require(flags.context);
-  }
-
-  if (flags.gitRawCommitsOpts) {
-    gitRawCommitsOpts = require(flags.gitRawCommitsOpts);
-  }
-
-  if (flags.parserOpts) {
-    parserOpts = require(flags.parserOpts);
-  }
-
-  if (flags.writerOpts) {
-    writerOpts = require(flags.writerOpts);
   }
 } catch (err) {
   console.error('Failed to get file. ' + err);
   process.exit(1);
 }
 
-var changelogOpts = {
+const changelogOpts = {
   preset: flags.preset,
   pkg: {
-    path: flags.pkg
+    path: flags.pkg,
   },
   releaseCount: flags.releaseCount,
-  config: flags.config
+  config: flags.config,
 };
 
 if (flags.verbose) {
@@ -91,26 +78,14 @@ if (flags.verbose) {
 
 conventionalGitlabReleaser({
   url: flags.url || process.env.CONVENTIONAL_GITLAB_URL || 'https://gitlab.com',
-  token: flags.token || process.env.CONVENTIONAL_GITLAB_RELEASER_TOKEN
-}, changelogOpts, templateContext, function(err, data) {
+  token: flags.token || process.env.CONVENTIONAL_GITLAB_RELEASER_TOKEN,
+}, changelogOpts, templateContext, function (err, data) {
   if (err) {
     console.error(err.toString());
     process.exit(1);
   }
 
-  var allRejected = true;
-
-  for (var i = data.length - 1; i >= 0 ; i--) {
-    if (data[i].state === 'fulfilled') {
-      allRejected = false;
-      break;
-    }
-  }
-
-  if (allRejected) {
-    console.error(data);
-    process.exit(1);
-  } else if (flags.verbose) {
+  if (flags.verbose) {
     console.log(data);
   }
 });
