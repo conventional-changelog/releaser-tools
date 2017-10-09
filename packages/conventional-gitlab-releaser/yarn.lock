@@ -685,8 +685,8 @@ conventional-commits-parser@^2.0.0:
     trim-off-newlines "^1.0.0"
 
 conventional-gitlab-releaser@^2.0.4:
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/conventional-gitlab-releaser/-/conventional-gitlab-releaser-2.1.3.tgz#ecb1ae9e47a562a6427c79760ff1fa7b6965c72f"
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/conventional-gitlab-releaser/-/conventional-gitlab-releaser-2.1.4.tgz#751fb6da53622525b3351dbbdc1de95ba3c6b795"
   dependencies:
     conventional-changelog "^1.1.0"
     dateformat "^3.0.0"
@@ -2204,8 +2204,8 @@ normalize-path@^2.0.1:
     remove-trailing-separator "^1.0.1"
 
 npm-publish-git-tag@^1.0.9:
-  version "1.1.11"
-  resolved "https://registry.yarnpkg.com/npm-publish-git-tag/-/npm-publish-git-tag-1.1.11.tgz#527d74bbfddcb3e96c4984baef7a16e9b43ff3f6"
+  version "1.1.13"
+  resolved "https://registry.yarnpkg.com/npm-publish-git-tag/-/npm-publish-git-tag-1.1.13.tgz#fd511adc2f060e09577e48957616fc0f20995ff9"
   dependencies:
     bluebird "^3.5.0"
     commander "^2.9.0"
@@ -2811,8 +2811,8 @@ scoped-regex@^1.0.0:
   resolved "https://registry.yarnpkg.com/scoped-regex/-/scoped-regex-1.0.0.tgz#a346bb1acd4207ae70bd7c0c7ca9e566b6baddb8"
 
 semantic-release-gitlab-notifier@^5.0.0:
-  version "5.1.17"
-  resolved "https://registry.yarnpkg.com/semantic-release-gitlab-notifier/-/semantic-release-gitlab-notifier-5.1.17.tgz#5343f00962d9e798d22b7c5030ed1b9b6d920035"
+  version "5.1.18"
+  resolved "https://registry.yarnpkg.com/semantic-release-gitlab-notifier/-/semantic-release-gitlab-notifier-5.1.18.tgz#888796ca09abb2148e6e2c566348efb9ebd3619b"
   dependencies:
     bluebird "^3.4.1"
     conventional-commits-parser "^2.0.0"
@@ -2825,8 +2825,8 @@ semantic-release-gitlab-notifier@^5.0.0:
     through2 "^2.0.1"
 
 semantic-release-gitlab-releaser@^3.0.3:
-  version "3.0.16"
-  resolved "https://registry.yarnpkg.com/semantic-release-gitlab-releaser/-/semantic-release-gitlab-releaser-3.0.16.tgz#b4da9302337ad92ff72fd28a3e6621a3af5024a7"
+  version "3.0.18"
+  resolved "https://registry.yarnpkg.com/semantic-release-gitlab-releaser/-/semantic-release-gitlab-releaser-3.0.18.tgz#297d7f1761b1aa5a425c66b2572e5b7991dc1566"
   dependencies:
     bluebird "^3.3.4"
     conventional-gitlab-releaser "^2.0.4"
