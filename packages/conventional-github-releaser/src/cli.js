@@ -115,19 +115,7 @@ conventionalGithubReleaser({
     process.exit(0);
   }
 
-  var allRejected = true;
-
-  for (var i = data.length - 1; i >= 0 ; i--) {
-    if (data[i].state === 'fulfilled') {
-      allRejected = false;
-      break;
-    }
-  }
-
-  if (allRejected) {
-    console.error(data);
-    process.exit(1);
-  } else if (flags.verbose) {
+  if (flags.verbose) {
     console.log(data);
   }
 });
