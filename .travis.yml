@@ -32,4 +32,4 @@ node_js:
 before_install:
   - npm install --global npm@${NPM_VERSION}
 after_success:
-  - cat ./coverage/lcov.info | node $(npm bin)/coveralls
+  - $(npm bin)/codecov
