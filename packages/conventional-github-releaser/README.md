@@ -95,7 +95,7 @@ An object that may contain the following properties:
 
 For example:
 
-```json
+```javascript
 {
   token: '0126af95c0e2d9b0a7c78738c4c00a860b04acc8',
   url: 'https://api.github.com'
