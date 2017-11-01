@@ -1,8 +1,6 @@
 # conventional-github-releaser
 
 [![Build Status](https://travis-ci.org/conventional-changelog/conventional-github-releaser.svg?branch=master)](https://travis-ci.org/conventional-changelog/conventional-github-releaser)
-[![Coverage Status](https://coveralls.io/repos/github/conventional-changelog/conventional-github-releaser/badge.svg?branch=master)](https://coveralls.io/github/conventional-changelog/conventional-github-releaser?branch=master)
-[![dependencies Status](https://david-dm.org/conventional-changelog/conventional-github-releaser/status.svg)](https://david-dm.org/conventional-changelog/conventional-github-releaser)
 [![Join the chat at https://gitter.im/conventional-changelog/conventional-github-releaser](https://badges.gitter.im/conventional-changelog/conventional-github-releaser.svg)](https://gitter.im/conventional-changelog/conventional-github-releaser?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 > Make a new GitHub release from git metadata.
@@ -57,10 +55,10 @@ Please use this [gist](https://gist.github.com/stevemao/280ef22ee861323993a0) to
 
 ## Why
 
-- Based on [conventional-changelog](https://github.com/ajoslin/conventional-changelog) but GitHub releases are more elegant.
+- Based on [conventional-changelog](https://www.npmjs.com/package/conventional-changelog) but GitHub releases are more elegant.
 - Easy fully automate changelog generation. You could still add more points on top of it.
-- Detecting prerelease based on semver, ignoring reverted commits, templating with [handlebars.js](https://github.com/wycats/handlebars.js) and links to references, etc. Open an [issue](../../issues/new) if you want more reasonable features.
-- Intelligently setup defaults but yet fully configurable with presets of [popular projects](https://github.com/ajoslin/conventional-changelog#preset).
+- Detecting prerelease based on semver, ignoring reverted commits, templating with [handlebars.js](https://www.npmjs.com/package/handlebars) and links to references, etc. Open an [issue](../../issues/new) if you want more reasonable features.
+- Intelligently setup defaults but yet fully configurable with presets of [popular projects](https://www.npmjs.com/package/conventional-changelog#preset).
 - Everything internally or externally is pluggable.
 - A lot of tests and actively maintained.
 
@@ -89,7 +87,21 @@ conventionalGithubReleaser(AUTH, {
 
 #### auth
 
-An auth object passed to [node-github](https://github.com/mikedeboer/node-github#authentication).
+An object that may contain the following properties:
+
+* token - A [GitHub Personal Token](https://github.com/blog/1509-personal-api-tokens) with `repo` [scope permissions](https://developer.github.com/enterprise/2.11/apps/building-integrations/setting-up-and-registering-oauth-apps/about-scopes-for-oauth-apps/).
+* url - The fully qualified domain name for the GitHub instance (such as `https://api.github.com`).
+
+For example:
+
+```json
+{
+  token: '0126af95c0e2d9b0a7c78738c4c00a860b04acc8',
+  url: 'https://api.github.com'
+}
+```
+
+> Please read [`gh-got`](https://www.npmjs.com/package/gh-got#token) for default behavior when `token` and/or `url` aren't provided.
 
 #### callback
 
