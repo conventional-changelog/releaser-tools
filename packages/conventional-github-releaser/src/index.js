@@ -1,32 +1,29 @@
 'use strict';
-var assign = require('object-assign');
-var conventionalChangelog = require('conventional-changelog');
-var Github = require('github');
-var gitSemverTags = require('git-semver-tags');
-var merge = require('lodash.merge');
-var Q = require('q');
-var semver = require('semver');
-var through = require('through2');
-var transform = require('./transform');
 
-var github = new Github({
-  version: '3.0.0'
-});
+const assign = require('object-assign');
+const conventionalChangelog = require('conventional-changelog');
+const gitSemverTags = require('git-semver-tags');
+const ghGot = require('gh-got');
+const merge = require('lodash.merge');
+const Q = require('q');
+const semver = require('semver');
+const through = require('through2');
+const transform = require('./transform');
 
+/* eslint max-params: ["error", 7] */
 function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts, userCb) {
   if (!auth) {
     throw new Error('Expected an auth object');
   }
 
-  var promises = [];
+  const promises = [];
 
-  var changelogArgs = [changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts].map(function(arg) {
+  const changelogArgs = [changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts].map(function (arg) {
     if (typeof arg === 'function') {
       userCb = arg;
       return {};
-    } else {
-      return arg || {};
     }
+    return arg || {};
   });
 
   if (!userCb) {
@@ -41,7 +38,7 @@ function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsO
 
   changelogOpts = merge({
     transform: transform,
-    releaseCount: 1
+    releaseCount: 1,
   }, changelogOpts);
 
   writerOpts.includeDetails = true;
@@ -49,67 +46,71 @@ function conventionalGithubReleaser(auth, changelogOpts, context, gitRawCommitsO
   // ignore the default header partial
   writerOpts.headerPartial = writerOpts.headerPartial || '';
 
-  github.authenticate(auth);
-
   Q.nfcall(gitSemverTags)
-    .then(function(tags) {
+    .then(function (tags) {
       if (!tags || !tags.length) {
         setImmediate(userCb, new Error('No semver tags found'));
         return;
       }
 
-      var releaseCount = changelogOpts.releaseCount;
+      const releaseCount = changelogOpts.releaseCount;
       if (releaseCount !== 0) {
         gitRawCommitsOpts = assign({
-          from: tags[releaseCount]
+          from: tags[releaseCount],
         }, gitRawCommitsOpts);
       }
 
       gitRawCommitsOpts.to = gitRawCommitsOpts.to || tags[0];
 
       conventionalChangelog(changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts)
-        .on('error', function(err) {
+        .on('error', function (err) {
           userCb(err);
         })
-        .pipe(through.obj(function(chunk, enc, cb) {
+        .pipe(through.obj(function (chunk, enc, cb) {
           if (!chunk.keyCommit || !chunk.keyCommit.version) {
             cb();
             return;
           }
 
-          var version =  chunk.keyCommit.version;
+          const version = chunk.keyCommit.version;
+          const prerelease = semver.parse(version).prerelease.length > 0;
+          const draft = changelogOpts.draft || false;
 
-          var prerelease = semver.parse(version).prerelease.length > 0;
+          const options = {
+            body: {
+              body: chunk.log,
+              draft: draft,
+              name: changelogOpts.name || version,
+              prerelease: prerelease,
+              tag_name: version,
+              target_commitish: changelogOpts.targetCommitish,
+            },
+          };
 
-          var draft = changelogOpts.draft || false;
+          if (auth.token) {
+            options.token = auth.token;
+          }
 
-          var promise = Q.nfcall(github.releases.createRelease, {
-            // jscs:disable
-            owner: context.owner,
-            repo: context.repository,
-            tag_name: version,
-            body: chunk.log,
-            prerelease: prerelease,
-            draft: draft,
-            target_commitish: changelogOpts.targetCommitish,
-            name: changelogOpts.name || version
-            // jscs:enable
-          });
+          if (auth.url) {
+            options.endpoint = auth.url;
+          }
+
+          const promise = ghGot('repos/' + context.owner + '/' + context.repository + '/releases', options);
 
           promises.push(promise);
 
           cb();
-        }, function() {
+        }, function () {
           Q.all(promises)
-            .then(function(responses) {
+            .then(function (responses) {
               userCb(null, responses);
             })
-            .catch(function(err) {
+            .catch(function (err) {
               userCb(err);
             });
         }));
     })
-    .catch(function(err) {
+    .catch(function (err) {
       userCb(err);
     });
 }

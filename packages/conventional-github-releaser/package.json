@@ -33,14 +33,15 @@
     "url": "https://github.com/conventional-changelog/conventional-github-releaser.git"
   },
   "scripts": {
-    "test": "jshint src/ && jscs src/ && nyc --all --cache --include=src/ --exclude=src/**/*.spec.js --reporter=lcov --reporter=text mocha --check-leaks --full-trace --globals __core-js_shared__,__coverage__,YamlEscaper --inline-diffs --no-exit --recursive --reporter=progress --retries 1 src/**/*.spec.js"
+    "dev": "docker run --rm --user node -v \"$(pwd)\":/app -w /app -it node:4 sh -c \"yarn install; yarn test; bash\"",
+    "test": "eslint src/ && nyc --all --cache --include=src/ --exclude=src/cli.js --exclude=src/**/*.spec.js --exclude=src/**/*.mocks.js --reporter=lcov --reporter=text mocha --check-leaks --full-trace --globals __core-js_shared__,__coverage__,YamlEscaper --inline-diffs --no-exit --recursive --reporter=progress --retries 1 src/**/*.spec.js"
   },
   "version": "1.1.12",
   "dependencies": {
     "conventional-changelog": "^1.1.0",
-    "dateformat": "^1.0.11",
+    "dateformat": "^3.0.0",
+    "gh-got": "^6.0.0",
     "git-semver-tags": "^1.0.0",
-    "github": "^0.2.4",
     "lodash.merge": "^4.0.2",
     "meow": "^3.3.0",
     "object-assign": "^4.0.1",
@@ -50,12 +51,12 @@
     "through2": "^2.0.0"
   },
   "devDependencies": {
-    "chai": "^3.0.0",
-    "concat-stream": "^1.5.1",
-    "coveralls": "^2.11.2",
-    "jscs": "^3.0.7",
-    "jshint": "^2.9.1",
-    "mocha": "^3.2.0",
-    "nyc": "^10.3.2"
+    "chai": "^4.1.2",
+    "codecov": "^3.0.0",
+    "eslint": "^4.10.0",
+    "eslint-config-xo-space": "^0.17.0",
+    "mocha": "^4.0.1",
+    "npm-publish-git-tag": "^1.1.14",
+    "nyc": "^11.2.1"
   }
 }

@@ -1,10 +1,12 @@
 #!/usr/bin/env node
-'use strict';
-var meow = require('meow');
-var conventionalGithubReleaser = require('./index');
-var resolve = require('path').resolve;
 
-var cli = meow({
+'use strict';
+
+const meow = require('meow');
+const conventionalGithubReleaser = require('./index');
+const resolve = require('path').resolve;
+
+const cli = meow({
   help: [
     'Usage',
     '  conventional-github-releaser',
@@ -13,6 +15,7 @@ var cli = meow({
     '  conventional-github-releaser -p angular',
     '',
     'Options',
+    '  -u, --url                 URL of your GitHub provider. Defaults to `https://api.github.com`',
     '  -t, --token               Your GitHub auth token',
     '',
     '  -p, --preset              Name of the preset you want to use. Must be one of the following:',
@@ -34,10 +37,11 @@ var cli = meow({
     '  -c, --context             A filepath of a javascript that is used to define template variables',
     '',
     '  -d, --draft               Publishes a draft instead of a real release',
-    '                            Default: false'
-  ]
+    '                            Default: false',
+  ],
 }, {
   alias: {
+    u: 'url',
     t: 'token',
     p: 'preset',
     k: 'pkg',
@@ -45,17 +49,17 @@ var cli = meow({
     v: 'verbose',
     n: 'config',
     c: 'context',
-    d: 'draft'
-  }
+    d: 'draft',
+  },
 });
 
-var config;
-var flags = cli.flags;
+let config = {};
+const flags = cli.flags;
 
-var templateContext;
-var gitRawCommitsOpts;
-var parserOpts;
-var writerOpts;
+let templateContext;
+let gitRawCommitsOpts;
+let parserOpts;
+let writerOpts;
 
 try {
   if (flags.context) {
@@ -64,8 +68,6 @@ try {
 
   if (flags.config) {
     config = require(resolve(process.cwd(), flags.config));
-  } else {
-    config = {};
   }
 
   if (config.gitRawCommitsOpts) {
@@ -84,13 +86,13 @@ try {
   process.exit(1);
 }
 
-var changelogOpts = {
+const changelogOpts = {
   preset: flags.preset,
   pkg: {
-    path: flags.pkg
+    path: flags.pkg,
   },
   releaseCount: flags.releaseCount,
-  draft: flags.draft
+  draft: flags.draft,
 };
 
 if (flags.verbose) {
@@ -99,9 +101,9 @@ if (flags.verbose) {
 }
 
 conventionalGithubReleaser({
-  type: 'oauth',
-  token: flags.token || process.env.CONVENTIONAL_GITHUB_RELEASER_TOKEN
-}, changelogOpts, templateContext, gitRawCommitsOpts, parserOpts, writerOpts, function(err, data) {
+  url: flags.url || process.env.CONVENTIONAL_GITHUB_URL,
+  token: flags.token || process.env.CONVENTIONAL_GITHUB_RELEASER_TOKEN,
+}, changelogOpts, templateContext, gitRawCommitsOpts, parserOpts, writerOpts, function (err, data) {
   if (err) {
     console.error(err.toString());
     process.exit(1);
