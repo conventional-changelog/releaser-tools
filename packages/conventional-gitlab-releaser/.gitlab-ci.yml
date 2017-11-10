@@ -21,7 +21,6 @@ cache:
 
 .node_8: &node_8
   image: node:8
-  allow_failure: true
 
 .node_next: &node_next
   image: node:latest
