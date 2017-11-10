@@ -1,4 +1,5 @@
 {
+  "assignees": ["hutson"],
   "automerge": true,
   "major": {
     "automerge": false
