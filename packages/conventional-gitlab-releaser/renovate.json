@@ -5,6 +5,9 @@
     "automerge": false
   },
   "labels": ["refactor"],
+  "lockFileMaintenance": {
+    "enabled": true
+  },
   "pinVersions": false,
   "prCreation": "not-pending",
   "rebaseStalePrs": true,
