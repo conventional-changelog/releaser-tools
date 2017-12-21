@@ -1,12 +1,12 @@
 {
   "assignees": ["hutson"],
   "automerge": true,
-  "major": {
-    "automerge": false
-  },
   "labels": ["refactor"],
   "lockFileMaintenance": {
     "enabled": true
+  },
+  "major": {
+    "automerge": false
   },
   "pinVersions": false,
   "prCreation": "not-pending",
