@@ -6,36 +6,36 @@ const meow = require('meow');
 const conventionalGitlabReleaser = require('./');
 
 const cli = meow({
-  help: [
-    'Usage',
-    '  conventional-gitlab-releaser',
-    '',
-    'Example',
-    '  conventional-gitlab-releaser -p angular',
-    '',
-    'Options',
-    ' -u,  --url                 URL of your GitLab provider. Defaults to `https://gitlab.com`',
-    '  -t, --token               Your GitLab auth token',
-    '',
-    '  -p, --preset              Name of the preset you want to use. Must be one of the following:',
-    '                            angular, atom, codemirror, ember, eslint, express, jquery, jscs or jshint',
-    '',
-    '  -k, --pkg                 A filepath of where your package.json is located',
-    '                            Default is the closest package.json from cwd',
-    '',
-    '  -r, --release-count       How many releases to be generated from the latest',
-    '                            If 0, the whole changelog will be regenerated and the outfile will be overwritten',
-    '                            Default: 1',
-    '',
-    '  -v, --verbose             Verbose output. Use this for debugging',
-    '                            Default: false',
-    '',
-    '  -n, --config              A filepath of your config script',
-    '                            Example of a config script: https://github.com/conventional-changelog/conventional-changelog-angular/blob/master/index.js',
-    '                            This value is ignored if preset is specified',
-    '',
-    '  -c, --context             A filepath of a javascript that is used to define template constntiables',
-  ],
+  help: `
+    Usage
+      conventional-gitlab-releaser
+
+    Example
+      conventional-gitlab-releaser -p angular
+
+    Options
+     -u,  --url                 URL of your GitLab provider. Defaults to 'https://gitlab.com'
+      -t, --token               Your GitLab auth token
+
+      -p, --preset              Name of the preset you want to use. Must be one of the following:
+                                angular, atom, codemirror, ember, eslint, express, jquery, jscs or jshint
+
+      -k, --pkg                 A filepath of where your package.json is located
+                                Default is the closest package.json from cwd
+
+      -r, --release-count       How many releases to be generated from the latest
+                                If 0, the whole changelog will be regenerated and the outfile will be overwritten
+                                Default: 1
+
+      -v, --verbose             Verbose output. Use this for debugging
+                                Default: false
+
+      -n, --config              A filepath of your config script
+                                Example of a config script: https://github.com/conventional-changelog/conventional-changelog-angular/blob/master/index.js
+                                This value is ignored if preset is specified
+
+      -c, --context             A filepath of a javascript that is used to define template constntiables
+  `,
 }, {
   alias: {
     u: 'url',
