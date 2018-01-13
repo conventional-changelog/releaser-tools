@@ -1,12 +1,11 @@
 stages:
-    - test
-    - release
+  - test
+  - release
 
 cache:
   paths:
     - node_modules/
     - ${HOME}/.cache/yarn
-    - ${HOME}/.npm
 
 .common: &common
   except:
@@ -31,164 +30,25 @@ cache:
     - source ${HOME}/.bashrc
     - yarn install --frozen-lockfile && yarn test && ($(yarn bin)/codecov || echo "Codecov did not collect coverage reports")
 
-.npm: &npm
-  script:
-    - npm update && npm test && ($(npm bin)/codecov || echo "Codecov did not collect coverage reports")
-
 .yarn_latest: &yarn_latest
   <<: [*yarn]
   before_script:
     - curl -o- -L https://yarnpkg.com/install.sh | bash
 
-.yarn_latest_rc: &yarn_latest_rc
-  <<: [*yarn]
-  before_script:
-    - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --rc
-  allow_failure: true
-
-.npm_2: &npm_2
-  <<: [*npm]
-  before_script:
-    - npm prune
-    - mkdir -p /tmp/npm-install-directory
-    - pushd /tmp/npm-install-directory
-    - npm install npm@2
-    - rm -rf /usr/local/lib/node_modules
-    - mv node_modules /usr/local/lib/
-    - popd
-
-.npm_3: &npm_3
-  <<: [*npm]
-  before_script:
-    - npm prune
-    - mkdir -p /tmp/npm-install-directory
-    - pushd /tmp/npm-install-directory
-    - npm install npm@3
-    - rm -rf /usr/local/lib/node_modules
-    - mv node_modules /usr/local/lib/
-    - popd
-
-.npm_4: &npm_4
-  <<: [*npm]
-  before_script:
-    - npm prune
-    - mkdir -p /tmp/npm-install-directory
-    - pushd /tmp/npm-install-directory
-    - npm install npm@4
-    - rm -rf /usr/local/lib/node_modules
-    - mv node_modules /usr/local/lib/
-    - popd
-
-.npm_5: &npm_5
-  <<: [*npm]
-  before_script:
-    - npm prune
-    - mkdir -p /tmp/npm-install-directory
-    - pushd /tmp/npm-install-directory
-    - npm install npm@5
-    - rm -rf /usr/local/lib/node_modules
-    - mv node_modules /usr/local/lib/
-    - popd
-  allow_failure: true
-
-.npm_next: &npm_next
-  <<: [*npm]
-  before_script:
-    - npm prune
-    - mkdir -p /tmp/npm-install-directory
-    - pushd /tmp/npm-install-directory
-    - npm install npm@next
-    - rm -rf /usr/local/lib/node_modules
-    - mv node_modules /usr/local/lib/
-    - popd
-  allow_failure: true
-
-node_4_npm_2:
-  <<: [*common, *node_4, *npm_2]
-
-node_4_npm_3:
-  <<: [*common, *node_4, *npm_3]
-
-node_4_npm_4:
-  <<: [*common, *node_4, *npm_4]
-
-node_4_npm_5:
-  <<: [*common, *node_4, *npm_5]
-
-node_4_npm_next:
-  <<: [*common, *node_4, *npm_next]
-
 node_4_yarn_latest:
   <<: [*common, *node_4, *yarn_latest]
-
-node_4_yarn_latest_rc:
-  <<: [*common, *node_4, *yarn_latest_rc]
-
-node_6_npm_2:
-  <<: [*common, *node_6, *npm_2]
-
-node_6_npm_3:
-  <<: [*common, *node_6, *npm_3]
-
-node_6_npm_4:
-  <<: [*common, *node_6, *npm_4]
-
-node_6_npm_5:
-  <<: [*common, *node_6, *npm_5]
-
-node_6_npm_next:
-  <<: [*common, *node_6, *npm_next]
 
 node_6_yarn_latest:
   <<: [*common, *node_6, *yarn_latest]
 
-node_6_yarn_latest_rc:
-  <<: [*common, *node_6, *yarn_latest_rc]
-
-node_8_npm_2:
-  <<: [*common, *node_8, *npm_2]
-
-node_8_npm_3:
-  <<: [*common, *node_8, *npm_3]
-
-node_8_npm_4:
-  <<: [*common, *node_8, *npm_4]
-
-node_8_npm_5:
-  <<: [*common, *node_8, *npm_5]
-
-node_8_npm_next:
-  <<: [*common, *node_8, *npm_next]
-
 node_8_yarn_latest:
   <<: [*common, *node_8, *yarn_latest]
-
-node_8_yarn_latest_rc:
-  <<: [*common, *node_8, *yarn_latest_rc]
-
-node_next_npm_2:
-  <<: [*common, *node_next, *npm_2]
-
-node_next_npm_3:
-  <<: [*common, *node_next, *npm_3]
-
-node_next_npm_4:
-  <<: [*common, *node_next, *npm_4]
-
-node_next_npm_5:
-  <<: [*common, *node_next, *npm_5]
-
-node_next_npm_next:
-  <<: [*common, *node_next, *npm_next]
 
 node_next_yarn_latest:
   <<: [*common, *node_next, *yarn_latest]
 
-node_next_yarn_latest_rc:
-  <<: [*common, *node_next, *yarn_latest_rc]
-
 release:
-  <<: [*node_6]
+  <<: [*node_8]
   before_script:
     - yarn install --frozen-lockfile
   only:
@@ -198,7 +58,7 @@ release:
   stage: release
 
 publish:
-  <<: [*node_6]
+  <<: [*node_8]
   before_script:
     - yarn install --frozen-lockfile
   only:
