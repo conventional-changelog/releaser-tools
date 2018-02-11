@@ -1,12 +1,46 @@
 # conventional-gitlab-releaser
 
 [![build status](https://gitlab.com/hyper-expanse/conventional-gitlab-releaser/badges/master/build.svg)](https://gitlab.com/hyper-expanse/conventional-gitlab-releaser/commits/master)
-[![codecov.io](https://codecov.io/gitlab/hyper-expanse/conventional-gitlab-releaser/coverage.svg?branch=master)](https://codecov.io/gitlab/hyper-expanse/conventional-gitlab-releaser?branch=master)
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.gitlab.io/cz-cli/)
+[![codecov](https://codecov.io/gl/hyper-expanse/conventional-gitlab-releaser/branch/master/graph/badge.svg)](https://codecov.io/gl/hyper-expanse/conventional-gitlab-releaser)
 
 > Make a new GitLab release from git metadata.
 
 **Note** You don't have to use the angular commit convention. For the best result of the tool to tokenize you commit and produce flexible output, it's recommended to use a commit convention.
+
+## Table of Contents
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [Quick start](#quick-start)
+- [Example output](#example-output)
+  - [Recommended workflow](#recommended-workflow)
+- [Why](#why)
+  - [Required GitLab CE/EE Edition](#required-gitlab-ceee-edition)
+- [Programmatic Usage](#programmatic-usage)
+- [API](#api)
+  - [conventionalGitlabReleaser(auth, [changelogOpts, [context, [gitRawCommitsOpts, [parserOpts, [writerOpts]]]]], callback)](#conventionalgitlabreleaserauth-changelogopts-context-gitrawcommitsopts-parseropts-writeropts-callback)
+    - [auth](#auth)
+    - [callback](#callback)
+      - [callback(err, responses)](#callbackerr-responses)
+        - [responses](#responses)
+    - [changelogOpts](#changelogopts)
+      - [transform](#transform)
+      - [releaseCount](#releasecount)
+    - [gitRawCommitsOpts](#gitrawcommitsopts)
+      - [from](#from)
+      - [to](#to)
+    - [writerOpts](#writeropts)
+      - [includeDetails](#includedetails)
+      - [headerPartial](#headerpartial)
+- [CLI](#cli)
+- [Setup token for cli](#setup-token-for-cli)
+- [Related](#related)
+- [License](#license)
+- [Node Support Policy](#node-support-policy)
+- [Contributing](#contributing)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## Quick start
 
