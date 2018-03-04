@@ -1,0 +1,40 @@
+{
+	"author": {
+    "name": "Hutson Betts",
+    "email": "hutson@hyper-expanse.net",
+    "url": "https://gitlab.com/hutson"
+  },
+  "bin": "",
+  "bugs": "https://github.com/conventional-changelog/releaser-tools/issues",
+  "description": "",
+  "engines": {
+    "node": ">=4.2.0",
+    "npm": ">=2.1.9"
+  },
+  "files": [
+  ],
+  "homepage": "https://github.com/conventional-changelog/releaser-tools#readme",
+  "keywords": [
+  ],
+  "license": "Apache-2.0",
+  "main": "",
+  "name": "releaser-tools",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/conventional-changelog/releaser-tools.git"
+  },
+  "scripts": {
+		"dev": "docker run --rm --user node -v \"$(pwd)\":/app -w /app -it node:4 sh -c \"yarn install; yarn test; bash\"",
+		"postinstall": "lerna bootstrap",
+    "test": "lerna exec yarn test"
+  },
+  "version": "1.0.0",
+  "workspaces": {
+    "packages": ["packages/*"]
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "lerna": "^2.9.0"
+  }
+}
