@@ -18,7 +18,14 @@ package_manager: &package_manager
     - restore_cache:
         keys:
           - dependencies
-    - run: npm install --global npm@latest
+    - run: |
+        currentDirectory=$(pwd)
+        mkdir -p /tmp/npm-install-directory
+        cd /tmp/npm-install-directory
+        npm install npm@latest
+        rm -rf /usr/local/lib/node_modules
+        mv node_modules /usr/local/lib/
+        cd $currentDirectory
     - run: npm install
     - save_cache:
         paths:
