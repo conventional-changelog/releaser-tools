@@ -27,17 +27,17 @@ npm: &npm
     - run: npm test && ($(npm bin)/codecov || echo "Codecov did not collect coverage reports")
 
 jobs:
-  node_4:
+  node_4_job:
     <<: [*node_4, *npm]
-  node_6:
+  node_6_job:
     <<: [*node_6, *npm]
-  node_8:
+  node_8_job:
     <<: [*node_8, *npm]
 
 workflows:
   version: 2
   build:
     jobs:
-      - node_4
-      - node_6
-      - node_8
+      - node_4_job
+      - node_6_job
+      - node_8_job
