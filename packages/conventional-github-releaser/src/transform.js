@@ -1,18 +1,18 @@
-'use strict';
+'use strict'
 
-var dateFormat = require('dateformat');
-var semverRegex = require('semver-regex');
+var dateFormat = require('dateformat')
+var semverRegex = require('semver-regex')
 
-function transform(chunk, cb) {
+function transform (chunk, cb) {
   if (typeof chunk.gitTags === 'string') {
-    chunk.version = (chunk.gitTags.match(semverRegex()) || [])[0];
+    chunk.version = (chunk.gitTags.match(semverRegex()) || [])[0]
   }
 
   if (chunk.committerDate) {
-    chunk.committerDate = dateFormat(chunk.committerDate, 'yyyy-mm-dd', true);
+    chunk.committerDate = dateFormat(chunk.committerDate, 'yyyy-mm-dd', true)
   }
 
-  cb(null, chunk);
+  cb(null, chunk)
 }
 
-module.exports = transform;
+module.exports = transform

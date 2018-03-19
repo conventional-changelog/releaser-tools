@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
-'use strict';
+'use strict'
 
-const meow = require('meow');
-const conventionalGithubReleaser = require('./index');
-const resolve = require('path').resolve;
+const meow = require('meow')
+const conventionalGithubReleaser = require('./index')
+const resolve = require('path').resolve
 
 const cli = meow({
   help: [
@@ -37,8 +37,8 @@ const cli = meow({
     '  -c, --context             A filepath of a javascript that is used to define template variables',
     '',
     '  -d, --draft               Publishes a draft instead of a real release',
-    '                            Default: false',
-  ],
+    '                            Default: false'
+  ]
 }, {
   alias: {
     u: 'url',
@@ -49,67 +49,67 @@ const cli = meow({
     v: 'verbose',
     n: 'config',
     c: 'context',
-    d: 'draft',
-  },
-});
+    d: 'draft'
+  }
+})
 
-let config = {};
-const flags = cli.flags;
+let config = {}
+const flags = cli.flags
 
-let templateContext;
-let gitRawCommitsOpts;
-let parserOpts;
-let writerOpts;
+let templateContext
+let gitRawCommitsOpts
+let parserOpts
+let writerOpts
 
 try {
   if (flags.context) {
-    templateContext = require(resolve(process.cwd(), flags.context));
+    templateContext = require(resolve(process.cwd(), flags.context))
   }
 
   if (flags.config) {
-    config = require(resolve(process.cwd(), flags.config));
+    config = require(resolve(process.cwd(), flags.config))
   }
 
   if (config.gitRawCommitsOpts) {
-    gitRawCommitsOpts = config.gitRawCommitsOpts;
+    gitRawCommitsOpts = config.gitRawCommitsOpts
   }
 
   if (config.parserOpts) {
-    parserOpts = config.parserOpts;
+    parserOpts = config.parserOpts
   }
 
   if (config.writerOpts) {
-    writerOpts = config.writerOpts;
+    writerOpts = config.writerOpts
   }
 } catch (err) {
-  console.error('Failed to get file. ' + err);
-  process.exit(1);
+  console.error('Failed to get file. ' + err)
+  process.exit(1)
 }
 
 const changelogOpts = {
   preset: flags.preset,
   pkg: {
-    path: flags.pkg,
+    path: flags.pkg
   },
   releaseCount: flags.releaseCount,
-  draft: flags.draft,
-};
+  draft: flags.draft
+}
 
 if (flags.verbose) {
-  changelogOpts.debug = console.info.bind(console);
-  changelogOpts.warn = console.warn.bind(console);
+  changelogOpts.debug = console.info.bind(console)
+  changelogOpts.warn = console.warn.bind(console)
 }
 
 conventionalGithubReleaser({
   url: flags.url || process.env.CONVENTIONAL_GITHUB_URL,
-  token: flags.token || process.env.CONVENTIONAL_GITHUB_RELEASER_TOKEN,
+  token: flags.token || process.env.CONVENTIONAL_GITHUB_RELEASER_TOKEN
 }, changelogOpts, templateContext, gitRawCommitsOpts, parserOpts, writerOpts, function (err, data) {
   if (err) {
-    console.error(err.toString());
-    process.exit(1);
+    console.error(err.toString())
+    process.exit(1)
   }
 
   if (flags.verbose) {
-    console.log(data);
+    console.log(data)
   }
-});
+})
