@@ -1,8 +1,8 @@
 # conventional-github-releaser
 
-[![Build Status](https://travis-ci.org/conventional-changelog/conventional-github-releaser.svg?branch=master)](https://travis-ci.org/conventional-changelog/conventional-github-releaser)
-[![codecov.io](https://codecov.io/github/conventional-changelog/conventional-github-releaser/coverage.svg?branch=master)](https://codecov.io/github/conventional-changelog/conventional-github-releaser?branch=master)
-[![Join the chat at https://gitter.im/conventional-changelog/conventional-github-releaser](https://badges.gitter.im/conventional-changelog/conventional-github-releaser.svg)](https://gitter.im/conventional-changelog/conventional-github-releaser?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![CircleCI](https://circleci.com/gh/conventional-changelog/releaser-tools.svg?style=svg)](https://circleci.com/gh/conventional-changelog/releaser-tools)
+[![codecov.io](https://codecov.io/gh/conventional-changelog/releaser-tools/coverage.svg?branch=master)](https://codecov.io/gh/conventional-changelog/releaser-tools?branch=master)
+[![Join the chat at https://gitter.im/conventional-changelog/conventional-github-releaser](https://badges.gitter.im/conventional-changelog/conventional-github-releaser.svg)](https://gitter.im/conventional-changelog/conventional-github-releaser)
 
 > Make a new GitHub release from git metadata.
 
