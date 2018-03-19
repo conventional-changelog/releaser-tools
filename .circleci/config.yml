@@ -12,12 +12,13 @@ node_8: &node_8
   docker:
     - image: node:8
 
-npm: &npm
+package_manager: &package_manager
   steps:
     - checkout
     - restore_cache:
         keys:
           - dependencies
+    - run: npm install --global npm@latest
     - run: npm install
     - save_cache:
         paths:
@@ -28,11 +29,11 @@ npm: &npm
 
 jobs:
   node_4_job:
-    <<: [*node_4, *npm]
+    <<: [*node_4, *package_manager]
   node_6_job:
-    <<: [*node_6, *npm]
+    <<: [*node_6, *package_manager]
   node_8_job:
-    <<: [*node_8, *npm]
+    <<: [*node_8, *package_manager]
 
 workflows:
   version: 2
