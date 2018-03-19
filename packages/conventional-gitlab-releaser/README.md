@@ -1,8 +1,5 @@
 # conventional-gitlab-releaser
 
-[![build status](https://gitlab.com/hyper-expanse/conventional-gitlab-releaser/badges/master/build.svg)](https://gitlab.com/hyper-expanse/conventional-gitlab-releaser/commits/master)
-[![codecov](https://codecov.io/gl/hyper-expanse/conventional-gitlab-releaser/branch/master/graph/badge.svg)](https://codecov.io/gl/hyper-expanse/conventional-gitlab-releaser)
-
 > Make a new GitLab release from git metadata.
 
 **Note** You don't have to use the angular commit convention. For the best result of the tool to tokenize you commit and produce flexible output, it's recommended to use a commit convention.
@@ -233,4 +230,4 @@ JavaScript package managers should allow you to install this package with any ve
 
 ## Contributing
 
-Please read our [contributing guide](https://gitlab.com/hyper-expanse/conventional-gitlab-releaser/blob/master/CONTRIBUTING.md) to see how you may contribute to this project.
+Please read our [contributing guide](https://github.com/conventional-changelog/releaser-tools/blob/master/CONTRIBUTING.md) to see how you may contribute to this project.

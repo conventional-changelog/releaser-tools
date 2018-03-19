@@ -33,8 +33,7 @@
     "url": "https://gitlab.com/hyper-expanse/conventional-gitlab-releaser.git"
   },
   "scripts": {
-    "dev": "docker run --rm --user node -v \"$(pwd)\":/app -w /app -it node:4 sh -c \"yarn install; yarn test; bash\"",
-    "test": "eslint src/ && nyc --all --cache --include=src/ --exclude=src/cli.js --exclude=src/**/*.spec.js --exclude=src/**/*.mocks.js --reporter=lcov --reporter=text mocha --check-leaks --full-trace --globals __core-js_shared__,__coverage__,YamlEscaper --inline-diffs --no-exit --recursive --reporter=progress --retries 1 src/**/*.spec.js"
+    "test": "eslint --fix src/ && nyc --all --cache --include=src/ --exclude=src/cli.js --exclude=src/**/*.spec.js --exclude=src/**/*.mocks.js --reporter=lcov --reporter=text mocha --check-leaks --full-trace --globals __core-js_shared__,__coverage__,YamlEscaper --inline-diffs --no-exit --recursive --reporter=progress --retries 1 src/**/*.spec.js"
   },
   "version": "1.0.0",
   "dependencies": {
@@ -50,13 +49,5 @@
     "through2": "^2.0.0"
   },
   "devDependencies": {
-    "chai": "^4.0.2",
-    "codecov": "^3.0.0",
-    "eslint": "^4.0.0",
-    "eslint-config-xo-space": "^0.18.0",
-    "mocha": "^5.0.0",
-    "npm-publish-git-tag": "^1.0.9",
-    "nyc": "^11.0.2",
-    "semantic-release-gitlab": "^5.0.0"
   }
 }

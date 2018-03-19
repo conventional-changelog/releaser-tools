@@ -1,9 +1,12 @@
 {
+  "commands": {
+    "bootstrap": {
+      "hoist": true
+    }
+  },
   "lerna": "2.9.0",
-  "npmClient": "yarn",
   "packages": [
     "packages/*"
   ],
-  "useWorkspaces": true,
   "version": "independent"
 }

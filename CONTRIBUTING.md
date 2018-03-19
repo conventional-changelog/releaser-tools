@@ -19,7 +19,7 @@ git pull --rebase
 Install the project's dependencies.
 
 ```bash
-npm install
+yarn install
 ```
 
 ### Testing
@@ -27,19 +27,19 @@ npm install
 To run the project's tests run the following command:
 
 ```bash
-npm test
+yarn test
 ```
 
 ## Feature Requests
 
-I'm always looking for suggestions to improve this project. If you have a suggestion for improving an existing feature, or would like to suggest a completely new feature, please file an issue with my [GitLab repository](https://gitlab.com/hyper-expanse/conventional-gitlab-releaser/issues).
+I'm always looking for suggestions to improve this project. If you have a suggestion for improving an existing feature, or would like to suggest a completely new feature, please file an issue with my [GitLab repository](https://github.com/conventional-changelog/releaser-tools/issues).
 
 ## Bug Reports
 
-My project isn't always perfect, but I strive to always improve on that work. You may file bug reports on the [GitLab repository](https://gitlab.com/hyper-expanse/conventional-gitlab-releaser/issues) site.
+My project isn't always perfect, but I strive to always improve on that work. You may file bug reports on the [GitLab repository](https://github.com/conventional-changelog/releaser-tools/issues) site.
 
 ## Pull Requests
 
 Along with my desire to hear your feedback and suggestions, I'm also interested in accepting direct assistance in the form of new code or documentation.
 
-Please feel free to file merge requests against my [GitLab repository](https://gitlab.com/hyper-expanse/conventional-gitlab-releaser/merge_requests).
+Please feel free to file merge requests against my [GitLab repository](https://github.com/conventional-changelog/releaser-tools/merge_requests).

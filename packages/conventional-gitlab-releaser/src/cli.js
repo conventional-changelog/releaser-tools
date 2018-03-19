@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-'use strict';
+'use strict'
 
-const meow = require('meow');
-const conventionalGitlabReleaser = require('./');
+const meow = require('meow')
+const conventionalGitlabReleaser = require('./')
 
 const cli = meow({
   help: `
@@ -35,7 +35,7 @@ const cli = meow({
                                 This value is ignored if preset is specified
 
       -c, --context             A filepath of a javascript that is used to define template constntiables
-  `,
+  `
 }, {
   alias: {
     u: 'url',
@@ -45,47 +45,47 @@ const cli = meow({
     r: 'releaseCount',
     v: 'verbose',
     n: 'config',
-    c: 'context',
-  },
-});
+    c: 'context'
+  }
+})
 
-const flags = cli.flags;
+const flags = cli.flags
 
-let templateContext;
+let templateContext
 
 try {
   if (flags.context) {
-    templateContext = require(flags.context);
+    templateContext = require(flags.context)
   }
 } catch (err) {
-  console.error('Failed to get file. ' + err);
-  process.exit(1);
+  console.error('Failed to get file. ' + err)
+  process.exit(1)
 }
 
 const changelogOpts = {
   preset: flags.preset,
   pkg: {
-    path: flags.pkg,
+    path: flags.pkg
   },
   releaseCount: flags.releaseCount,
-  config: flags.config,
-};
+  config: flags.config
+}
 
 if (flags.verbose) {
-  changelogOpts.debug = console.info.bind(console);
-  changelogOpts.warn = console.warn.bind(console);
+  changelogOpts.debug = console.info.bind(console)
+  changelogOpts.warn = console.warn.bind(console)
 }
 
 conventionalGitlabReleaser({
   url: flags.url || process.env.CONVENTIONAL_GITLAB_URL || 'https://gitlab.com',
-  token: flags.token || process.env.CONVENTIONAL_GITLAB_RELEASER_TOKEN,
+  token: flags.token || process.env.CONVENTIONAL_GITLAB_RELEASER_TOKEN
 }, changelogOpts, templateContext, function (err, data) {
   if (err) {
-    console.error(err.toString());
-    process.exit(1);
+    console.error(err.toString())
+    process.exit(1)
   }
 
   if (flags.verbose) {
-    console.log(data);
+    console.log(data)
   }
-});
+})

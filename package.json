@@ -1,40 +1,47 @@
 {
-	"author": {
+  "author": {
     "name": "Hutson Betts",
     "email": "hutson@hyper-expanse.net",
     "url": "https://gitlab.com/hutson"
   },
   "bin": "",
   "bugs": "https://github.com/conventional-changelog/releaser-tools/issues",
-  "description": "",
+  "description": "Release tools built on conventional-changelog.",
   "engines": {
     "node": ">=4.2.0",
     "npm": ">=2.1.9"
   },
-  "files": [
-  ],
+  "files": [],
   "homepage": "https://github.com/conventional-changelog/releaser-tools#readme",
-  "keywords": [
-  ],
-  "license": "Apache-2.0",
+  "keywords": [],
+  "license": "MIT",
   "main": "",
   "name": "releaser-tools",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/conventional-changelog/releaser-tools.git"
   },
   "scripts": {
-		"dev": "docker run --rm --user node -v \"$(pwd)\":/app -w /app -it node:4 sh -c \"yarn install; yarn test; bash\"",
-		"postinstall": "lerna bootstrap",
-    "test": "lerna exec yarn test"
+    "dev": "docker run --rm --user node -v \"$(pwd)\":/app -w /app -it node:4 sh -c \"npm test; npm test; bash\"",
+    "postinstall": "lerna bootstrap",
+    "release": "lerna publish --conventional-commits -m 'chore(release): publish'",
+    "test": "lerna exec npm test"
   },
   "version": "1.0.0",
-  "workspaces": {
-    "packages": ["packages/*"]
-  },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
-    "lerna": "^2.9.0"
+    "chai": "^4.0.2",
+    "codecov": "^3.0.0",
+    "eslint": "^4.18.2",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-config-xo-space": "^0.18.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "lerna": "^2.9.0",
+    "mocha": "^5.0.0",
+    "nyc": "^11.0.2"
   }
 }
