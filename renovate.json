@@ -1,5 +1,4 @@
 {
-  "assignees": ["hutson"],
   "automerge": true,
   "labels": ["refactor"],
   "lockFileMaintenance": {
