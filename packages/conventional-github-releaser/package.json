@@ -5,7 +5,7 @@
     "url": "https://github.com/stevemao"
   },
   "bin": "./src/cli.js",
-  "bugs": "https://github.com/conventional-changelog/conventional-github-releaser/issues",
+  "bugs": "https://github.com/conventional-changelog/releaser-tools/issues",
   "description": "Make a new GitHub release from git metadata.",
   "engines": {
     "node": ">=4.2.0",
@@ -14,7 +14,7 @@
   "files": [
     "src/"
   ],
-  "homepage": "https://github.com/conventional-changelog/conventional-github-releaser",
+  "homepage": "https://github.com/conventional-changelog/releaser-tools",
   "keywords": [
     "conventional-github-releaser",
     "github",
@@ -30,7 +30,7 @@
   "name": "conventional-github-releaser",
   "repository": {
     "type": "git",
-    "url": "https://github.com/conventional-changelog/conventional-github-releaser.git"
+    "url": "https://github.com/conventional-changelog/releaser-tools.git"
   },
   "scripts": {
     "test": "eslint --fix src/ && nyc --all --cache --include=src/ --exclude=src/cli.js --exclude=src/**/*.spec.js --exclude=src/**/*.mocks.js --reporter=lcov --reporter=text mocha --check-leaks --full-trace --globals __core-js_shared__,__coverage__,YamlEscaper --inline-diffs --no-exit --recursive --reporter=progress --retries 1 src/**/*.spec.js"
