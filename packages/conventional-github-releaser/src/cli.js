@@ -38,18 +38,35 @@ const cli = meow({
 
       -d, --draft               Publishes a draft instead of a real release
                                 Default: false
-  `
-}, {
-  alias: {
-    u: 'url',
-    t: 'token',
-    p: 'preset',
-    k: 'pkg',
-    r: 'releaseCount',
-    v: 'verbose',
-    n: 'config',
-    c: 'context',
-    d: 'draft'
+  `,
+  flags: {
+    url: {
+      alias: 'u'
+    },
+    token: {
+      alias: 't'
+    },
+    preset: {
+      alias: 'p'
+    },
+    pkg: {
+      alias: 'k'
+    },
+    releaseCount: {
+      alias: 'r'
+    },
+    verbose: {
+      alias: 'v'
+    },
+    config: {
+      alias: 'n'
+    },
+    context: {
+      alias: 'c'
+    },
+    draft: {
+      alias: 'd'
+    }
   }
 })
 
