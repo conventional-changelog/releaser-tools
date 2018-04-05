@@ -39,6 +39,7 @@ const cli = meow({
   flags: {
     url: {
       alias: 'u',
+      default: 'https://api.github.com',
       type: 'string'
     },
     token: {
@@ -55,10 +56,12 @@ const cli = meow({
     },
     releaseCount: {
       alias: 'r',
+      default: 1,
       type: 'number'
     },
     verbose: {
       alias: 'v',
+      default: 'false',
       type: 'boolean'
     },
     config: {
