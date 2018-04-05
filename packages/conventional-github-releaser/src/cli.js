@@ -41,31 +41,40 @@ const cli = meow({
   `,
   flags: {
     url: {
-      alias: 'u'
+      alias: 'u',
+      type: 'string'
     },
     token: {
-      alias: 't'
+      alias: 't',
+      type: 'string'
     },
     preset: {
-      alias: 'p'
+      alias: 'p',
+      type: 'string'
     },
     pkg: {
-      alias: 'k'
+      alias: 'k',
+      type: 'string'
     },
     releaseCount: {
-      alias: 'r'
+      alias: 'r',
+      type: 'number'
     },
     verbose: {
-      alias: 'v'
+      alias: 'v',
+      type: 'boolean'
     },
     config: {
-      alias: 'n'
+      alias: 'n',
+      type: 'string'
     },
     context: {
-      alias: 'c'
+      alias: 'c',
+      type: 'string'
     },
     draft: {
-      alias: 'd'
+      alias: 'd',
+      type: 'boolean'
     }
   }
 })
