@@ -39,7 +39,7 @@ const cli = meow({
   flags: {
     url: {
       alias: 'u',
-      default: 'https://api.github.com',
+      default: 'https://gitlab.com',
       type: 'string'
     },
     token: {
