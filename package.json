@@ -8,8 +8,7 @@
   "bugs": "https://github.com/conventional-changelog/releaser-tools/issues",
   "description": "Release tools built on conventional-changelog.",
   "engines": {
-    "node": ">=4.2.0",
-    "npm": ">=2.1.9"
+    "node": ">=6.9.0"
   },
   "files": [],
   "homepage": "https://github.com/conventional-changelog/releaser-tools#readme",

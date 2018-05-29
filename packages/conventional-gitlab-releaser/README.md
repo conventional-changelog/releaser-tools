@@ -220,7 +220,7 @@ MIT © [Steve Mao](https://github.com/stevemao)
 
 ## Node Support Policy
 
-We only support [Long-Term Support](https://github.com/nodejs/LTS) versions of Node.
+We only support [Long-Term Support](https://github.com/nodejs/Release) versions of Node.
 
 We specifically limit our support to LTS versions of Node, not because this package won't work on other versions, but because we have a limited amount of time, and supporting LTS offers the greatest return on that investment.
 
