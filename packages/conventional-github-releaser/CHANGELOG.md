@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.1.0"></a>
+# [3.1.0](https://github.com/conventional-changelog/releaser-tools/compare/conventional-github-releaser@3.0.0...conventional-github-releaser@3.1.0) (2018-05-31)
+
+
+### Features
+
+* **github:** output debug info ([a1ab945](https://github.com/conventional-changelog/releaser-tools/commit/a1ab945)), closes [#67](https://github.com/conventional-changelog/releaser-tools/issues/67)
+
+
+
+
 <a name="3.0.0"></a>
 # [3.0.0](https://github.com/conventional-changelog/releaser-tools/compare/conventional-github-releaser@2.0.2...conventional-github-releaser@3.0.0) (2018-05-29)
 
