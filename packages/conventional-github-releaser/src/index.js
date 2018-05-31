@@ -2,6 +2,7 @@
 
 const assign = require('object-assign')
 const conventionalChangelog = require('conventional-changelog')
+const debug = require(`debug`)(`conventional-github-releaser`)
 const gitSemverTags = require('git-semver-tags')
 const ghGot = require('gh-got')
 const merge = require('lodash.merge')
@@ -76,6 +77,7 @@ function conventionalGithubReleaser (auth, changelogOpts, context, gitRawCommits
           const prerelease = semver.parse(version).prerelease.length > 0
           const draft = changelogOpts.draft || false
 
+          const url = `repos/${context.owner}/${context.repository}/releases`
           const options = {
             body: {
               body: chunk.log,
@@ -86,6 +88,7 @@ function conventionalGithubReleaser (auth, changelogOpts, context, gitRawCommits
               target_commitish: changelogOpts.targetCommitish
             }
           }
+          debug(`posting %o to the following URL - ${url}`, options)
 
           if (auth.token) {
             options.token = auth.token
@@ -95,9 +98,7 @@ function conventionalGithubReleaser (auth, changelogOpts, context, gitRawCommits
             options.endpoint = auth.url
           }
 
-          const promise = ghGot('repos/' + context.owner + '/' + context.repository + '/releases', options)
-
-          promises.push(promise)
+          promises.push(ghGot(url, options))
 
           cb()
         }, function () {

@@ -2,7 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/conventional-changelog/releaser-tools.svg?style=svg)](https://circleci.com/gh/conventional-changelog/releaser-tools)
 [![codecov.io](https://codecov.io/gh/conventional-changelog/releaser-tools/coverage.svg?branch=master)](https://codecov.io/gh/conventional-changelog/releaser-tools?branch=master)
-[![Join the chat at https://gitter.im/conventional-changelog/conventional-github-releaser](https://badges.gitter.im/conventional-changelog/conventional-github-releaser.svg)](https://gitter.im/conventional-changelog/conventional-github-releaser)
+[![Join the chat at https://gitter.im/conventional-changelog/releaser-tools](https://badges.gitter.im/conventional-changelog/releaser-tools.svg)](https://gitter.im/conventional-changelog/conventional-github-releaser)
 
 > Make a new GitHub release from git metadata.
 
@@ -192,9 +192,22 @@ Use [github-remove-all-releases](https://github.com/stevemao/github-remove-all-r
 - [conventional-commits-detector](https://github.com/conventional-changelog/conventional-commits-detector) - Detect what commit message convention your repository is using
 - [github-remove-all-releases](https://github.com/stevemao/github-remove-all-releases) - Remove all releases of your GitHub repo
 
-## License
+## Debugging
 
-MIT © [Steve Mao](https://github.com/stevemao)
+To assist users of `conventional-github-releaser` with debugging the behavior of this module we use the [debug](https://www.npmjs.com/package/debug) utility package to print information about the release process to the console. To enable debug message printing, the environment variable `DEBUG`, which is the variable used by the `debug` package, must be set to a value configured by the package containing the debug messages to be printed.
+
+To print debug messages on a unix system set the environment variable `DEBUG` with the name of this package prior to executing `conventional-github-releaser`:
+
+```bash
+DEBUG=conventional-github-releaser conventional-github-releaser
+```
+
+On the Windows command line you may do:
+
+```bash
+set DEBUG=conventional-github-releaser
+conventional-github-releaser
+```
 
 ## Node Support Policy
 
@@ -213,3 +226,7 @@ JavaScript package managers should allow you to install this package with any ve
 ## Contributing
 
 Please read our [contributing guide](https://github.com/conventional-changelog/releaser-tools/blob/master/CONTRIBUTING.md) to see how you may contribute to this project.
+
+## License
+
+MIT © [Steve Mao](https://github.com/stevemao)

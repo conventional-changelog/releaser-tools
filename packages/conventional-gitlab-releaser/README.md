@@ -2,7 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/conventional-changelog/releaser-tools.svg?style=svg)](https://circleci.com/gh/conventional-changelog/releaser-tools)
 [![codecov.io](https://codecov.io/gh/conventional-changelog/releaser-tools/coverage.svg?branch=master)](https://codecov.io/gh/conventional-changelog/releaser-tools?branch=master)
-[![Join the chat at https://gitter.im/conventional-changelog/conventional-github-releaser](https://badges.gitter.im/conventional-changelog/conventional-github-releaser.svg)](https://gitter.im/conventional-changelog/conventional-github-releaser)
+[![Join the chat at https://gitter.im/conventional-changelog/releaser-tools](https://badges.gitter.im/conventional-changelog/releaser-tools.svg)](https://gitter.im/conventional-changelog/conventional-gitlab-releaser)
 
 > Make a new GitLab release from git metadata.
 
@@ -66,11 +66,6 @@ This will *not* overwrite the releases you have already made. Read ["Regenerate 
 All available command line parameters can be listed using [CLI](#cli) : `conventional-gitlab-releaser --help`.
 
 **Hint:** You can alias your command or add it to your package.json. EG: `"gitlab-release": "conventional-gitlab-releaser -p angular -r 0"`.
-
-## Example output
-
-- https://github.com/conventional-changelog/conventional-github-releaser/releases
-- https://github.com/conventional-changelog/conventional-changelog/releases
 
 ### Recommended workflow
 
@@ -214,9 +209,22 @@ Note: If all results error, it will print the error messages to stderr and exit 
 - [conventional-recommended-bump](https://github.com/conventional-changelog/conventional-recommended-bump) - Get a recommended version bump based on conventional commits
 - [conventional-commits-detector](https://github.com/conventional-changelog/conventional-commits-detector) - Detect what commit message convention your repository is using
 
-## License
+## Debugging
 
-MIT © [Steve Mao](https://github.com/stevemao)
+To assist users of `conventional-gitlab-releaser` with debugging the behavior of this module we use the [debug](https://www.npmjs.com/package/debug) utility package to print information about the release process to the console. To enable debug message printing, the environment variable `DEBUG`, which is the variable used by the `debug` package, must be set to a value configured by the package containing the debug messages to be printed.
+
+To print debug messages on a unix system set the environment variable `DEBUG` with the name of this package prior to executing `conventional-gitlab-releaser`:
+
+```bash
+DEBUG=conventional-gitlab-releaser conventional-gitlab-releaser
+```
+
+On the Windows command line you may do:
+
+```bash
+set DEBUG=conventional-gitlab-releaser
+conventional-gitlab-releaser
+```
 
 ## Node Support Policy
 
@@ -235,3 +243,7 @@ JavaScript package managers should allow you to install this package with any ve
 ## Contributing
 
 Please read our [contributing guide](https://github.com/conventional-changelog/releaser-tools/blob/master/CONTRIBUTING.md) to see how you may contribute to this project.
+
+## License
+
+MIT © [Steve Mao](https://github.com/stevemao)
