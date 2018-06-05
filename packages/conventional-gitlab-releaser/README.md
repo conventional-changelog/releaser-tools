@@ -2,7 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/conventional-changelog/releaser-tools.svg?style=svg)](https://circleci.com/gh/conventional-changelog/releaser-tools)
 [![codecov.io](https://codecov.io/gh/conventional-changelog/releaser-tools/coverage.svg?branch=master)](https://codecov.io/gh/conventional-changelog/releaser-tools?branch=master)
-[![Join the chat at https://gitter.im/conventional-changelog/releaser-tools](https://badges.gitter.im/conventional-changelog/releaser-tools.svg)](https://gitter.im/conventional-changelog/conventional-gitlab-releaser)
+[![Gitter](https://badges.gitter.im/conventional-changelog/releaser-tools.svg)](https://gitter.im/conventional-changelog/releaser-tools?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 > Make a new GitLab release from git metadata.
 

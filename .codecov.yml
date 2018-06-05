@@ -1,1 +1,8 @@
 comment: off
+
+coverage:
+  notify:
+    gitter:
+      default:
+        url: "https://webhooks.gitter.im/e/e3462329f160ec1d3052"
+        threshold: 1%
