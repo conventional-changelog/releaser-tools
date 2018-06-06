@@ -38,18 +38,48 @@ const cli = meow({
 
       -d, --draft               Publishes a draft instead of a real release
                                 Default: false
-  `
-}, {
-  alias: {
-    u: 'url',
-    t: 'token',
-    p: 'preset',
-    k: 'pkg',
-    r: 'releaseCount',
-    v: 'verbose',
-    n: 'config',
-    c: 'context',
-    d: 'draft'
+  `,
+  flags: {
+    url: {
+      alias: 'u',
+      default: 'https://api.github.com',
+      type: 'string'
+    },
+    token: {
+      alias: 't',
+      type: 'string'
+    },
+    preset: {
+      alias: 'p',
+      type: 'string'
+    },
+    pkg: {
+      alias: 'k',
+      type: 'string'
+    },
+    releaseCount: {
+      alias: 'r',
+      default: 1,
+      type: 'number'
+    },
+    verbose: {
+      alias: 'v',
+      default: 'false',
+      type: 'boolean'
+    },
+    config: {
+      alias: 'n',
+      type: 'string'
+    },
+    context: {
+      alias: 'c',
+      type: 'string'
+    },
+    draft: {
+      alias: 'd',
+      default: false,
+      type: 'boolean'
+    }
   }
 })
 

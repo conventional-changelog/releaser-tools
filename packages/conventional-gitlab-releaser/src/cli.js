@@ -35,17 +35,43 @@ const cli = meow({
                                 This value is ignored if preset is specified
 
       -c, --context             A filepath of a javascript that is used to define template constntiables
-  `
-}, {
-  alias: {
-    u: 'url',
-    t: 'token',
-    p: 'preset',
-    k: 'pkg',
-    r: 'releaseCount',
-    v: 'verbose',
-    n: 'config',
-    c: 'context'
+  `,
+  flags: {
+    url: {
+      alias: 'u',
+      default: 'https://gitlab.com',
+      type: 'string'
+    },
+    token: {
+      alias: 't',
+      type: 'string'
+    },
+    preset: {
+      alias: 'p',
+      type: 'string'
+    },
+    pkg: {
+      alias: 'k',
+      type: 'string'
+    },
+    releaseCount: {
+      alias: 'r',
+      default: 1,
+      type: 'number'
+    },
+    verbose: {
+      alias: 'v',
+      default: 'false',
+      type: 'boolean'
+    },
+    config: {
+      alias: 'n',
+      type: 'string'
+    },
+    context: {
+      alias: 'c',
+      type: 'string'
+    }
   }
 })
 
