@@ -73,30 +73,22 @@ function conventionalGithubReleaser (auth, changelogOpts, context, gitRawCommits
             return
           }
 
-          const version = chunk.keyCommit.version
-          const prerelease = semver.parse(version).prerelease.length > 0
-          const draft = changelogOpts.draft || false
-
           const url = `repos/${context.owner}/${context.repository}/releases`
           const options = {
+            endpoint: auth.url,
             body: {
               body: chunk.log,
-              draft: draft,
-              name: changelogOpts.name || version,
-              prerelease: prerelease,
-              tag_name: version,
+              draft: changelogOpts.draft || false,
+              name: changelogOpts.name || chunk.keyCommit.version,
+              prerelease: semver.parse(chunk.keyCommit.version).prerelease.length > 0,
+              tag_name: chunk.keyCommit.version,
               target_commitish: changelogOpts.targetCommitish
             }
           }
           debug(`posting %o to the following URL - ${url}`, options)
 
-          if (auth.token) {
-            options.token = auth.token
-          }
-
-          if (auth.url) {
-            options.endpoint = auth.url
-          }
+          // Set auth after debug output so that we don't print auth token to console.
+          options.token = auth.token
 
           promises.push(ghGot(url, options))
 
