@@ -42,11 +42,12 @@ const cli = meow({
   flags: {
     url: {
       alias: 'u',
-      default: 'https://api.github.com',
+      default: process.env.CONVENTIONAL_GITHUB_URL || 'https://api.github.com',
       type: 'string'
     },
     token: {
       alias: 't',
+      default: process.env.CONVENTIONAL_GITHUB_RELEASER_TOKEN,
       type: 'string'
     },
     preset: {
@@ -131,8 +132,8 @@ if (flags.verbose) {
 }
 
 conventionalGithubReleaser({
-  url: flags.url || process.env.CONVENTIONAL_GITHUB_URL,
-  token: flags.token || process.env.CONVENTIONAL_GITHUB_RELEASER_TOKEN
+  url: flags.url,
+  token: flags.token
 }, changelogOpts, templateContext, gitRawCommitsOpts, parserOpts, writerOpts, function (err, data) {
   if (err) {
     console.error(err.toString())

@@ -39,11 +39,12 @@ const cli = meow({
   flags: {
     url: {
       alias: 'u',
-      default: 'https://gitlab.com',
+      default: process.env.CONVENTIONAL_GITLAB_URL || 'https://gitlab.com',
       type: 'string'
     },
     token: {
       alias: 't',
+      default: process.env.CONVENTIONAL_GITLAB_RELEASER_TOKEN,
       type: 'string'
     },
     preset: {
@@ -103,8 +104,8 @@ if (flags.verbose) {
 }
 
 conventionalGitlabReleaser({
-  url: flags.url || process.env.CONVENTIONAL_GITLAB_URL || 'https://gitlab.com',
-  token: flags.token || process.env.CONVENTIONAL_GITLAB_RELEASER_TOKEN
+  url: flags.url,
+  token: flags.token
 }, changelogOpts, templateContext, function (err, data) {
   if (err) {
     console.error(err.toString())
