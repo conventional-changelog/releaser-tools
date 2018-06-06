@@ -2,6 +2,7 @@
 
 const assign = require('object-assign')
 const conventionalChangelog = require('conventional-changelog')
+const debug = require(`debug`)(`conventional-github-releaser`)
 const escape = require('querystring').escape
 const gitSemverTags = require('git-semver-tags')
 const glGot = require('gl-got')
@@ -79,8 +80,8 @@ function conventionalGitlabReleaser (auth, changelogOpts, context, gitRawCommits
             return
           }
 
-          const promise = glGot('projects/' + escape(context.owner + '/' + context.repository) + '/repository/tags', {
-            token: auth.token,
+          const url = `projects/${escape(context.owner + `/` + context.repository)}/repository/tags`
+          const options = {
             endpoint,
             body: {
               tag_name: chunk.keyCommit.version,
@@ -88,9 +89,13 @@ function conventionalGitlabReleaser (auth, changelogOpts, context, gitRawCommits
               message: 'Release ' + chunk.keyCommit.version,
               release_description: chunk.log
             }
-          })
+          }
+          debug(`posting %o to the following URL - ${url}`, options)
 
-          promises.push(promise)
+          // Set auth after debug output so that we don't print auth token to console.
+          options.token = auth.token
+
+          promises.push(glGot(url, options))
 
           cb()
         }, function () {
