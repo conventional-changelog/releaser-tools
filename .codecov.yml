@@ -6,3 +6,9 @@ coverage:
       default:
         url: "https://webhooks.gitter.im/e/e3462329f160ec1d3052"
         threshold: 1%
+  status:
+    project:
+      conventional-github-releaser:
+        paths: "packages/conventional-github-releaser"
+      conventional-gitlab-releaser:
+        paths: "packages/conventional-gitlab-releaser"
