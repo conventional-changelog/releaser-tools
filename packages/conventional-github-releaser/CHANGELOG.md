@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.1.1"></a>
+## [3.1.1](https://github.com/conventional-changelog/releaser-tools/compare/conventional-github-releaser@3.1.0...conventional-github-releaser@3.1.1) (2018-06-06)
+
+
+### Bug Fixes
+
+* **cli:** add default values to flags ([c4bb0db](https://github.com/conventional-changelog/releaser-tools/commit/c4bb0db))
+* **cli:** add type values to flags ([de16925](https://github.com/conventional-changelog/releaser-tools/commit/de16925))
+* **cli:** use flags property grouped by flag name ([c0ee6df](https://github.com/conventional-changelog/releaser-tools/commit/c0ee6df))
+* use environment variables as defaults ([ec5157f](https://github.com/conventional-changelog/releaser-tools/commit/ec5157f))
+
+
+
+
 <a name="3.1.0"></a>
 # [3.1.0](https://github.com/conventional-changelog/releaser-tools/compare/conventional-github-releaser@3.0.0...conventional-github-releaser@3.1.0) (2018-05-31)
 
