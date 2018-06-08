@@ -15,7 +15,7 @@ const cli = meow({
       conventional-github-releaser -p angular
 
     Options
-      -u, --url                 URL of your GitHub provider. Defaults to 'https://api.github.com'
+      -u, --url                 URL of your GitHub provider. Defaults to 'https://api.github.com/'
       -t, --token               Your GitHub auth token
 
       -p, --preset              Name of the preset you want to use. Must be one of the following:
@@ -42,7 +42,7 @@ const cli = meow({
   flags: {
     url: {
       alias: 'u',
-      default: process.env.CONVENTIONAL_GITHUB_URL || 'https://api.github.com',
+      default: process.env.CONVENTIONAL_GITHUB_URL || 'https://api.github.com/',
       type: 'string'
     },
     token: {

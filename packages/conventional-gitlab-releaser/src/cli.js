@@ -14,7 +14,7 @@ const cli = meow({
       conventional-gitlab-releaser -p angular
 
     Options
-      -u,  --url                 URL of your GitLab provider. Defaults to 'https://gitlab.com'
+      -u,  --url                URL of your GitLab provider. Defaults to 'https://gitlab.com/api/v4/'
       -t, --token               Your GitLab auth token
 
       -p, --preset              Name of the preset you want to use. Must be one of the following:
@@ -39,7 +39,7 @@ const cli = meow({
   flags: {
     url: {
       alias: 'u',
-      default: process.env.CONVENTIONAL_GITLAB_URL || 'https://gitlab.com',
+      default: process.env.CONVENTIONAL_GITLAB_URL || 'https://gitlab.com/api/v4/',
       type: 'string'
     },
     token: {
