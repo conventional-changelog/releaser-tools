@@ -2,7 +2,7 @@
 
 const assign = require('object-assign')
 const conventionalChangelog = require('conventional-changelog')
-const debug = require(`debug`)(`conventional-github-releaser`)
+const debug = require(`debug`)(`conventional-gitlab-releaser`)
 const escape = require('querystring').escape
 const gitSemverTags = require('git-semver-tags')
 const glGot = require('gl-got')
