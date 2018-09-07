@@ -2,7 +2,7 @@ version: 2
 
 node_6: &node_6
   docker:
-    - image: node:6@sha256:238fa19f243c498bb64b77d870e002fa1ed71c72eca692bdaca43dcf2510b30d
+    - image: node:6@sha256:68d8ca89524a21200e6a3ec0948893f3fe2c9e807ecc2a74319fbee59a13d2c4
 
 node_8: &node_8
   docker:
