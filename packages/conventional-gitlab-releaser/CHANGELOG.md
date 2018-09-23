@@ -3,7 +3,42 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-<a name="3.2.0"></a>
+      <a name="4.0.0"></a>
+# [4.0.0](https://github.com/conventional-changelog/releaser-tools/compare/conventional-gitlab-releaser@3.2.0...conventional-gitlab-releaser@4.0.0) (2018-09-23)
+
+
+### Bug Fixes
+
+* **gitlab:** use correct package name for debug ([9199bdc](https://github.com/conventional-changelog/releaser-tools/commit/9199bdc))
+
+
+### Code Refactoring
+
+* require the full API URL to be provided ([37cc686](https://github.com/conventional-changelog/releaser-tools/commit/37cc686))
+
+
+### BREAKING CHANGES
+
+* If passing an AUTH object directly, as shown below, please make sure to
+pass the full API URL:
+
+```
+var conventionalGitlabReleaser = require('conventional-gitlab-releaser');
+
+var AUTH = {
+url: 'https://gitlab.com/api/v4',
+token: '0126af95c0e2d9b0a7c78738c4c00a860b04acc8'
+};
+
+conventionalGitlabReleaser(AUTH, {
+preset: 'angular'
+}, callback);
+```
+
+
+
+
+      <a name="3.2.0"></a>
 # [3.2.0](https://github.com/conventional-changelog/releaser-tools/compare/conventional-gitlab-releaser@3.1.1...conventional-gitlab-releaser@3.2.0) (2018-06-08)
 
 
