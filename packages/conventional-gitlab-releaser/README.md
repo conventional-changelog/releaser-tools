@@ -93,11 +93,11 @@ Please use this [gist](https://gist.github.com/stevemao/280ef22ee861323993a0) to
 
 ### Required GitLab CE/EE Edition
 
-Version [8.2](https://about.gitlab.com/2015/11/22/gitlab-8-2-released/), or higher, of GitLab CE/EE is required for `conventional-gitlab-releaser`.
+Version [9.0](https://about.gitlab.com/2017/03/22/gitlab-9-0-released/#api-v4-ce-ees-eep), or higher, of GitLab CE/EE is required for `conventional-gitlab-releaser`.
 
 Core features used:
 * [GitLab release page](http://docs.gitlab.com/ce/workflow/releases.html)
-* [API v3](https://gitlab.com/gitlab-org/gitlab-ce/blob/8-16-stable/doc/api/README.md)
+* [API v4](https://docs.gitlab.com/ce/api/README.html)
 
 > This only applies to you if you're running your own instance of GitLab. GitLab.com is always the latest version of the GitLab application.
 
@@ -111,7 +111,7 @@ $ npm install --save conventional-gitlab-releaser
 var conventionalGitlabReleaser = require('conventional-gitlab-releaser');
 
 var AUTH = {
-  url: 'https://gitlab.com',,
+  url: 'https://gitlab.com/api/v4',
   token: '0126af95c0e2d9b0a7c78738c4c00a860b04acc8'
 };
 
@@ -129,13 +129,13 @@ conventionalGitlabReleaser(AUTH, {
 An authentication object containing the following:
 
 * `token` - A [GitLab Private Token](https://gitlab.com/profile/account) with _Developer_ permissions on the project to be released.
-* `url` - The fully qualified domain name for the GitLab instance (such as `https://gitlab.com`).
+* `url` - The GitLab API (such as `https://gitlab.com/api/v4`).
 
 For example:
 
 ```javascript
 {
-  url: 'https://gitlab.com',
+  url: 'https://gitlab.com/api/v4',
   token: '0126af95c0e2d9b0a7c78738c4c00a860b04acc8'
 }
 ```
