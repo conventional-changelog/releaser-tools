@@ -111,7 +111,7 @@ $ npm install --save conventional-gitlab-releaser
 var conventionalGitlabReleaser = require('conventional-gitlab-releaser');
 
 var AUTH = {
-  url: 'https://gitlab.com/api/v4',
+  url: 'https://gitlab.com/api/v4/',
   token: '0126af95c0e2d9b0a7c78738c4c00a860b04acc8'
 };
 
@@ -129,13 +129,13 @@ conventionalGitlabReleaser(AUTH, {
 An authentication object containing the following:
 
 * `token` - A [GitLab Private Token](https://gitlab.com/profile/account) with _Developer_ permissions on the project to be released.
-* `url` - The GitLab API (such as `https://gitlab.com/api/v4`).
+* `url` - The GitLab API (such as `https://gitlab.com/api/v4/`).
 
 For example:
 
 ```javascript
 {
-  url: 'https://gitlab.com/api/v4',
+  url: 'https://gitlab.com/api/v4/',
   token: '0126af95c0e2d9b0a7c78738c4c00a860b04acc8'
 }
 ```
