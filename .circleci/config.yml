@@ -42,7 +42,3 @@ workflows:
     jobs:
       - node_6_job
       - node_8_job
-
-notify:
-  webhooks:
-    - url: https://webhooks.gitter.im/e/5b220f6576f228656526

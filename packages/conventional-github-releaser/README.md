@@ -2,7 +2,6 @@
 
 [![CircleCI](https://circleci.com/gh/conventional-changelog/releaser-tools.svg?style=svg)](https://circleci.com/gh/conventional-changelog/releaser-tools)
 [![codecov.io](https://codecov.io/gh/conventional-changelog/releaser-tools/coverage.svg?branch=master)](https://codecov.io/gh/conventional-changelog/releaser-tools?branch=master)
-[![Gitter](https://badges.gitter.im/conventional-changelog/releaser-tools.svg)](https://gitter.im/conventional-changelog/releaser-tools?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 > Make a new GitHub release from git metadata.
 
