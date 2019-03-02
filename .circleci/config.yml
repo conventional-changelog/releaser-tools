@@ -2,11 +2,11 @@ version: 2
 
 node_6: &node_6
   docker:
-    - image: node:6@sha256:c1f7fbd0834eed5e69ea8e925ab59be61e68f278258df7cbbd652cb5516aacb7
+    - image: node:6@sha256:911a04548a6a0823843285ca49f45858c5ccaaa4afef004756ca24e508ed309e
 
 node_8: &node_8
   docker:
-    - image: node:8@sha256:9a42112281bef142cd40a281c5cd1b781cc9d0f0f2314827b87f86893f636df6
+    - image: node:8@sha256:843a6a39be4167eec1520773be157d2e49739a574f9c7b652089bedde663227e
 
 package_manager: &package_manager
   steps:
