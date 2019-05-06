@@ -17,6 +17,16 @@
   "main": "",
   "name": "releaser-tools",
   "private": true,
+  "renovate": {
+    "extends": [
+      "config:base",
+      ":maintainLockFilesWeekly",
+      ":rebaseStalePrs",
+      ":automergeDigest",
+      ":gitSignOff",
+      ":preserveSemverRanges"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/conventional-changelog/releaser-tools.git"
