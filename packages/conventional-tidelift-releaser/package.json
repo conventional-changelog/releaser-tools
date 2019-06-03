@@ -1,0 +1,49 @@
+{
+  "author": {
+    "name": "Hutson Betts",
+    "email": "hutson@hyper-expanse.net",
+    "url": "https://github.com/hutson"
+  },
+  "bin": "./src/cli.js",
+  "bugs": "https://github.com/conventional-changelog/releaser-tools/issues",
+  "description": "Publish release notes to Tidelift from Git metadata.",
+  "engines": {
+    "node": ">=8.9.0"
+  },
+  "files": [
+    "src/**/!(*.spec).js"
+  ],
+  "homepage": "https://github.com/conventional-changelog/releaser-tools#readme",
+  "keywords": [
+    "tidelift",
+    "conventional-changelog",
+    "changelog",
+    "release",
+    "conventional-commits"
+  ],
+  "license": "MIT",
+  "main": "src/index.js",
+  "name": "conventional-tidelift-releaser",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/conventional-changelog/releaser-tools.git"
+  },
+  "scripts": {
+    "test": "eslint --fix src/ && nyc --all --cache --include=src/ --exclude=src/cli.js --exclude=src/**/*.spec.js --exclude=src/**/*.mocks.js --reporter=lcov --reporter=text mocha --check-leaks --full-trace --globals __core-js_shared__,__coverage__,YamlEscaper --inline-diffs --no-exit --recursive --reporter=progress --retries 1 src/**/*.spec.js"
+  },
+  "version": "1.0.0",
+  "dependencies": {
+    "conventional-changelog": "^2.0.0",
+    "conventional-changelog-conventionalcommits": "^3.0.2",
+    "dateformat": "^3.0.0",
+    "debug": "^3.1.0",
+    "git-semver-tags": "^2.0.0",
+    "got": "^9.6.0",
+    "lodash.merge": "^4.0.2",
+    "meow": "^5.0.0",
+    "object-assign": "^4.0.1",
+    "q": "^1.4.1",
+    "semver-regex": "^2.0.0",
+    "through2": "^2.0.0"
+  }
+}
