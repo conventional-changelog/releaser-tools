@@ -16,7 +16,6 @@ RUN apk update && \
 
 # Copy only those files required in production.
 COPY package.json /tmp/conventional-tidelift-releaser/package.json
-COPY yarn.lock /tmp/conventional-tidelift-releaser/yarn.lock
 COPY src/ /tmp/conventional-tidelift-releaser/src/
 
 # Setup a dedicated directory to house the code, from which releases will be generated, that's stilled owned by the `node` user.
