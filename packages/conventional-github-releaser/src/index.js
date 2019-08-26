@@ -11,6 +11,15 @@ const semver = require('semver')
 const through = require('through2')
 const transform = require('./transform')
 
+function parseChangelogOpts(changelogOpts) {
+  let preset = changelogOpts.preset
+
+  return merge(
+    changelogOpts,
+    {preset: typeof preset ==='string' ? {name: preset} : preset}
+  )
+}
+
 /* eslint max-params: ["error", 7] */
 function conventionalGithubReleaser (auth, changelogOpts, context, gitRawCommitsOpts, parserOpts, writerOpts, userCb) {
   if (!auth) {
@@ -41,6 +50,8 @@ function conventionalGithubReleaser (auth, changelogOpts, context, gitRawCommits
     transform: transform,
     releaseCount: 1
   }, changelogOpts)
+
+  changelogOpts = parseChangelogOpts(changelogOpts)
 
   writerOpts.includeDetails = true
 
