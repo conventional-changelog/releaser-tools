@@ -73,14 +73,11 @@ function conventionalGitlabReleaser (auth, changelogOpts, context, gitRawCommits
             return
           }
 
-          const url = `projects/${escape(context.owner + `/` + context.repository)}/repository/tags`
+          const url = `/projects/${escape(context.owner + `/` + context.repository)}/repository/tags/${chunk.keyCommit.version}/release`
           const options = {
             endpoint: auth.url,
             body: {
-              tag_name: chunk.keyCommit.version,
-              ref: chunk.keyCommit.hash,
-              message: 'Release ' + chunk.keyCommit.version,
-              release_description: chunk.log
+              description: chunk.log
             }
           }
           debug(`posting %o to the following URL - ${url}`, options)
