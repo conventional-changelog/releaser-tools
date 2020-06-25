@@ -1,12 +1,12 @@
 version: 2
 
-node_6: &node_6
+node_10: &node_10
   docker:
-    - image: node:6@sha256:e133e66ec3bfc98da0440e552f452e5cdf6413319d27a2db3b01ac4b319759b3
+    - image: node:10
 
-node_8: &node_8
+node_12: &node_12
   docker:
-    - image: node:8@sha256:717f84f9aa6a51a5c2914100812937261551e50a88f2323acc0b1d43a081b6e2
+    - image: node:12
 
 package_manager: &package_manager
   steps:
@@ -31,14 +31,14 @@ package_manager: &package_manager
     - run: npm test && ($(npm bin)/codecov || echo "Codecov did not collect coverage reports")
 
 jobs:
-  node_6_job:
-    <<: [*node_6, *package_manager]
-  node_8_job:
-    <<: [*node_8, *package_manager]
+  node_10_job:
+    <<: [*node_10, *package_manager]
+  node_12_job:
+    <<: [*node_12, *package_manager]
 
 workflows:
   version: 2
   build:
     jobs:
-      - node_6_job
-      - node_8_job
+      - node_10_job
+      - node_12_job

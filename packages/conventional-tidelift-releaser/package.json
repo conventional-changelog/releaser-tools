@@ -40,7 +40,7 @@
     "git-semver-tags": "^2.0.0",
     "got": "^9.6.0",
     "lodash.merge": "^4.0.2",
-    "meow": "^5.0.0",
+    "meow": "^7.0.0",
     "object-assign": "^4.0.1",
     "q": "^1.4.1",
     "semver-regex": "^2.0.0",
