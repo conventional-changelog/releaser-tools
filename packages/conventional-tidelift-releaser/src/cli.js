@@ -67,7 +67,7 @@ const cli = meow({
     },
     verbose: {
       alias: 'v',
-      default: 'false',
+      default: false,
       type: 'boolean'
     },
     config: {
