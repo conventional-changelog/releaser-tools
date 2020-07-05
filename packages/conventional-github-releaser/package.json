@@ -34,7 +34,7 @@
   "scripts": {
     "test": "eslint --fix src/ && nyc --all --cache --include=src/ --exclude=src/cli.js --exclude=src/**/*.spec.js --exclude=src/**/*.mocks.js --reporter=lcov --reporter=text mocha --check-leaks --full-trace --globals __core-js_shared__,__coverage__,YamlEscaper --inline-diffs --no-exit --recursive --reporter=progress --retries 1 src/**/*.spec.js"
   },
-  "version": "3.1.4",
+  "version": "3.1.5",
   "dependencies": {
     "conventional-changelog": "^2.0.0",
     "dateformat": "^3.0.0",

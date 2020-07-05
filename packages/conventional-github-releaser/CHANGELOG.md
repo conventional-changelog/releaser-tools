@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="3.1.5"></a>
+## [3.1.5](https://github.com/conventional-changelog/releaser-tools/compare/conventional-github-releaser@3.1.4...conventional-github-releaser@3.1.5) (2020-07-05)
+
+
+
+
+**Note:** Version bump only for package conventional-github-releaser
+
 <a name="3.1.3"></a>
 ## [3.1.3](https://github.com/conventional-changelog/releaser-tools/compare/conventional-github-releaser@3.1.2...conventional-github-releaser@3.1.3) (2019-06-03)
 

@@ -3,7 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-  <a name="4.0.1"></a>
+      <a name="4.0.3"></a>
+## [4.0.3](https://github.com/conventional-changelog/releaser-tools/compare/conventional-gitlab-releaser@4.0.2...conventional-gitlab-releaser@4.0.3) (2020-07-05)
+
+
+
+
+**Note:** Version bump only for package conventional-gitlab-releaser
+
+      <a name="4.0.1"></a>
 ## [4.0.1](https://github.com/conventional-changelog/releaser-tools/compare/conventional-gitlab-releaser@4.0.0...conventional-gitlab-releaser@4.0.1) (2019-06-03)
 
 
@@ -11,7 +19,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package conventional-gitlab-releaser
 
-  <a name="4.0.0"></a>
+<a name="4.0.0"></a>
 # [4.0.0](https://github.com/conventional-changelog/releaser-tools/compare/conventional-gitlab-releaser@3.2.0...conventional-gitlab-releaser@4.0.0) (2018-09-23)
 
 
