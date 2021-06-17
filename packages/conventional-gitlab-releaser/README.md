@@ -92,7 +92,7 @@ Please use this [gist](https://gist.github.com/stevemao/280ef22ee861323993a0) to
 
 ### Required GitLab CE/EE Edition
 
-Version [9.0](https://about.gitlab.com/2017/03/22/gitlab-9-0-released/#api-v4-ce-ees-eep), or higher, of GitLab CE/EE is required for `conventional-gitlab-releaser`.
+Version [11.11](https://about.gitlab.com/releases/2019/05/22/gitlab-11-11-released), or higher, of GitLab CE/EE is required for `conventional-gitlab-releaser`.
 
 Core features used:
 * [GitLab release page](http://docs.gitlab.com/ce/workflow/releases.html)
