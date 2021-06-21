@@ -91,6 +91,7 @@ let templateContext
 let gitRawCommitsOpts
 let parserOpts
 let writerOpts
+let presetConfig
 
 try {
   if (flags.context) {
@@ -112,13 +113,17 @@ try {
   if (config.writerOpts) {
     writerOpts = config.writerOpts
   }
+
+  if (config.presetConfig) {
+    presetConfig = config.presetConfig
+  }
 } catch (err) {
   console.error('Failed to get file. ' + err)
   process.exit(1)
 }
 
 const changelogOpts = {
-  preset: flags.preset,
+  preset: Object.assign({ name: flags.preset }, presetConfig),
   pkg: {
     path: flags.pkg
   },
