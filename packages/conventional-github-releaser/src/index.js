@@ -82,6 +82,7 @@ function conventionalGithubReleaser (auth, changelogOpts, context, gitRawCommits
               name: changelogOpts.name || chunk.keyCommit.version,
               prerelease: semver.parse(chunk.keyCommit.version).prerelease.length > 0,
               tag_name: chunk.keyCommit.version,
+              generate_release_notes: true,
               target_commitish: changelogOpts.targetCommitish
             }
           }
