@@ -85,6 +85,9 @@ function conventionalGithubReleaser (auth, changelogOpts, context, gitRawCommits
               target_commitish: changelogOpts.targetCommitish
             }
           }
+          if (changelogOpts.discussion) {
+            options.body.discussion_category_name = changelogOpts.discussion
+          }
           debug(`posting %o to the following URL - ${url}`, options)
 
           // Set auth after debug output so that we don't print auth token to console.
