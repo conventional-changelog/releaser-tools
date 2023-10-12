@@ -1,5 +1,5 @@
 # Use Alpine Linux as our base image so that we minimize the overall size our final container, and minimize the surface area of packages that could be out of date.
-FROM node:8-alpine
+FROM node:20-alpine
 
 # Container metadata describing the image, where it's configuration is housed, and its maintainer.
 LABEL description="Docker image for executing `conventional-tidelift-releaser`."

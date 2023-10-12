@@ -2,11 +2,11 @@ version: 2
 
 node_10: &node_10
   docker:
-    - image: node:10
+    - image: node:20
 
 node_12: &node_12
   docker:
-    - image: node:12
+    - image: node:20
 
 package_manager: &package_manager
   steps:
