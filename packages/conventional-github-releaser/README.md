@@ -129,6 +129,12 @@ Default: `1`
 
 How many releases of changelog you want to generate. It counts from the latest semver tag. Useful when you forgot to generate any previous releases. Set to `0` to regenerate all.
 
+#### discussion
+
+Default: unset
+
+The discussion category name, which when given, will have GitHub automatically create a discussion in this category from the release.
+
 ##### name
 
 Default: same as version tag

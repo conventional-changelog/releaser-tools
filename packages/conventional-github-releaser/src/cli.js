@@ -28,6 +28,9 @@ const cli = meow({
                                 If 0, the whole changelog will be regenerated and the outfile will be overwritten
                                 Default: 1
 
+      -d, --discussion          The discussion category name, which when given, will have GitHub automatically create a discussion in this category from the release.
+                                Default: not set
+
       -v, --verbose             Verbose output. Use this for debugging
                                 Default: false
 
@@ -62,6 +65,10 @@ const cli = meow({
       alias: 'r',
       default: 1,
       type: 'number'
+    },
+    discussion: {
+      alias: 'd',
+      type: 'string'
     },
     verbose: {
       alias: 'v',
@@ -123,6 +130,7 @@ const changelogOpts = {
     path: flags.pkg
   },
   releaseCount: flags.releaseCount,
+  discussion: flags.discussion,
   draft: flags.draft
 }
 
