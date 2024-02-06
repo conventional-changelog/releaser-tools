@@ -44,7 +44,7 @@
     "codecov": "^3.0.0",
     "eslint": "^8.0.0",
     "eslint-config-standard": "^17.0.0",
-    "eslint-config-xo-space": "^0.34.0",
+    "eslint-config-xo-space": "^0.35.0",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-promise": "^6.0.0",
